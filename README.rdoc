@@ -1,28 +1,33 @@
-== README
+install pg on cloud9:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+stackoverflow.com/questions/26545746/cloud9-postgres
 
-Things you may want to cover:
+github.com/Aerogami/guides/wiki/Cloud9-workspace-setup-with-Rails-and-Postgresql
 
-* Ruby version
+Start PG
 
-* System dependencies
+sudo service postgresql start
 
-* Configuration
+* group :production do gem 'rails_12factor' end
 
-* Database creation
+bundle install –without production
 
-* Database initialization
+heroku create
 
-* How to run the test suite
+heroku rename saas102
 
-* Services (job queues, cache servers, search engines, etc.)
+git status
 
-* Deployment instructions
+git add -A
 
-* ...
+git commit -m 'add devise & milia'
 
+git push
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+git push heroku master
+
+heroku run rake db:migrate
+
+*heroku addons:create sendgrid:starter
+
+*rails g devise:views:locale en
