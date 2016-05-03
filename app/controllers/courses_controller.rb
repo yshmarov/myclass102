@@ -5,6 +5,8 @@ class CoursesController < ApplicationController
   
   def index
     @courses = Course.all
+    @tenant = Tenant.current_tenant
+
   end
 
   def show
@@ -22,7 +24,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to root_url, notice: 'Course was successfully created.' }
+        format.html { redirect_to tenant_courses_path, notice: 'Course was successfully created.' }
       else
         format.html { render :new }
       end
@@ -32,9 +34,10 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+    
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to root_url, notice: 'Course was successfully updated.' }
+        format.html { redirect_to @course, tenant_id: @tenant.id, notice: 'Course was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -56,7 +59,7 @@ class CoursesController < ApplicationController
     end
 
     def course_params
-      params.require(:course).permit(:name, :product_id, :attr1_id, :attr2_id, :attr3_id, :tenant_id)
+      params.require(:course).permit(:name, :product_id, :attr1_id, :attr2_id, :attr3_id, :tenant_id, events_attributes: [:id, :starts_at, :room_id, :user_id, :_destroy, attendances_attributes: [ :id, :attendance_rate_id, :client_id, :_destroy ]])
     end
     def set_tenant
       @tenant = Tenant.find(params[:tenant_id])

@@ -1,5 +1,7 @@
 class Course < ActiveRecord::Base
   belongs_to :tenant
+  has_many :events, dependent: :destroy
+  
   validates_uniqueness_of :name
   validate :free_plan_can_only_have_one_course
   

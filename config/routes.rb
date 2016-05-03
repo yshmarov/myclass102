@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-    resources :events
-
+  resources :events
+  resources :events
+  
   resources :tenants do
     resources :courses
   end

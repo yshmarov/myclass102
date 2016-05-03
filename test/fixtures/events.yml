@@ -1,15 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  tenant_id: 
-  starts_at: 2016-05-02 14:23:28
-  event_group_id: 
-  room_id: 
+  starts_at: 2016-05-03 15:09:04
+  room_id: 1
   user_id: 
+  course_id: 
 
 two:
-  tenant_id: 
-  starts_at: 2016-05-02 14:23:28
-  event_group_id: 
-  room_id: 
+  starts_at: 2016-05-03 15:09:04
+  room_id: 1
   user_id: 
+  course_id: 
