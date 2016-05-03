@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+    resources :events
 
+  resources :tenants do
+    resources :courses
+  end
   resources :members
   get 'home/index'
 

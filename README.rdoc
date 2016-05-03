@@ -31,3 +31,7 @@ heroku run rake db:migrate
 *heroku addons:create sendgrid:starter
 
 *rails g devise:views:locale en
+
+
+
+rails g bootstrap:themed Events
