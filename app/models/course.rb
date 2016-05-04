@@ -19,4 +19,7 @@ class Course < ActiveRecord::Base
       tenant.courses.order(:id).limit(10)
     end
   end
+
+  accepts_nested_attributes_for :events, reject_if: proc { |attributes| attributes ['room_id'].blank? }, allow_destroy: true
+
 end

@@ -17,6 +17,8 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    @course.events.build
+    #@course.attendances.build
   end
 
   def create
@@ -37,7 +39,7 @@ class CoursesController < ApplicationController
     
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to @course, tenant_id: @tenant.id, notice: 'Course was successfully updated.' }
+        format.html { redirect_to tenant_course_path, notice: 'Course was successfully updated.' }
       else
         format.html { render :edit }
       end
