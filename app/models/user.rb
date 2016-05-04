@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_one :member, :dependent => :destroy
   has_many :events
   has_many :courses, through: :events
-  
+  validates :email, uniqueness: true
   def username
     self.email.split(/@/).first
   end
