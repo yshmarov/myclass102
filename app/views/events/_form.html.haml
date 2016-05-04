@@ -1,0 +1,11 @@
+= simple_form_for @event, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :starts_at
+  = f.error_span :starts_at
+  = f.input :room_id
+  = f.error_span :room_id
+  = f.input :user_id
+  = f.error_span :user_id
+  = f.input :course_id
+  = f.error_span :course_id
+  = f.button :submit, :class => 'btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), events_path, :class => 'btn btn-default'

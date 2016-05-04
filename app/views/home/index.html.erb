@@ -1,6 +1,11 @@
 <% if current_user %>
 <h3 class="pull-right">Organization: <%= @tenant.name %></h3>
-<%= link_to 'Courses', tenant_courses_path(tenant_id: @tenant.id), class: 'btn btn-primary sign-up' %>
+<%= link_to 'Tenant Courses', tenant_courses_path(tenant_id: @tenant.id), class: 'btn btn-primary sign-up' %>
+<%= link_to 'All Events', events_path, class: 'btn btn-primary sign-up' %>
+<%= link_to '#Users', root_path, class: 'btn btn-primary sign-up' %>
+<%= link_to 'Tenant Members', members_path, class: 'btn btn-primary sign-up' %>
+<%= link_to '#Clients', root_path, class: 'btn btn-primary sign-up' %>
+<%= link_to '#Attendances', root_path, class: 'btn btn-primary sign-up' %>
 <%= render 'courses/list' %>
 <% else %>
 <div class="jumbotron">
