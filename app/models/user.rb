@@ -7,4 +7,13 @@ class User < ActiveRecord::Base
   acts_as_universal_and_determines_account
   has_one :member, :dependent => :destroy
   has_many :events
+  has_many :courses, through: :events
+  
+  def username
+    self.email.split(/@/).first
+  end
+  def to_s
+    username
+  end
+
 end

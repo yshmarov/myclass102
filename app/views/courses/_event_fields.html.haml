@@ -1,12 +1,12 @@
 .well
   .form-inline.clearfix
-    .col-sm-7
-      = f.input :starts_at
-      /, :minute_step => 15, label: false
+    .col-sm-5
+      = f.input :starts_at, :minute_step => 15, label: false
+    .col-sm-3
       = f.input :room_id
       /, collection: @offices, as: :grouped_select, group_method: :rooms
-    .col-sm-3
-      = f.select :user_id, User.all.map{|c| [c, c.id]}, {},class: 'selectize'
     .col-sm-2
+      = f.select :user_id, User.all.map{|c| [c, c.id]}, {},class: 'selectize'
+    .col-sm-1
       = link_to_remove_association "Del event", f, class: "form-button btn btn-danger"
 

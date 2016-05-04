@@ -11,11 +11,10 @@
 // about supported directives.
 //
 
-
-//= require selectize
 //= require jquery
 //= require jquery_ujs
-//= require cocoon
+//= require moment.min
+//= require selectize
 //= require twitter/bootstrap
 //= require bootstrap/affix
 //= require bootstrap/alert
@@ -29,6 +28,7 @@
 //= require bootstrap/modal
 //= require bootstrap/tooltip
 //= require bootstrap/popover
+//= require cocoon
 
 
 //= require_tree .
