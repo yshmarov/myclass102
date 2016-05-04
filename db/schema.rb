@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503150904) do
+ActiveRecord::Schema.define(version: 20160504162434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,18 @@ ActiveRecord::Schema.define(version: 20160503150904) do
 
   add_index "members", ["tenant_id"], name: "index_members_on_tenant_id", using: :btree
   add_index "members", ["user_id"], name: "index_members_on_user_id", using: :btree
+
+  create_table "offices", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "email"
+    t.string   "tel"
+    t.integer  "tenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "offices", ["tenant_id"], name: "index_offices_on_tenant_id", using: :btree
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", null: false
@@ -111,5 +123,6 @@ ActiveRecord::Schema.define(version: 20160503150904) do
   add_foreign_key "events", "users"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
+  add_foreign_key "offices", "tenants"
   add_foreign_key "tenants", "tenants"
 end

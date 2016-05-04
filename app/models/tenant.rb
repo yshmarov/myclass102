@@ -4,6 +4,9 @@ class Tenant < ActiveRecord::Base
   has_many :members, dependent: :destroy
   has_many :courses, dependent: :destroy
   has_many :events, dependent: :destroy
+  has_many :attendances, dependent: :destroy
+  has_many :offices, dependent: :destroy
+  has_many :rooms, dependent: :destroy
   
   def can_create_courses?
     (plan == 'free' && courses.count < 1) || (plan == 'premium')  

@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
   belongs_to :tenant
+  acts_as_tenant
   has_many :events, dependent: :destroy
   
   validates_uniqueness_of :name

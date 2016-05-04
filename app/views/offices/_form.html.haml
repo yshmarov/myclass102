@@ -1,0 +1,11 @@
+= simple_form_for @office, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :name
+  = f.error_span :name
+  = f.input :address
+  = f.error_span :address
+  = f.input :email
+  = f.error_span :email
+  = f.input :tel
+  = f.error_span :tel
+  = f.button :submit, :class => 'btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), offices_path, :class => 'btn btn-default'

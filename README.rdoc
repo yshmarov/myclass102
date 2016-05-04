@@ -37,3 +37,7 @@ rails destroy scaffold events
 rails g bootstrap:themed Events
 
 rails g scaffold Event starts_at:datetime room:belongs_to user:belongs_to course:belongs_to tenant:belongs_to
+/rails g scaffold Attendance event:references client:references attendance_rate:references tenant:references
+rails g scaffold Office name address email tel tenant:references
+
+rails g bootstrap:themed Offices

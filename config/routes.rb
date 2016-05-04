@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :offices
   resources :events
   
   resources :tenants do
