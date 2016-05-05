@@ -69,7 +69,7 @@ class CoursesController < ApplicationController
     end
 
     def course_params
-      params.require(:course).permit(:name, :product_id, :attr1_id, :attr2_id, :attr3_id, :tenant_id, events_attributes: [:id, :starts_at, :room_id, :user_id, :_destroy, attendances_attributes: [ :id, :attendance_rate_id, :client_id, :_destroy ]])
+      params.require(:course).permit(:name, :product_id, :attr1_id, :attr2_id, :attr3_id, :tenant_id, events_attributes: [:id, :starts_at, :room_id, :member_id, :_destroy, attendances_attributes: [ :id, :attendance_rate_id, :client_id, :_destroy ]])
     end
     def set_tenant
       @tenant = Tenant.find(params[:tenant_id])

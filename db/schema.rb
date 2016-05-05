@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 20160505124755) do
   end
 
   add_index "events", ["course_id"], name: "index_events_on_course_id", using: :btree
+  add_index "events", ["member_id"], name: "index_events_on_member_id", using: :btree
   add_index "events", ["tenant_id"], name: "index_events_on_tenant_id", using: :btree
-  add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
   create_table "members", force: :cascade do |t|
     t.integer  "tenant_id"
@@ -144,8 +144,8 @@ ActiveRecord::Schema.define(version: 20160505124755) do
   add_foreign_key "attendance_rates", "tenants"
   add_foreign_key "courses", "tenants"
   add_foreign_key "events", "courses"
+  add_foreign_key "events", "members"
   add_foreign_key "events", "tenants"
-  add_foreign_key "events", "users"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
   add_foreign_key "offices", "tenants"

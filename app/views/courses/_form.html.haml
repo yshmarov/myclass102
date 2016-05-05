@@ -1,29 +1,24 @@
-= simple_form_for [@tenant, @course], :html => { :class => "form-horizontal course" } do |f|
-  - if @course.errors.any?
-    #error_expl.panel.panel-danger
-      .panel-heading
-        %h3.panel-title
-          = pluralize(@course.errors.count, "error")
-          prohibited this course from being saved:
-      .panel-body
-        %ul
-          - @course.errors.full_messages.each do |msg|
-            = msg  = f.input :name, :class => 'form-control'
-  = f.input :name, :class => 'form-control'
-  = f.error_span(:name)
-  = f.input :product_id, :class => 'form-control'
-  = f.error_span(:product_id)
-  = f.input :attr1_id, :class => 'form-control'
-  = f.error_span(:attr1_id)
-  = f.input :attr2_id, :class => 'form-control'
-  = f.error_span(:attr2_id)
-  = f.input :attr3_id, :class => 'form-control'
-  = f.error_span(:attr3_id)
-  = f.submit nil, :class => 'btn btn-primary'
-  = link_to t('.cancel', :default => t("helpers.links.cancel")), root_url, :class => 'btn btn-default'
-  %h3 Events
-  #tasks
-    = f.simple_fields_for :events do |event|
-      = render 'event_fields', f: event
-    .links.container
-      = link_to_add_association '+ Add event', f, :events, class: "btn btn-info add-button"
+= simple_form_for [@tenant, @course] do |f|
+  = f.error_notification
+  = f.button :submit, class: "btn btn-info add-button"
+  %p
+    .form-inputs
+    .col-sm-6
+      = f.input :name
+    .col-sm-6
+      = f.input :product_id
+      /= f.association :product, collection: f.object.product_id ? Product.active_or_id(f.object.product_id) : Product.active, :include_blank => false
+  .row
+    .col-sm-4
+      = f.input :attr1_id
+    .col-sm-4
+      = f.input :attr2_id
+    .col-sm-4
+      = f.input :attr3_id
+  .row
+    %h3 Events
+    #tasks
+      = f.simple_fields_for :events do |event|
+        = render 'event_fields', f: event
+      .links.container
+        = link_to_add_association '+ Add event', f, :events, class: "btn btn-info add-button"

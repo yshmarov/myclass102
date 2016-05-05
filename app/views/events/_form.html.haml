@@ -2,7 +2,10 @@
   = f.error_notification
   = f.input :starts_at
   = f.association :room
-  = f.association :user
+  /= f.association :member
+  /= f.input :member_id
+  /= f.select :member_id, @tenant.members.all.map{|c| [c, c.id]}, {},class: 'selectize'
+  = f.select :member_id, Member.all.map{|c| [c, c.id]}, {},class: 'selectize'
   = f.input :course_id
   = f.button :submit, :class => 'btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), events_path, :class => 'btn btn-default'

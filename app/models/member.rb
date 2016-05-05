@@ -1,7 +1,14 @@
 class Member < ActiveRecord::Base
-   
+
   belongs_to :user
   acts_as_tenant
+  belongs_to :tenant
+  has_many :events
+  has_many :courses, through: :events
+
+  def to_s
+    last_name+" "+first_name
+  end
 
   DEFAULT_ADMIN = {
     first_name: "Admin",

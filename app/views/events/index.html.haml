@@ -7,7 +7,7 @@
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:starts_at)
       %th= model_class.human_attribute_name(:room_id)
-      %th= model_class.human_attribute_name(:user_id)
+      %th= model_class.human_attribute_name(:member)
       %th= model_class.human_attribute_name(:course_id)
       %th= model_class.human_attribute_name(:tenant_id)
       %th= model_class.human_attribute_name(:created_at)
@@ -17,9 +17,9 @@
       %tr
         %td= link_to event.id, event_path(event)
         %td= event.starts_at
-        %td= event.room_id
-        %td= event.user_id
-        %td= event.course_id
+        %td= event.room
+        %td= event.member
+        %td= event.course
         %td= event.tenant_id
         %td= event.created_at
         %td

@@ -11,9 +11,9 @@
   %br
   = @event.room_id
 %p
-  %strong= model_class.human_attribute_name(:user_id) + ':'
+  %strong= model_class.human_attribute_name(:member_id) + ':'
   %br
-  = @event.user_id
+  = @event.member
 %p
   %strong= model_class.human_attribute_name(:course_id) + ':'
   %br
