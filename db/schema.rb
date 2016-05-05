@@ -34,11 +34,13 @@ ActiveRecord::Schema.define(version: 20160504162434) do
     t.integer  "room_id"
     t.integer  "user_id"
     t.integer  "course_id"
+    t.integer  "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "events", ["course_id"], name: "index_events_on_course_id", using: :btree
+  add_index "events", ["tenant_id"], name: "index_events_on_tenant_id", using: :btree
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
   create_table "members", force: :cascade do |t|
@@ -120,6 +122,7 @@ ActiveRecord::Schema.define(version: 20160504162434) do
 
   add_foreign_key "courses", "tenants"
   add_foreign_key "events", "courses"
+  add_foreign_key "events", "tenants"
   add_foreign_key "events", "users"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
