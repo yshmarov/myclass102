@@ -25,21 +25,21 @@ git commit -m 'add devise & milia'
 git push
 
 git push heroku master
-
 heroku run rake db:migrate
+###heroku pg:reset DATABASE --confirm myclass110
 
 *heroku addons:create sendgrid:starter
 
 *rails g devise:views:locale en
 
-
 rails destroy scaffold events
-rails g bootstrap:themed Events
+rails g bootstrap:themed AttendanceRates
 
-
+/rails g scaffold Product title(category) event_quantity:integer event_length:integer member_price:float client_price:float gtype ctype is_active:boolean
 rails g scaffold Course 
 rails g scaffold Event starts_at:datetime room:belongs_to user:belongs_to course:belongs_to tenant:belongs_to
 
+/rails g scaffold AttendanceRate name rate:float tenant:belongs_to
 /rails generate devise Client
 /add to migration:::::::::: tenant:belongs_to first_name last_name.....
 
@@ -52,3 +52,5 @@ rails g scaffold Room name office:belongs_to tenant:belongs_to
 
 
 rails g bootstrap:themed Rooms
+
+

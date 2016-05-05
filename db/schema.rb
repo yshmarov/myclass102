@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505060252) do
+ActiveRecord::Schema.define(version: 20160505124755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendance_rates", force: :cascade do |t|
+    t.string   "name"
+    t.float    "rate"
+    t.integer  "tenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "attendance_rates", ["tenant_id"], name: "index_attendance_rates_on_tenant_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -131,6 +141,7 @@ ActiveRecord::Schema.define(version: 20160505060252) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "attendance_rates", "tenants"
   add_foreign_key "courses", "tenants"
   add_foreign_key "events", "courses"
   add_foreign_key "events", "tenants"

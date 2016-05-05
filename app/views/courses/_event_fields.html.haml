@@ -3,7 +3,7 @@
     .col-sm-5
       = f.input :starts_at, :minute_step => 15, label: false
     .col-sm-3
-      = f.input :room_id
+      = f.association :room
       /, collection: @offices, as: :grouped_select, group_method: :rooms
     .col-sm-2
       = f.select :user_id, @tenant.users.all.map{|c| [c, c.id]}, {},class: 'selectize'

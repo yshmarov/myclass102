@@ -2,6 +2,7 @@ class Course < ActiveRecord::Base
   belongs_to :tenant
   acts_as_tenant
   has_many :events, dependent: :destroy
+  has_many :rooms, through: :events
   
   validates_uniqueness_of :name
   validate :free_plan_can_only_have_one_course

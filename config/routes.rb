@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   resources :offices
   resources :rooms
-  resources :events
   resources :courses
+  resources :events
+  resources :attendance_rates
   
   resources :tenants do
     resources :courses
