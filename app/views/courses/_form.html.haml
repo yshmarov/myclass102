@@ -1,4 +1,14 @@
 = simple_form_for [@tenant, @course], :html => { :class => "form-horizontal course" } do |f|
+  - if @course.errors.any?
+    #error_expl.panel.panel-danger
+      .panel-heading
+        %h3.panel-title
+          = pluralize(@course.errors.count, "error")
+          prohibited this course from being saved:
+      .panel-body
+        %ul
+          - @course.errors.full_messages.each do |msg|
+            = msg  = f.input :name, :class => 'form-control'
   = f.input :name, :class => 'form-control'
   = f.error_span(:name)
   = f.input :product_id, :class => 'form-control'

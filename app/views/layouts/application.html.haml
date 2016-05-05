@@ -25,14 +25,14 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             - if current_user
-              = link_to "Add Members", new_member_path, class: 'btn btn-primary fa fa-users sign-up'
-              /= link_to 'Tenant Courses', tenant_courses_path(tenant_id: @tenant.id), class: 'btn btn-primary sign-up'
-              = link_to 'All Events', events_path, class: 'btn btn-primary sign-up'
-              = link_to 'All offices', offices_path, class: 'btn btn-primary sign-up'
-              = link_to '#Users', root_path, class: 'btn btn-primary sign-up'
-              = link_to 'Tenant Members', members_path, class: 'btn btn-primary sign-up'
-              = link_to '#Clients', root_path, class: 'btn btn-primary sign-up'
+              = link_to 'Members', members_path, class: 'btn btn-primary sign-up'
+              /= link_to 'Courses', tenant_courses_path(tenant_id: @tenant.id), class: 'btn btn-primary sign-up'
+              = link_to 'Events', events_path, class: 'btn btn-primary sign-up'
               = link_to '#Attendances', root_path, class: 'btn btn-primary sign-up'
+
+              = link_to 'Offices', offices_path, class: 'btn btn-primary sign-up'
+              = link_to '#Rooms', offices_path, class: 'btn btn-primary sign-up'
+              = link_to '#Clients', root_path, class: 'btn btn-primary sign-up'
               = link_to current_user.username, edit_user_registration_path, class: 'btn btn-primary sign-up fa fa-user'
               = link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-primary sign-up btn-danger'
             - else

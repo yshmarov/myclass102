@@ -5,6 +5,7 @@ class Course < ActiveRecord::Base
   
   validates_uniqueness_of :name
   validate :free_plan_can_only_have_one_course
+  validates :name, :tenant_id, presence: true
   
   def free_plan_can_only_have_one_course
     if self.new_record? && (tenant.courses.count > 1) && (tenant.plan == 'free')

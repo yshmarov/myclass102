@@ -36,8 +36,19 @@ heroku run rake db:migrate
 rails destroy scaffold events
 rails g bootstrap:themed Events
 
-rails g scaffold Event starts_at:datetime room:belongs_to user:belongs_to course:belongs_to tenant:belongs_to
-/rails g scaffold Attendance event:references client:references attendance_rate:references tenant:references
-rails g scaffold Office name address email tel tenant:references
 
-rails g bootstrap:themed Offices
+rails g scaffold Course 
+rails g scaffold Event starts_at:datetime room:belongs_to user:belongs_to course:belongs_to tenant:belongs_to
+
+/rails generate devise Client
+/add to migration:::::::::: tenant:belongs_to first_name last_name.....
+
+/rails g scaffold Attendance event:references client:references attendance_rate:references tenant:references
+
+
+rails g scaffold Office name address email tel tenant:references
+/rails g scaffold Room name office:belongs_to tenant:belongs_to
+
+
+
+rails g bootstrap:themed Rooms
