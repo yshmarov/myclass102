@@ -47,7 +47,7 @@ rails g scaffold Event starts_at:datetime room:belongs_to user:belongs_to course
 
 
 rails g scaffold Office name address email tel tenant:references
-/rails g scaffold Room name office:belongs_to tenant:belongs_to
+rails g scaffold Room name office:belongs_to tenant:belongs_to
 
 
 

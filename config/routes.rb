@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :offices
+  resources :rooms
   resources :events
   resources :courses
   
