@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20160505124755) do
   create_table "events", force: :cascade do |t|
     t.datetime "starts_at"
     t.integer  "room_id"
-    t.integer  "user_id"
+    t.integer  "member_id"
     t.integer  "course_id"
     t.integer  "tenant_id"
     t.datetime "created_at", null: false
