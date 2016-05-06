@@ -4,7 +4,7 @@ class Course < ActiveRecord::Base
   has_many :events, dependent: :destroy
   has_many :rooms, through: :events
   
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :scope => :tenant_id
   validate :free_plan_can_only_have_one_course
   validates :name, :tenant_id, presence: true
 

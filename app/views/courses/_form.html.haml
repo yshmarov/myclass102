@@ -10,10 +10,10 @@
       /= f.association :product, collection: f.object.product_id ? Product.active_or_id(f.object.product_id) : Product.active, :include_blank => false
   .row
     .col-sm-4
-      = f.input :attr1_id
+      = f.input :attr1_id, class: 'no-left-padding'
     .col-sm-4
       = f.input :attr2_id
-    .col-sm-4
+    .col-sm-4.no-right-padding
       = f.input :attr3_id
   .row
     %h3 Events
