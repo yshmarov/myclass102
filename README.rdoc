@@ -35,7 +35,7 @@ _______________________________
 *rails g devise:views:locale en
 
 rails destroy scaffold events
-rails g bootstrap:themed Attr2s
+rails g bootstrap:themed Attr3s
 
 
 +rails g scaffold Office name address email tel tenant:references

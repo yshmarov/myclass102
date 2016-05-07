@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507132429) do
+ActiveRecord::Schema.define(version: 20160507132639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 20160507132429) do
   end
 
   add_index "attr2s", ["tenant_id"], name: "index_attr2s_on_tenant_id", using: :btree
+
+  create_table "attr3s", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "tenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "attr3s", ["tenant_id"], name: "index_attr3s_on_tenant_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
     t.string   "first_name"
@@ -213,6 +222,7 @@ ActiveRecord::Schema.define(version: 20160507132429) do
   add_foreign_key "attendances", "tenants"
   add_foreign_key "attr1s", "tenants"
   add_foreign_key "attr2s", "tenants"
+  add_foreign_key "attr3s", "tenants"
   add_foreign_key "clients", "tenants"
   add_foreign_key "courses", "tenants"
   add_foreign_key "enrollments", "clients"

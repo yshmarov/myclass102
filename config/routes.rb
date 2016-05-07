@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :attr3s
   resources :attr2s
   resources :attr1s
   resources :enrollments
