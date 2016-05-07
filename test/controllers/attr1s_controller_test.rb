@@ -18,7 +18,7 @@ class Attr1sControllerTest < ActionController::TestCase
 
   test "should create attr1" do
     assert_difference('Attr1.count') do
-      post :create, attr1: { name: @attr1.name }
+      post :create, attr1: { name: @attr1.name, tenant_id: @attr1.tenant_id }
     end
 
     assert_redirected_to attr1_path(assigns(:attr1))
@@ -35,7 +35,7 @@ class Attr1sControllerTest < ActionController::TestCase
   end
 
   test "should update attr1" do
-    patch :update, id: @attr1, attr1: { name: @attr1.name }
+    patch :update, id: @attr1, attr1: { name: @attr1.name, tenant_id: @attr1.tenant_id }
     assert_redirected_to attr1_path(assigns(:attr1))
   end
 

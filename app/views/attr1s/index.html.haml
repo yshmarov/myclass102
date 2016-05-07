@@ -6,6 +6,7 @@
     %tr
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:tenant_id)
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
@@ -13,6 +14,7 @@
       %tr
         %td= link_to attr1.id, attr1_path(attr1)
         %td= attr1.name
+        %td= attr1.tenant_id
         %td=l attr1.created_at
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_attr1_path(attr1), :class => 'btn btn-default btn-xs'

@@ -6,6 +6,10 @@
   %strong= model_class.human_attribute_name(:name) + ':'
   %br
   = @attr1.name
+%p
+  %strong= model_class.human_attribute_name(:tenant_id) + ':'
+  %br
+  = @attr1.tenant_id
 
 
 = link_to t('.back', :default => t("helpers.links.back")), attr1s_path, :class => 'btn btn-default'

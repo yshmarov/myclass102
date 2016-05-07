@@ -3,6 +3,7 @@ stackoverflow.com/questions/26545746/cloud9-postgres
 github.com/Aerogami/guides/wiki/Cloud9-workspace-setup-with-Rails-and-Postgresql
 #Start PG
 sudo service postgresql start
+sudo service postgresql stop
 _______________________________
 #heroku
 group :production do
@@ -51,6 +52,7 @@ rails g bootstrap:themed Attr1s
 
 /rails g scaffold MemberProfile member:belongs_to tenant:belongs_to tel1 tel2 address dob.....
 /rails generate devise Client
-+rails g scaffold Attr1 name
-/rails g scaffold Attr2 name
-/rails g scaffold Attr3 name
++
+rails g scaffold Attr1 name tenant:belongs_to
+/rails g scaffold Attr2 name tenant:belongs_to
+/rails g scaffold Attr3 name tenant:belongs_to
