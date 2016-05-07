@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :attr1s
   resources :enrollments
   resources :attendances
   resources :clients

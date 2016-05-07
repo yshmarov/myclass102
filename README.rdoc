@@ -34,7 +34,7 @@ _______________________________
 *rails g devise:views:locale en
 
 rails destroy scaffold events
-rails g bootstrap:themed Enrollments
+rails g bootstrap:themed Attr1s
 
 
 +rails g scaffold Office name address email tel tenant:references
@@ -51,6 +51,6 @@ rails g bootstrap:themed Enrollments
 
 /rails g scaffold MemberProfile member:belongs_to tenant:belongs_to tel1 tel2 address dob.....
 /rails generate devise Client
-/rails g scaffold Attr1 name
++rails g scaffold Attr1 name
 /rails g scaffold Attr2 name
 /rails g scaffold Attr3 name
