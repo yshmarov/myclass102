@@ -34,7 +34,7 @@ _______________________________
 *rails g devise:views:locale en
 
 rails destroy scaffold events
-rails g bootstrap:themed AttendanceRates
+rails g bootstrap:themed Attendances
 
 
 /rails g scaffold ProductType name
@@ -42,15 +42,12 @@ rails g bootstrap:themed AttendanceRates
 +rails g scaffold Course name product_id attr1_id:integer attr2_id:integer attr3_id:integer tenant:belongs_to
 +rails g scaffold Event starts_at:datetime room:belongs_to user:belongs_to course:belongs_to tenant:belongs_to
 +rails g scaffold AttendanceRate name rate:float tenant:belongs_to
-
-/rails g scaffold Attendance event:references client:references attendance_rate:references tenant:references
++rails g scaffold Attendance event:references client:references attendance_rate:references tenant:references
 
 /rails g scaffold MemberProfile member:belongs_to tenant:belongs_to tel1 tel2 address dob.....
 
 /rails generate devise Client
-/add to migration:::::::::: tenant:belongs_to first_name last_name.....
-
-rails g scaffold Client first_name middle_name last_name email tel1 tel2 dob:date sex address lead_source_id:integer tenant:belongs_to
++rails g scaffold Client first_name middle_name last_name email tel1 tel2 dob:date sex address lead_source_id:integer tenant:belongs_to
 
 rails g scaffold Office name address email tel tenant:references
 rails g scaffold Room name office:belongs_to tenant:belongs_to

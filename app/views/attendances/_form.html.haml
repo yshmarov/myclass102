@@ -1,0 +1,11 @@
+= simple_form_for @attendance, :html => { :class => 'form-horizontal' } do |f|
+  = f.association :event
+  = f.error_span :event_id
+  = f.association :client
+  = f.error_span :client_id
+  = f.association :attendance_rate
+  = f.error_span :attendance_rate_id
+  = f.input :tenant_id
+  = f.error_span :tenant_id
+  = f.button :submit, :class => 'btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), attendances_path, :class => 'btn btn-default'

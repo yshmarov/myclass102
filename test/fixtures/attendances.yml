@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_id: 
+  client_id: 
+  attendance_rate_id: 
+  tenant_id: 
+
+two:
+  event_id: 
+  client_id: 
+  attendance_rate_id: 
+  tenant_id: 

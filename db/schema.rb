@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507081631) do
+ActiveRecord::Schema.define(version: 20160507083812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,20 @@ ActiveRecord::Schema.define(version: 20160507081631) do
   end
 
   add_index "attendance_rates", ["tenant_id"], name: "index_attendance_rates_on_tenant_id", using: :btree
+
+  create_table "attendances", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "client_id"
+    t.integer  "attendance_rate_id"
+    t.integer  "tenant_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "attendances", ["attendance_rate_id"], name: "index_attendances_on_attendance_rate_id", using: :btree
+  add_index "attendances", ["client_id"], name: "index_attendances_on_client_id", using: :btree
+  add_index "attendances", ["event_id"], name: "index_attendances_on_event_id", using: :btree
+  add_index "attendances", ["tenant_id"], name: "index_attendances_on_tenant_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
     t.string   "first_name"
@@ -160,6 +174,10 @@ ActiveRecord::Schema.define(version: 20160507081631) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "attendance_rates", "tenants"
+  add_foreign_key "attendances", "attendance_rates"
+  add_foreign_key "attendances", "clients"
+  add_foreign_key "attendances", "events"
+  add_foreign_key "attendances", "tenants"
   add_foreign_key "clients", "tenants"
   add_foreign_key "courses", "tenants"
   add_foreign_key "events", "courses"
