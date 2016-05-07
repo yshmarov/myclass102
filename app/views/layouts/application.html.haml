@@ -33,7 +33,7 @@
 
               = link_to 'Offices', offices_path, class: 'btn btn-primary sign-up'
               = link_to 'Rooms', rooms_path, class: 'btn btn-primary sign-up'
-              = link_to '#Clients', root_path, class: 'btn btn-primary sign-up'
+              = link_to 'Clients', clients_path, class: 'btn btn-primary sign-up'
               = link_to current_user.username, edit_user_registration_path, class: 'btn btn-primary sign-up fa fa-user'
               = link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-primary sign-up btn-danger'
             - else

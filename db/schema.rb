@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505124755) do
+ActiveRecord::Schema.define(version: 20160507081631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,24 @@ ActiveRecord::Schema.define(version: 20160505124755) do
   end
 
   add_index "attendance_rates", ["tenant_id"], name: "index_attendance_rates_on_tenant_id", using: :btree
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "tel1"
+    t.string   "tel2"
+    t.date     "dob"
+    t.string   "sex"
+    t.string   "address"
+    t.integer  "lead_source_id"
+    t.integer  "tenant_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "clients", ["tenant_id"], name: "index_clients_on_tenant_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -142,6 +160,7 @@ ActiveRecord::Schema.define(version: 20160505124755) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "attendance_rates", "tenants"
+  add_foreign_key "clients", "tenants"
   add_foreign_key "courses", "tenants"
   add_foreign_key "events", "courses"
   add_foreign_key "events", "members"

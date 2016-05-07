@@ -1,35 +1,36 @@
-install pg on cloud9:
-
+#install pg on cloud9:
 stackoverflow.com/questions/26545746/cloud9-postgres
-
 github.com/Aerogami/guides/wiki/Cloud9-workspace-setup-with-Rails-and-Postgresql
-
-Start PG
-
+#Start PG
 sudo service postgresql start
-
-* group :production do gem 'rails_12factor' end
+_______________________________
+#heroku
+group :production do
+  gem 'rails_12factor' 
+end
 
 bundle install –without production
 
 heroku create
 
-heroku rename saas102
-
-git status
-
-git add -A
-
-git commit -m 'add devise & milia'
-
-git push
+heroku rename myclass110
 
 git push heroku master
+
 heroku run rake db:migrate
-###heroku pg:reset DATABASE --confirm myclass110
 
-*heroku addons:create sendgrid:starter
+heroku pg:reset DATABASE --confirm myclass110
 
+heroku addons:create sendgrid:starter
+_______________________________
+#Github
+git init
+git status
+git add -A
+git commit -m 'add devise & milia'
+git push
+_______________________________
+#Scaffolds
 *rails g devise:views:locale en
 
 rails destroy scaffold events
@@ -37,11 +38,10 @@ rails g bootstrap:themed AttendanceRates
 
 
 /rails g scaffold ProductType name
-/rails g scaffold Product title(category) event_quantity:integer event_length:integer member_price:float client_price:float gtype ctype is_active:boolean
-rails g scaffold Course 
-rails g scaffold Event starts_at:datetime room:belongs_to user:belongs_to course:belongs_to tenant:belongs_to
-
-rails g scaffold AttendanceRate name rate:float tenant:belongs_to
+/rails g scaffold Product product_type_id:integer/product_category_id:integer name event_quantity:integer event_length:integer member_price:float client_price:float gtype ctype is_active:boolean
++rails g scaffold Course name product_id attr1_id:integer attr2_id:integer attr3_id:integer tenant:belongs_to
++rails g scaffold Event starts_at:datetime room:belongs_to user:belongs_to course:belongs_to tenant:belongs_to
++rails g scaffold AttendanceRate name rate:float tenant:belongs_to
 
 /rails g scaffold Attendance event:references client:references attendance_rate:references tenant:references
 
@@ -50,7 +50,7 @@ rails g scaffold AttendanceRate name rate:float tenant:belongs_to
 /rails generate devise Client
 /add to migration:::::::::: tenant:belongs_to first_name last_name.....
 
-rails g scaffold Client first_name middle_name last_name email tel1 tel2 dob:date sex address tenant:belongs_to
+rails g scaffold Client first_name middle_name last_name email tel1 tel2 dob:date sex address lead_source_id:integer tenant:belongs_to
 
 rails g scaffold Office name address email tel tenant:references
 rails g scaffold Room name office:belongs_to tenant:belongs_to
@@ -60,5 +60,3 @@ rails g scaffold Room name office:belongs_to tenant:belongs_to
 /rails g scaffold Attr3 name
 
 rails g bootstrap:themed Rooms
-
-
