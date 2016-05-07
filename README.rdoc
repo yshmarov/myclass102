@@ -34,26 +34,23 @@ _______________________________
 *rails g devise:views:locale en
 
 rails destroy scaffold events
-rails g bootstrap:themed Attendances
+rails g bootstrap:themed Enrollments
 
 
-/rails g scaffold ProductType name
-/rails g scaffold Product product_type_id:integer/product_category_id:integer name event_quantity:integer event_length:integer member_price:float client_price:float gtype ctype is_active:boolean
++rails g scaffold Office name address email tel tenant:references
++rails g scaffold Room name office:belongs_to tenant:belongs_to
 +rails g scaffold Course name product_id attr1_id:integer attr2_id:integer attr3_id:integer tenant:belongs_to
 +rails g scaffold Event starts_at:datetime room:belongs_to user:belongs_to course:belongs_to tenant:belongs_to
 +rails g scaffold AttendanceRate name rate:float tenant:belongs_to
 +rails g scaffold Attendance event:references client:references attendance_rate:references tenant:references
++rails g scaffold Client first_name middle_name last_name email tel1 tel2 dob:date sex address lead_source_id:integer tenant:belongs_to
+###/rails g scaffold ProductType name
+###/rails g scaffold Product product_type_id:integer/product_category_id:integer name event_quantity:integer event_length:integer member_price:float client_price:float gtype ctype is_active:boolean
+###/
++rails g scaffold Enrollment course:belongs_to client:belongs_to  tenant:belongs_to member:belongs_to coupon_id:integer
 
 /rails g scaffold MemberProfile member:belongs_to tenant:belongs_to tel1 tel2 address dob.....
-
 /rails generate devise Client
-+rails g scaffold Client first_name middle_name last_name email tel1 tel2 dob:date sex address lead_source_id:integer tenant:belongs_to
-
-rails g scaffold Office name address email tel tenant:references
-rails g scaffold Room name office:belongs_to tenant:belongs_to
-
 /rails g scaffold Attr1 name
 /rails g scaffold Attr2 name
 /rails g scaffold Attr3 name
-
-rails g bootstrap:themed Rooms

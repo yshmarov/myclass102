@@ -1,0 +1,13 @@
+= simple_form_for @enrollment, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :course_id
+  = f.error_span :course_id
+  = f.input :client_id
+  = f.error_span :client_id
+  = f.input :tenant_id
+  = f.error_span :tenant_id
+  = f.input :member_id
+  = f.error_span :member_id
+  = f.input :coupon_id
+  = f.error_span :coupon_id
+  = f.button :submit, :class => 'btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), enrollments_path, :class => 'btn btn-default'
