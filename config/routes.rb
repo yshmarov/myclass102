@@ -10,10 +10,8 @@ Rails.application.routes.draw do
   resources :courses
   resources :events
   resources :attendance_rates
-  
-  resources :tenants do
-    resources :courses
-  end
+  resources :courses
+  resources :tenants
   resources :members
   get 'home/index'
 
