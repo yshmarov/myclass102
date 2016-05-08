@@ -74,6 +74,7 @@ class CoursesController < ApplicationController
     end
     def set_tenant
       @tenant = Tenant.find(params[:tenant_id])
+      #@tenant = current_user.member.tenant_id
     end
   
     def verify_tenant

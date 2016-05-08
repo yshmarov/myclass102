@@ -5,27 +5,7 @@ class AttendancesController < ApplicationController
     @attendances = Attendance.all
   end
 
-  def show
-  end
-
-  def new
-    @attendance = Attendance.new
-  end
-
   def edit
-  end
-
-  def create
-    @attendance = Attendance.new(attendance_params)
-    respond_to do |format|
-      if @attendance.save
-        format.html { redirect_to @attendance, notice: 'Attendance was successfully created.' }
-        format.json { render :show, status: :created, location: @attendance }
-      else
-        format.html { render :new }
-        format.json { render json: @attendance.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   def update
