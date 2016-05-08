@@ -6,15 +6,14 @@ class Course < ActiveRecord::Base
   belongs_to :attr3
   belongs_to :product
 
-  has_many :enrollments
+  has_many :enrollments, dependent: :destroy
   has_many :clients, through: :enrollments
   has_many :events, dependent: :destroy
   has_many :rooms, through: :events
-  has_many :attendances, through: :events
+  has_many :attendances, through: :events, dependent: :destroy
 
   #validates :name, :status, :attr1_id, :attr2_id, :attr3_id, :service_id, presence: true
   #validates :name, uniqueness: true
-
   validates_uniqueness_of :name, :scope => :tenant_id
   
   validate :free_plan_can_only_have_one_course

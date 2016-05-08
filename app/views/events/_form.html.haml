@@ -1,11 +1,21 @@
-= simple_form_for @event, :html => { :class => 'form-horizontal' } do |f|
+= simple_form_for @event do |f|
   = f.error_notification
-  = f.input :starts_at
-  = f.association :room
-  /= f.association :member
-  /= f.input :member_id
-  /= f.select :member_id, @tenant.members.all.map{|c| [c, c.id]}, {},class: 'selectize'
-  = f.select :member_id, Member.all.map{|c| [c, c.id]}, {},class: 'selectize'
-  = f.input :course_id
   = f.button :submit, :class => 'btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), events_path, :class => 'btn btn-default'
+  %p
+  .well
+    .form-inline.clearfix
+      .col-sm-7
+        .form-inputs
+          = f.input :starts_at, :minute_step => 15, label: false
+          = f.association :room
+          = f.input :course_id, input_html: {value: @event.course_id || params[:course_id]}, as: :hidden
+      .col-sm-5
+        = f.select :member_id, Member.all.map{|c| [c, c.id]}, {},class: 'selectize'
+    #tasks
+      %h4.container.p Attendances
+      = f.simple_fields_for :attendances do |attendance|
+        = render 'attendance_fields', f: attendance
+      .links
+        %p
+        = link_to_add_association 'Add attendance', f, :attendances, class: "btn btn-info add-button"

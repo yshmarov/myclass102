@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   has_many :attendances, dependent: :destroy
   has_many :clients, through: :attendances
 
-  validates :member_id, :starts_at, :room_id, :tenant_id, :course_id, presence: true
+  validates :member_id, :starts_at, :room_id, presence: true
   validates_time :starts_at, :between => '9:00am'..'7:00pm'
   accepts_nested_attributes_for :attendances, reject_if: proc { |attributes| attributes ['attendance_rate_id'].blank? }, allow_destroy: true
 

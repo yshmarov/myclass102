@@ -7,9 +7,9 @@
       = f.input :name
     .col-sm-6
       = f.input :product_id
-      /= f.association :product, collection: f.object.product_id ? Product.active_or_id(f.object.product_id) : Product.active, :include_blank => false
+      /= f.association :service, collection: f.object.service_id ? Service.active_or_id(f.object.service_id) : Service.active, :include_blank => false
   .row
-    .col-sm-4
+    .col-sm-4.no-left-padding
       = f.association :attr1, class: 'no-left-padding'
     .col-sm-4
       = f.association :attr2

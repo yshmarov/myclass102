@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @event.attendances.build
   end
 
   def create
@@ -55,7 +56,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:starts_at, :room_id, :member_id, :course_id, :tenant_id)
+      params.require(:event).permit(:starts_at, :room_id, :member_id, :course_id, :tenant_id, attendances_attributes: [ :id, :attendance_rate_id, :client_id, :tenant_id, :_destroy ])
     end
 
 end
