@@ -21,9 +21,12 @@ class CoursesController < ApplicationController
     #@tenant = Tenant.current_tenant
   end
 
+  def editclean
+  end
+    
+
   def create
     @course = Course.new(course_params)
-
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
@@ -33,10 +36,7 @@ class CoursesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /courses/1
-  # PATCH/PUT /courses/1.json
   def update
-    
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -55,7 +55,6 @@ class CoursesController < ApplicationController
   end
 
   private
-
     def set_course
       @course = Course.find(params[:id])
     end
