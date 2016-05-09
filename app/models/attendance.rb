@@ -6,6 +6,7 @@ class Attendance < ActiveRecord::Base
   belongs_to :attendance_rate
   validates :client_id, :attendance_rate_id, presence: true
 
+
   #IN EVENTS OR ATTENDANCES
   #validates_uniqueness_of :client_id, :scope => :event_id
 
@@ -26,6 +27,8 @@ class Attendance < ActiveRecord::Base
   def startz
     event.starts_at
   end
-
+  def endz
+    event.ends_at
+  end
 
 end

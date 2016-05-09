@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :editcourse]
 
   def index
     @tenant = Tenant.current_tenant
@@ -23,7 +23,7 @@ class CoursesController < ApplicationController
 
   def editcourse
     #@course = Course.find(params[:id])
-    @course = Course.find(courser_params)
+    #@course = Course.find(courser_params)
   end
     
   def updatecourse
@@ -76,8 +76,5 @@ class CoursesController < ApplicationController
 
     def course_params
       params.require(:course).permit(:name, :product_id, :attr1_id, :attr2_id, :attr3_id, :tenant_id, events_attributes: [:id, :starts_at, :room_id, :member_id, :tenant_id, :_destroy, attendances_attributes: [ :id, :attendance_rate_id, :client_id, :tenant_id, :_destroy ]])
-    end
-    def courser_params
-      params.require(:course).permit(:name, :product_id, :attr1_id, :attr2_id, :attr3_id, :tenant_id)
     end
 end
