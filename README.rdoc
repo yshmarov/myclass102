@@ -30,7 +30,7 @@ _______________________________
 #Scaffolds
 *rails g devise:views:locale en
 rails destroy scaffold ProductTypes
-rails g bootstrap:themed ProductTypes
+rails g bootstrap:themed Products
 
 +rails g scaffold Office name address email tel tenant:references
 +rails g scaffold Room name office:belongs_to tenant:belongs_to
@@ -43,8 +43,9 @@ rails g bootstrap:themed ProductTypes
 +rails g scaffold Attr2 name tenant:belongs_to
 +rails g scaffold Attr3 name tenant:belongs_to
 +rails g scaffold Enrollment course:belongs_to client:belongs_to  tenant:belongs_to member:belongs_to coupon_id:integer
-rails g scaffold ProductType name tenant:belongs_to
-###/rails g scaffold Product product_type_id:integer/product_category_id:integer name event_quantity:integer event_length:integer member_price:float client_price:float gtype ctype is_active:boolean
++rails g scaffold ProductType name tenant:belongs_to
++rails g scaffold Product name event_quantity:integer event_length:integer member_price:decimal client_price:decimal gtype ctype is_active:boolean product_type:belongs_to tenant:belongs_to
+
 ###/
 /rails g scaffold Payment/Expence tenant:belongs_to
 /rails g scaffold Sale/Income tenant:belongs_to

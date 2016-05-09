@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509180927) do
+ActiveRecord::Schema.define(version: 20160509182400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,24 @@ ActiveRecord::Schema.define(version: 20160509180927) do
 
   add_index "product_types", ["tenant_id"], name: "index_product_types_on_tenant_id", using: :btree
 
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "event_quantity"
+    t.integer  "event_length"
+    t.decimal  "member_price"
+    t.decimal  "client_price"
+    t.string   "gtype"
+    t.string   "ctype"
+    t.boolean  "is_active"
+    t.integer  "product_type_id"
+    t.integer  "tenant_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "products", ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
+  add_index "products", ["tenant_id"], name: "index_products_on_tenant_id", using: :btree
+
   create_table "rooms", force: :cascade do |t|
     t.string   "name"
     t.integer  "office_id"
@@ -245,6 +263,8 @@ ActiveRecord::Schema.define(version: 20160509180927) do
   add_foreign_key "members", "users"
   add_foreign_key "offices", "tenants"
   add_foreign_key "product_types", "tenants"
+  add_foreign_key "products", "product_types"
+  add_foreign_key "products", "tenants"
   add_foreign_key "rooms", "offices"
   add_foreign_key "rooms", "tenants"
   add_foreign_key "tenants", "tenants"
