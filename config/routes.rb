@@ -10,11 +10,15 @@ Rails.application.routes.draw do
   resources :courses
   resources :events
   resources :attendance_rates
-  resources :courses
+  resources :courses do
+    get 'editcourse'
+    put 'updatecourse'
+  end
   resources :tenants
   resources :members
   get 'home/index'
-
+  get 'dashboard', to: 'home#dashboard'
+  get 'settings', to: 'home#settings'
    root :to => "home#index"
 
     

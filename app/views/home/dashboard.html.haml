@@ -1,0 +1,6 @@
+/- set_var 'events', @events.map{|e| {title: e.course.name + " " + e.room.office.name  + " " + e.room.name, start: e.starts_at, end: e.ends_at, url: course_path(e.course)}}
+/- set_var 'events', @events.map{|e| {title: e.event.starts_at, start: e.starts_at, end: e.ends_at}}
+- set_var 'events', @events.map{|e| {title: e.room.name, start: e.starts_at, end: e.ends_at}}
+
+.well
+  %div#calendar

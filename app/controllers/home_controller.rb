@@ -14,4 +14,10 @@ class HomeController < ApplicationController
       params[:tenant_id] = @tenant.id
     end
   end
+  def dashboard
+    @events = Event.all
+  end
+
+  def settings
+  end
 end

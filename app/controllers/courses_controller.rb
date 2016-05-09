@@ -21,9 +21,24 @@ class CoursesController < ApplicationController
     #@tenant = Tenant.current_tenant
   end
 
-  def editclean
+  def editcourse
+    #@course = Course.find(params[:id])
+    @course = Course.find(courser_params)
   end
     
+  def updatecourse
+    #@course = Course.find(params[:id])
+    @course = Course.find(courser_params)
+    respond_to do |format|
+      if @course.update(courser_params)
+        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
+
 
   def create
     @course = Course.new(course_params)
@@ -61,5 +76,8 @@ class CoursesController < ApplicationController
 
     def course_params
       params.require(:course).permit(:name, :product_id, :attr1_id, :attr2_id, :attr3_id, :tenant_id, events_attributes: [:id, :starts_at, :room_id, :member_id, :tenant_id, :_destroy, attendances_attributes: [ :id, :attendance_rate_id, :client_id, :tenant_id, :_destroy ]])
+    end
+    def courser_params
+      params.require(:course).permit(:name, :product_id, :attr1_id, :attr2_id, :attr3_id, :tenant_id)
     end
 end

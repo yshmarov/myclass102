@@ -1,0 +1,25 @@
+.container
+  .well.col-md-4.text-center
+    %h1 Reports
+    %p
+    = link_to "<i class='fa fa-shopping-cart'></i> Enrollments report".html_safe, enrollments_path, class: 'btn btn-primary sign-up'
+    %p
+    = link_to "<i class='fa fa-line-chart'></i> Attendances report".html_safe, attendances_path, class: 'btn btn-primary sign-up'
+    %p
+    = link_to "<i class='fa fa-bar-chart'></i> Events report".html_safe, events_path, class: 'btn btn-primary sign-up'
+  .well.col-md-4.text-center
+    %h1 Facilities
+    %p
+    = link_to "<i class='fa fa-bank'></i> Offices".html_safe, offices_path, class: 'btn btn-primary sign-up'
+    %p
+    = link_to "<i class='fa fa-bank'></i> Rooms".html_safe, rooms_path, class: 'btn btn-primary sign-up'
+  .well.col-md-4.text-center
+    %h1 Configs
+    %p
+    = link_to "<i class='fa fa-sliders'></i> Attendance rates".html_safe, attendance_rates_path, class: 'btn btn-primary sign-up'
+    %p
+    = link_to "<i class='fa fa-sliders'></i> Attr1s".html_safe, attr1s_path, class: 'btn btn-primary sign-up'
+    %p
+    = link_to "<i class='fa fa-sliders'></i> Attr2s".html_safe, attr2s_path, class: 'btn btn-primary sign-up'
+    %p
+    = link_to "<i class='fa fa-sliders'></i> Attr3s".html_safe, attr3s_path, class: 'btn btn-primary sign-up'
