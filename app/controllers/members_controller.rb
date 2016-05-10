@@ -1,11 +1,16 @@
 class MembersController < ApplicationController
-
+  before_action :set_member, only: [:show, :edit, :update, :destroy]
   # uncomment to ensure common layout for forms
   # layout  "sign", :only => [:new, :edit, :create]
   def index
     @members = Member.all
   end
-
+  def show
+  end
+  
+  def edit
+  end
+  
   def new()
     @member = Member.new()
     @user   = User.new()
@@ -16,7 +21,7 @@ class MembersController < ApplicationController
     # ok to create user, member
     if @user.save_and_invite_member() && @user.create_member( member_params )
       flash[:notice] = "New member added and invitation email sent to #{@user.email}."
-      redirect_to root_path
+      redirect_to members_path
     else
       flash[:error] = "errors occurred!"
       @member = Member.new( member_params ) # only used if need to revisit form
@@ -24,7 +29,28 @@ class MembersController < ApplicationController
     end
   end
 
+  def update
+    respond_to do |format|
+      if @member.update(member_params)
+        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
+  def destroy
+    @member.destroy
+    respond_to do |format|
+      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
+  def set_member
+    @member = Member.find(params[:id])
+  end
 
   def member_params()
     params.require(:member).permit(:first_name, :last_name)
