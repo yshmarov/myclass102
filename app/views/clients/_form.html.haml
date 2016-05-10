@@ -1,25 +1,31 @@
-= simple_form_for @client, :html => { :class => 'form-horizontal' } do |f|
-  = f.input :first_name
-  = f.error_span :first_name
-  = f.input :middle_name
-  = f.error_span :middle_name
-  = f.input :last_name
-  = f.error_span :last_name
-  = f.input :email
-  = f.error_span :email
-  = f.input :tel1
-  = f.error_span :tel1
-  = f.input :tel2
-  = f.error_span :tel2
-  = f.input :dob
-  = f.error_span :dob
-  = f.input :sex
-  = f.error_span :sex
-  = f.input :address
-  = f.error_span :address
-  = f.input :lead_source_id
-  = f.error_span :lead_source_id
-  = f.input :tenant_id
-  = f.error_span :tenant_id
-  = f.button :submit, :class => 'btn-primary'
-  = link_to t('.cancel', :default => t("helpers.links.cancel")), clients_path, :class => 'btn btn-default'
+= simple_form_for @client do |f|
+  .col-xs-4.no-left-padding
+    = f.input :first_name
+  .col-xs-4
+    = f.input :middle_name
+  .col-xs-4.no-right-padding
+    = f.input :last_name
+  .row
+  .col-xs-4.no-left-padding
+    = f.input :email
+  .col-xs-4
+    = f.input :tel2
+  .col-xs-4.no-right-padding
+    = f.input :tel1
+  .row
+  .col-xs-8.no-left-padding
+    = f.input :dob, :start_year => Time.now.year - 80, :end_year => Time.now.year - 4
+  .col-xs-4.no-right-padding
+    = f.radio_button :sex, "M"
+    = f.label :gender_male, "Male"
+    = f.radio_button :sex, "F"
+    = f.label :gender_female, "Female"
+  .row
+  .col-xs-6.no-left-padding
+    = f.input :address
+  .col-xs-6.no-right-padding
+    = f.input :lead_source_id, class: 'inactive'
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary btn-block'
+

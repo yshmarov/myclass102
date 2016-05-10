@@ -12,8 +12,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :attendances, reject_if: proc { |attributes| attributes ['attendance_rate_id'].blank? }, allow_destroy: true
 
   def ends_at
-  	starts_at + 60*60
-  	#course.service.event_length*60
+  	starts_at + course.product.event_length*60
   end
   def to_s
   	starts_at

@@ -5,11 +5,11 @@ class Client < ActiveRecord::Base
 
   has_many :attendances
   has_many :events, through: :attendances
-  #has_many :enrollments
+  has_many :enrollments
   #has_many :payments, through: :enrollments
   ###???
-  #has_many :courses, through: :enrollments
-  #has_many :products, through: :event_groups
+  has_many :courses, through: :enrollments
+  has_many :products, through: :courses
   #has_many :comments
 
   validates :email, uniqueness: { case_sensitive: false }

@@ -6,6 +6,25 @@ class ClientsController < ApplicationController
   end
 
   def show
+    #@courses = @client.courses
+    
+    @enrollments = @client.enrollments
+    #@payments = @guest.payments
+
+    #for table and calendar
+    @attendances = @client.attendances
+    @totalatt = @client.attendances.count
+
+    #past and future attendances
+    #@past_attendances = @attendances.order('startz ASC') #.where('startz < ?', Time.now).order('startz ASC')
+    #@future_attendances = @guest.attendances.where('event.starts_at > ?', Time.now) #.order('startz ASC')
+
+    #only for calendar?
+    #@events = @client.events
+
+    #+
+    #skips event_group & events. All guests attendances summed by payment
+    @totalduepaymentclient = @attendances.map(&:duepayment).sum
   end
 
   def new

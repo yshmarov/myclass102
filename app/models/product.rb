@@ -14,4 +14,8 @@ class Product < ActiveRecord::Base
   def description
     event_quantity.to_s+product_type.to_s+event_length.to_s+gtype.to_s+productprice.to_s
   end
+
+  def to_s
+    description
+  end
 end
