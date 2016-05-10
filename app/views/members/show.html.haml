@@ -1,16 +1,102 @@
+- set_var 'events', @events.map{|e| {title: e.course.name + " " + e.room.office.name  + " " + e.room.name, start: e.starts_at, end: e.ends_at, url: course_path(e.course)}}
 .page-header
   %h1 Member
-%p
-  %b First name
-  = @member.first_name
-%p
-  %b Last name
-  = @member.last_name
-%p
-  %b Email
-  = @member.user.email
-
-
-= link_to 'Back', members_path, :class => 'btn btn-default'
-= link_to 'Edit', edit_member_path(@member), :class => 'btn btn-default'
-= link_to 'Destroy', member_path(@member), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger'
+.col-md-4
+  #accordion.panel-group
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapseOne"}
+            %b My info
+      #collapseOne.panel-collapse.collapse.in
+        .panel-body
+          .text-center
+            = link_to 'Back', members_path, :class => 'btn btn-default'
+            = link_to 'Edit', edit_member_path(@member), :class => 'btn btn-default'
+            = link_to 'Destroy', member_path(@member), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger'
+          %p
+            %b First name
+            = @member.first_name
+          %p
+            %b Last name
+            = @member.last_name
+          %p
+            %b Email
+            = @member.user.email
+          %table.table.table-hover.table-condensed.table-responsive.table-bordered
+            %thead
+              %tr
+                %th Total services rendered (past & expected), UAH:
+                %th Total income, UAH:
+                %th.bg-success Expected income, UAH:
+            %tbody
+              %tr
+                %td= @total_member_event_price
+                %td
+                %td.bg-success
+.col-md-8
+  #accordion.panel-group
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapseThree"}
+            %b My calendar
+      #collapseThree.panel-collapse.collapse.in
+        .panel-body
+          %div#calendar
+.row
+.col-md-6
+  #accordion.panel-group
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapsepastEvent"}
+            %b My past events:
+            %b= @past
+            /= @pastpay
+      #collapsepastEvent.panel-collapse.collapse.in
+        .panel-body
+          %h1
+          %table.table.table-hover.table-condensed.table-responsive.table-bordered
+            %thead
+              %tr
+                %th Starts at
+                %th Duration
+                %th Course
+                %th Room
+                %th.bg-success Payment
+            %tbody
+              - @past_events.each do |event|
+                %tr
+                  %td= event.starts_at
+                  %td= event.course.product.event_length
+                  %td= event.course
+                  %td= event.room
+                  %td.bg-success= event.member_event_price
+.col-md-6
+  #accordion.panel-group
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapsefutureEvent"}
+            %b My future events:
+            %b= @future
+      #collapsefutureEvent.panel-collapse.collapse.in
+        .panel-body
+          %h1
+          %table.table.table-hover.table-condensed.table-responsive.table-bordered
+            %thead
+              %tr
+                %th Starts at
+                %th Duration
+                %th Course
+                %th Room
+                %th.bg-success Payment
+            %tbody
+              - @future_events.each do |event|
+                %tr
+                  %td= event.starts_at
+                  %td= event.course.product.event_length
+                  %td= event.course
+                  %td= event.room
+                  %td.bg-success= event.member_event_price

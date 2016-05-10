@@ -5,6 +5,7 @@ class Member < ActiveRecord::Base
   belongs_to :tenant
   has_many :events
   has_many :courses, through: :events
+  has_many :products, through: :courses
 
   def to_s
     last_name+" "+first_name

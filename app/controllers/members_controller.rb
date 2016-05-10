@@ -6,6 +6,15 @@ class MembersController < ApplicationController
     @members = Member.all
   end
   def show
+    @events = @member.events
+    @total_member_event_price = @member.products.sum(:member_price)
+    @past_events = @member.events.where('starts_at < ?', Time.now).order('starts_at ASC')
+    @future_events = @member.events.where('starts_at > ?', Time.now).order('starts_at ASC')
+    @past = @past_events.count(:id)
+    @future = @future_events.count(:id)
+    #@pastpay = @past_events.sum(:member_event_price)
+    #@past_member_event_price = @member.products.sum(:member_price)
+    #@income = @user.expences.sum(:amount)
   end
   
   def edit

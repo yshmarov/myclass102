@@ -18,8 +18,8 @@ class Event < ActiveRecord::Base
   def to_s
   	starts_at
   end	
-  def dueexpence
-    event_group.service.uprice
+  def member_event_price
+    course.product.member_price
   end
 
 end
