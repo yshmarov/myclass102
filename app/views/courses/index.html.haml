@@ -15,7 +15,7 @@
   %tbody
     - @courses.each do |course|
       %tr
-        %td= link_to course.name, course
+        %td= link_to course.name, course, class: 'btn btn-default btn-xs'
         %td= course.product_id
         %td= course.attr1_id
         %td= course.attr2_id

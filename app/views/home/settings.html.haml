@@ -3,29 +3,51 @@
     %h1 Reports
     %p
     = link_to "<i class='fa fa-shopping-cart'></i> Enrollments report".html_safe, enrollments_path, class: 'btn btn-primary sign-up'
+    .btn.btn-primary.sign-up
+      = Enrollment.count
     %p
     = link_to "<i class='fa fa-line-chart'></i> Attendances report".html_safe, attendances_path, class: 'btn btn-primary sign-up'
+    .btn.btn-primary.sign-up
+      = Attendance.count
     %p
     = link_to "<i class='fa fa-bar-chart'></i> Events report".html_safe, events_path, class: 'btn btn-primary sign-up'
+    .btn.btn-primary.sign-up
+      = Event.count
   .well.col-md-3.text-center
     %h1 Facilities
     %p
     = link_to "<i class='fa fa-bank'></i> Offices".html_safe, offices_path, class: 'btn btn-primary sign-up'
+    .btn.btn-primary.sign-up
+      = Office.count
     %p
     = link_to "<i class='fa fa-bank'></i> Rooms".html_safe, rooms_path, class: 'btn btn-primary sign-up'
+    .btn.btn-primary.sign-up
+      = Room.count
   .well.col-md-3.text-center
     %h1 Products
     %p
     = link_to "<i class='fa fa-sliders'></i> Product types".html_safe, product_types_path, class: 'btn btn-primary sign-up'
+    .btn.btn-primary.sign-up
+      = ProductType.count
     %p
     = link_to "<i class='fa fa-sliders'></i> Products".html_safe, products_path, class: 'btn btn-primary sign-up'
+    .btn.btn-primary.sign-up
+      = Product.count
   .well.col-md-3.text-center
     %h1 Configs
     %p
     = link_to "<i class='fa fa-sliders'></i> Attendance rates".html_safe, attendance_rates_path, class: 'btn btn-primary sign-up'
+    .btn.btn-primary.sign-up
+      = AttendanceRate.count
     %p
     = link_to "<i class='fa fa-sliders'></i> Attr1s".html_safe, attr1s_path, class: 'btn btn-primary sign-up'
+    .btn.btn-primary.sign-up
+      = Attr1.count
     %p
     = link_to "<i class='fa fa-sliders'></i> Attr2s".html_safe, attr2s_path, class: 'btn btn-primary sign-up'
+    .btn.btn-primary.sign-up
+      = Attr2.count
     %p
     = link_to "<i class='fa fa-sliders'></i> Attr3s".html_safe, attr3s_path, class: 'btn btn-primary sign-up'
+    .btn.btn-primary.sign-up
+      = Attr3.count

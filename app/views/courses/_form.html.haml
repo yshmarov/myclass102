@@ -6,7 +6,7 @@
     .col-sm-6
       = f.input :name
     .col-sm-6
-      = f.input :product_id
+      = f.association :product
       /= f.association :service, collection: f.object.service_id ? Service.active_or_id(f.object.service_id) : Service.active, :include_blank => false
   .row
     .col-sm-4.no-left-padding

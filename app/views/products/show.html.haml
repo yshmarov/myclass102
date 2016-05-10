@@ -7,6 +7,10 @@
   %br
   = @product.name
 %p
+  %Description:
+  %br
+  = @product.description
+%p
   %strong= model_class.human_attribute_name(:event_quantity) + ':'
   %br
   = @product.event_quantity

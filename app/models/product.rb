@@ -6,4 +6,12 @@ class Product < ActiveRecord::Base
 
   validates :name, :product_type_id, :tenant_id, presence: true
   validates :name, uniqueness: true
+
+  def productprice
+    event_quantity * client_price
+  end
+
+  def description
+    event_quantity.to_s+product_type.to_s+event_length.to_s+gtype.to_s+productprice.to_s
+  end
 end
