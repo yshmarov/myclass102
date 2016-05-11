@@ -10,6 +10,8 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments/1
   # GET /enrollments/1.json
   def show
+    @attendances = @enrollment.attendances
+    @enrollmenttotalduepaymentclient = @attendances.map(&:duepayment).sum
   end
 
   # GET /enrollments/new

@@ -80,8 +80,10 @@
                   %td= enrollment.created_at
                   %td= enrollment.course
                   %td= enrollment.course.product
-                  %td work in process
-                  %td work in process
+                  %td= enrollment.events.count(client_id: @client.id)
+                  %td= enrollment.attendances.count(client_id: @client.id)
+                  %td
+                  /= enrollment.enrollmenttotalduepaymentclient
                   %td work in process
                   %td work in process
                   /%td= enrollment.event_group.events.count #currently shows how many attendances by ALL USERS
