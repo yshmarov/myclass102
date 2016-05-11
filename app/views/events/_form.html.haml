@@ -1,7 +1,7 @@
 = simple_form_for @event do |f|
   = f.error_notification
   = f.button :submit, :class => 'btn-primary'
-  = link_to t('.cancel', :default => t("helpers.links.cancel")), events_path, :class => 'btn btn-default'
+  = link_to 'Cancel', course_path(@event.course), :class => 'btn btn-default'
   %p
   .well
     .form-inline.clearfix

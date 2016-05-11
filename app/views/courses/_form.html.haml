@@ -1,20 +1,19 @@
 = simple_form_for @course do |f|
   = f.error_notification
   = f.button :submit, class: "btn btn-info add-button"
-  %p
-    .form-inputs
-    .col-sm-6
-      = f.input :name
-    .col-sm-6
-      = f.association :product
-      /= f.association :service, collection: f.object.service_id ? Service.active_or_id(f.object.service_id) : Service.active, :include_blank => false
   .row
-    .col-sm-4.no-left-padding
-      = f.association :attr1, class: 'no-left-padding'
-    .col-sm-4
-      = f.association :attr2
-    .col-sm-4.no-right-padding
-      = f.association :attr3
+  .col-sm-6
+    = f.input :name
+  .col-sm-6
+    = f.association :product
+    /= f.association :service, collection: f.object.service_id ? Service.active_or_id(f.object.service_id) : Service.active, :include_blank => false
+  .row
+  .col-sm-4
+    = f.association :attr1, class: 'no-left-padding'
+  .col-sm-4
+    = f.association :attr2
+  .col-sm-4
+    = f.association :attr3
   .row
     %h3 Events
     #tasks

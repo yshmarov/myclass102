@@ -7,6 +7,14 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @events = @course.events
+    @attendances = @course.attendances
+    @past_events = @course.events.where('starts_at < ?', Time.now).order('starts_at ASC')
+    @future_events = @course.events.where('starts_at > ?', Time.now).order('starts_at ASC')
+    @enrollments = @course.enrollments
+    @totalduepaymentguest = @attendances.map(&:duepayment).sum
+    @clients = @course.clients
+    #@guest.attendances = @course.guest.attendances
   end
 
   def new

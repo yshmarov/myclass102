@@ -6,7 +6,8 @@ class Enrollment < ActiveRecord::Base
   belongs_to :member
 
   has_many :events, through: :attendances
-  has_many :attendances, through: :client
+  has_many :attendances, through: :client, dependent: :destroy
+  
 
   #belongs_to :coupon
   #has_many :payments

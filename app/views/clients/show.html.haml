@@ -1,3 +1,4 @@
+</div>
 /- set_var 'events', @events.map{|e| {title: e.course.name + " " + e.room.office.name  + " " + e.room.name + " " + e.member.to_s, start: e.starts_at, end: e.ends_at, url: course_path(e.course)}}
 - set_var 'events', @attendances.map{|e| {title: e.event.course.name + " " + e.event.room.office.name  + " " + e.event.room.name + " " + e.event.member.to_s, start: e.startz, end: e.endz, url: course_path(e.event.course)}}
 .page-header
