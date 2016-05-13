@@ -1,0 +1,16 @@
+= simple_form_for(@payment) do |f|
+  = f.error_notification
+  = f.input :member_id, :as => :hidden
+  .col-xs-6.no-left-padding
+    = f.input :amount
+  .col-xs-6.no-right-padding
+    = f.input :payment_type, collection: [ "cash", "card"], selected: "cash"
+  .row
+  .col-xs-6.no-left-padding
+    = f.association :enrollment
+  .col-xs-6.no-right-padding
+    = f.association :office
+  .row
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary btn-block'
+

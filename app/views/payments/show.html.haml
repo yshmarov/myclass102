@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Amount:
+  = @payment.amount
+%p
+  %b Payment type:
+  = @payment.payment_type
+%p
+  %b Enrollment:
+  = @payment.enrollment
+%p
+  %b Office:
+  = @payment.office
+%p
+  %b Member:
+  = @payment.member
+%p
+  %b Tenant:
+  = @payment.tenant
+
+= link_to 'Edit', edit_payment_path(@payment)
+\|
+= link_to 'Back', payments_path

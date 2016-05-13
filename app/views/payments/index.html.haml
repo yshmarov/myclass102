@@ -1,0 +1,32 @@
+.page-header
+  %h1
+    Payments
+    /.pull-right
+    = link_to "<i class='fa fa-download'></i> New payment".html_safe, new_payment_path, class: 'navbar-link btn btn-primary'
+%table.table.table-striped
+  %thead
+    %tr
+      %th ID
+      %th Amount
+      %th Payment type
+      %th Enrollment
+      %th Office
+      %th Client
+      %th CreatedAt
+      %th Actions
+
+  %tbody
+    - @payments.each do |payment|
+      %tr
+        %td= link_to payment.id, payment, class: 'btn btn-default btn-xs'
+        %td= payment.amount
+        %td= payment.payment_type
+        %td= link_to payment.enrollment, enrollment_path(payment.enrollment), class: 'btn btn-default btn-xs'
+        %td= payment.office
+        %td= payment.enrollment.client
+        %td= payment.created_at
+        %td
+          = link_to 'Edit', edit_payment_path(payment), class: 'btn btn-default btn-xs'
+          = link_to 'Destroy', payment, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+
+%br

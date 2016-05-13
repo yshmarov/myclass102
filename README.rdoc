@@ -46,9 +46,11 @@ rails g bootstrap:themed Products
 +rails g scaffold ProductType name tenant:belongs_to
 +rails g scaffold Product name event_quantity:integer event_length:integer member_price:decimal client_price:decimal gtype ctype is_active:boolean product_type:belongs_to tenant:belongs_to
 
+++rails g scaffold Payment amount:decimal payment_type enrollment:belongs_to office:belongs_to member:belongs_to tenant:belongs_to
+
 ###/
-/rails g scaffold Payment/Expence tenant:belongs_to
-/rails g scaffold Sale/Income tenant:belongs_to
+/
+/rails g scaffold Expence tenant:belongs_to
 
 /rails g scaffold MemberProfile member:belongs_to tenant:belongs_to tel1 tel2 address dob.....
 /rails generate devise Client

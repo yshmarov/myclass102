@@ -6,6 +6,9 @@ class Member < ActiveRecord::Base
   has_many :events
   has_many :courses, through: :events
   has_many :products, through: :courses
+  ####to see that he was responsible for obtaining money
+  has_many :payments
+
 
   def to_s
     last_name+" "+first_name

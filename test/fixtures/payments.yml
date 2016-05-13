@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 9.99
+  payment_type: MyString
+  enrollment_id: 
+  office_id: 
+  member_id: 
+  tenant_id: 
+
+two:
+  amount: 9.99
+  payment_type: MyString
+  enrollment_id: 
+  office_id: 
+  member_id: 
+  tenant_id: 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :payments
   resources :products
   resources :product_types
   resources :attr3s

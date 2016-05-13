@@ -12,6 +12,8 @@ class Course < ActiveRecord::Base
   has_many :rooms, through: :events
   has_many :attendances, through: :events, dependent: :destroy
 
+  has_many :payments, through: :enrollments
+
   #validates :name, :status, :attr1_id, :attr2_id, :attr3_id, :service_id, presence: true
   #validates :name, uniqueness: true
   validates_uniqueness_of :name, :scope => :tenant_id

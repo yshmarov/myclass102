@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509182400) do
+ActiveRecord::Schema.define(version: 20160512162706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,6 +151,22 @@ ActiveRecord::Schema.define(version: 20160509182400) do
 
   add_index "offices", ["tenant_id"], name: "index_offices_on_tenant_id", using: :btree
 
+  create_table "payments", force: :cascade do |t|
+    t.decimal  "amount"
+    t.string   "payment_type"
+    t.integer  "enrollment_id"
+    t.integer  "office_id"
+    t.integer  "member_id"
+    t.integer  "tenant_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "payments", ["enrollment_id"], name: "index_payments_on_enrollment_id", using: :btree
+  add_index "payments", ["member_id"], name: "index_payments_on_member_id", using: :btree
+  add_index "payments", ["office_id"], name: "index_payments_on_office_id", using: :btree
+  add_index "payments", ["tenant_id"], name: "index_payments_on_tenant_id", using: :btree
+
   create_table "product_types", force: :cascade do |t|
     t.string   "name"
     t.integer  "tenant_id"
@@ -262,6 +278,10 @@ ActiveRecord::Schema.define(version: 20160509182400) do
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
   add_foreign_key "offices", "tenants"
+  add_foreign_key "payments", "enrollments"
+  add_foreign_key "payments", "members"
+  add_foreign_key "payments", "offices"
+  add_foreign_key "payments", "tenants"
   add_foreign_key "product_types", "tenants"
   add_foreign_key "products", "product_types"
   add_foreign_key "products", "tenants"

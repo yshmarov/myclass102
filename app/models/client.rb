@@ -11,6 +11,9 @@ class Client < ActiveRecord::Base
   has_many :courses, through: :enrollments
   has_many :products, through: :courses
   #has_many :comments
+  has_many :products, through: :enrollments
+
+
 
   validates :email, uniqueness: { case_sensitive: false }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
