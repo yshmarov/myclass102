@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   resources :tenants
   resources :courses do
-    #get :edit_clean
-    #put :update_clean
-    get 'edit_clean'
-    put 'update_clean'
+    member do
+      #get :edit_clean
+      #put :update_clean
+      get 'edit_clean'
+      put 'update_clean'
+    end
   end
   resources :payments
   resources :products

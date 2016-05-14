@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   #before_action :set_course, only: [:show, :edit, :update, :destroy, :editclean]
-  #before_action :set_course, only: [:show, :edit, :editclean, :update, :destroy]
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :edit_clean, :update, :destroy]
+  #before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
     @tenant = Tenant.current_tenant

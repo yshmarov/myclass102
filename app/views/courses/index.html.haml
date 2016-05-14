@@ -21,7 +21,7 @@
         %td= course.attr2
         %td= course.attr3
         %td
-          = link_to '1-Course', course_edit_clean_path(course), class: 'btn btn-default btn-xs'
+          = link_to '1-Course', edit_clean_course_path(course), class: 'btn btn-default btn-xs'
           = link_to '2-Enrollments', edit_course_path(course), class: 'btn btn-default btn-xs'
           = link_to '3-Events', edit_course_path(course), class: 'btn btn-default btn-xs'
           = link_to '4-Attendances', edit_course_path(course), class: 'btn btn-default btn-xs'
