@@ -1,33 +1,25 @@
 class EnrollmentsController < ApplicationController
   before_action :set_enrollment, only: [:show, :edit, :update, :destroy]
 
-  # GET /enrollments
-  # GET /enrollments.json
   def index
     @enrollments = Enrollment.all
   end
 
-  # GET /enrollments/1
-  # GET /enrollments/1.json
   def show
     @attendances = @enrollment.attendances
     @enrollmenttotalduepaymentclient = @attendances.map(&:duepayment).sum
   end
 
-  # GET /enrollments/new
   def new
     @enrollment = Enrollment.new
   end
 
-  # GET /enrollments/1/edit
   def edit
   end
 
-  # POST /enrollments
-  # POST /enrollments.json
   def create
     @enrollment = Enrollment.new(enrollment_params)
-
+    @enrollment.member_id = current_user.id
     respond_to do |format|
       if @enrollment.save
         format.html { redirect_to @enrollment, notice: 'Enrollment was successfully created.' }
@@ -39,8 +31,6 @@ class EnrollmentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /enrollments/1
-  # PATCH/PUT /enrollments/1.json
   def update
     respond_to do |format|
       if @enrollment.update(enrollment_params)
@@ -53,8 +43,6 @@ class EnrollmentsController < ApplicationController
     end
   end
 
-  # DELETE /enrollments/1
-  # DELETE /enrollments/1.json
   def destroy
     @enrollment.destroy
     respond_to do |format|
@@ -64,12 +52,10 @@ class EnrollmentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_enrollment
       @enrollment = Enrollment.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def enrollment_params
       params.require(:enrollment).permit(:course_id, :client_id, :tenant_id, :member_id, :coupon_id)
     end

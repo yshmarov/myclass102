@@ -19,5 +19,5 @@
         = link_to "<i class='fa fa-flash'></i> Tasks".html_safe, root_path, class: 'btn btn-warning sign-up'
         = link_to "<i class='fa fa-exclamation-triangle'></i> Errors".html_safe, root_path, class: 'btn btn-warning sign-up'
         = link_to "<i class='fa fa-gears'></i> Settings".html_safe, settings_path, class: 'btn btn-info sign-up'
-        /= link_to current_user.username, edit_user_registration_path, class: 'btn btn-danger sign-up'
-        = link_to "<i class='fa fa-sign-out'></i> Logout".html_safe, destroy_user_session_path, :method => :delete, class: 'btn btn-danger sign-up'
+        = link_to current_user.username, edit_user_registration_path, class: 'btn btn-danger sign-up'
+        = link_to "<i class='fa fa-sign-out'></i> ".html_safe, destroy_user_session_path, :method => :delete, class: 'btn btn-danger sign-up'

@@ -13,6 +13,7 @@
       %th Office
       %th Client
       %th CreatedAt
+      %th Member
       %th Actions
 
   %tbody
@@ -25,6 +26,7 @@
         %td= payment.office
         %td= payment.enrollment.client
         %td= payment.created_at
+        %td= payment.member
         %td
           = link_to 'Edit', edit_payment_path(payment), class: 'btn btn-default btn-xs'
           = link_to 'Destroy', payment, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'

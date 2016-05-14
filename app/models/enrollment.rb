@@ -17,9 +17,16 @@ class Enrollment < ActiveRecord::Base
   	id
   end
 
+  def enrpaid
+    payments.sum(:amount)
+  end
 
-  #def enrollmenttotalduepaymentclientz
-  #  @enrollment.attendancesattendances.map(&:duepayment).sum
-  #end
+  def enrused
+    attendances.map(&:duepayment).sum
+  end
+
+  def enrbalance
+    enrused - enrpaid
+  end
 
 end

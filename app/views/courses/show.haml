@@ -80,22 +80,22 @@
             %thead
               %tr
                 %th EnrollID
-                %th TotalEnrollPaid
+                %th Paid
+                %th Used
+                %th ToPay
                 %th Client
-                /%th Responsible user
                 /%th Coupon
                 %th Member
-                /%th Paid
-                /%th To pay
             %tbody
               - @enrollments.each do |enrollment|
                 %tr
                   %td= enrollment.id
-                  %td= enrollment.id
+                  %td= enrollment.enrpaid
+                  %td= enrollment.enrused
+                  %td= enrollment.enrbalance
                   %td= link_to enrollment.client, client_path(enrollment.client), :style=>'color: blue;'
                   %td= link_to enrollment.member, member_path(enrollment.member), :style=>'color: blue;'
                   /%td= enrollment.coupon
-                  /%td= enrollment.guest.student_opport_event_group_pay
                   %thead
                     %tr.bg-warning
                       /%th
