@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
   acts_as_tenant
   has_many :attendances, dependent: :destroy
   has_many :clients, through: :attendances
+  
 
   validates :member_id, :starts_at, :room_id, presence: true
   validates_time :starts_at, :between => '9:00am'..'7:00pm'

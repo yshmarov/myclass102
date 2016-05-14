@@ -1,9 +1,18 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy, :editcourse]
+  #before_action :set_course, only: [:show, :edit, :update, :destroy, :editclean]
+  #before_action :set_course, only: [:show, :edit, :editclean, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
     @tenant = Tenant.current_tenant
     @courses = Course.all
+  end
+
+  def edit_clean
+  end
+
+  def update_clean
+    
   end
 
   def show
@@ -15,6 +24,9 @@ class CoursesController < ApplicationController
     @totalduepaymentguest = @attendances.map(&:duepayment).sum
     @clients = @course.clients
     #@guest.attendances = @course.guest.attendances
+    @payments = @course.payments
+    #@payments = @enrollment.payments
+    @enrollmentpaymentz = @payments.map(&:amount).sum
   end
 
   def new
@@ -23,30 +35,11 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @offices = Office.all
+    #@offices = Office.all
     @course.events.build
     @course.attendances.build
     #@tenant = Tenant.current_tenant
   end
-
-  def editcourse
-    #@course = Course.find(params[:id])
-    #@course = Course.find(courser_params)
-  end
-    
-  def updatecourse
-    #@course = Course.find(params[:id])
-    @course = Course.find(courser_params)
-    respond_to do |format|
-      if @course.update(courser_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
-    end
-  end
-
-
 
   def create
     @course = Course.new(course_params)

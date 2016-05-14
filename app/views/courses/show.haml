@@ -12,6 +12,7 @@
           .text-center
             = link_to 'Edit', edit_course_path(@course), class: "btn btn-default"
             = link_to 'All courses', courses_path, class: "btn btn-default"
+            /= link_to '1-Course', course_editclean_path(@course), class: 'btn btn-default btn-xs'
           %p
             %b Course name:
             = @course.name
@@ -42,21 +43,25 @@
           %table.table.table-hover.table-condensed.table-responsive.table-bordered
             %thead
               %tr
-                %th Total attendances:
-                %th Clients registered:
+                /%th Total attendances:
+                /%th Clients registered:
+                %th Total paid for group
                 %th.bg-success Total price of attendances:
+                %th Expected to be paid
             %tbody
               %tr
-                %td= @course.attendances.count
-                %td= @course.clients.count
+                /%td= @course.attendances.count
+                /%td= @course.clients.count
+                %td= @enrollmentpaymentz
                 %td.bg-success= @totalduepaymentguest
+                %td.bg-danger= @totalduepaymentguest - @enrollmentpaymentz
 .col-sm-8
   #accordion.panel-group
     .panel.panel-default
       .panel-heading
         %h4.panel-title
           %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapseTwo"}
-            %b Group enrollments
+            %b Enrollments
       #collapseTwo.panel-collapse.collapse.in
         .panel-body
           %table.table
@@ -74,19 +79,33 @@
           %table.table.table-hover.table-condensed.table-responsive.table-bordered
             %thead
               %tr
+                %th EnrollID
+                %th TotalEnrollPaid
                 %th Client
-                %th Responsible user
-                %th Coupon
-                %th Used
-                %th Paid
-                %th To pay
+                /%th Responsible user
+                /%th Coupon
+                %th Member
+                /%th Paid
+                /%th To pay
             %tbody
               - @enrollments.each do |enrollment|
                 %tr
+                  %td= enrollment.id
+                  %td= enrollment.id
                   %td= link_to enrollment.client, client_path(enrollment.client), :style=>'color: blue;'
                   %td= link_to enrollment.member, member_path(enrollment.member), :style=>'color: blue;'
                   /%td= enrollment.coupon
                   /%td= enrollment.guest.student_opport_event_group_pay
+                  %thead
+                    %tr.bg-warning
+                      /%th
+                      %th PayID
+                      %th PayAmount
+                  %tbody
+                  - enrollment.payments.each do |payment|
+                    %tr.bg-warning
+                      %td= payment.id
+                      %td= payment.amount
           /%tbody
           /  - @guests.each do |guest|
           /    %tr
@@ -97,7 +116,7 @@
       .panel-heading
         %h4.panel-title
           %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapseCal"}
-            %b Group calendar
+            %b Calendar
       #collapseCal.panel-collapse.collapse.in
         .panel-body
           %div#calendar
@@ -160,8 +179,8 @@
                   %td= event.starts_at
                   %td= event.course.product.event_length
                   %td= event.room
-                  %td= link_to event.member, member_path(event.member), :style=>'color: blue;'
-                  %td= link_to '', edit_event_path(event), class: 'btn2edit'
+                  %td= link_to event.member, member_path(event.member), :style=>'color: blue;', class: 'btn btn-default btn-xs'
+                  %td= link_to 'Edit', edit_event_path(event), class: 'btn btn-default btn-xs'
                   %thead
                     %tr.bg-warning
                       %th Client
@@ -169,7 +188,7 @@
                   %tbody
                   - event.attendances.each do |attendance|
                     %tr.bg-warning
-                      %td= link_to attendance.client, client_path(attendance.client), :style=>'color: blue;'
+                      %td= link_to attendance.client, client_path(attendance.client), :style=>'color: blue;', class: 'btn btn-default btn-xs'
                       %td= attendance.attendance_rate
                       %td= attendance.duepayment
 %br

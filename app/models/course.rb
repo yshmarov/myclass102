@@ -10,7 +10,7 @@ class Course < ActiveRecord::Base
   has_many :clients, through: :enrollments
   has_many :events, dependent: :destroy
   has_many :rooms, through: :events
-  has_many :attendances, through: :events, dependent: :destroy
+  has_many :attendances, through: :events
 
   has_many :payments, through: :enrollments
 
@@ -19,7 +19,7 @@ class Course < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :tenant_id
   
   validate :free_plan_can_only_have_one_course
-  validates :name, :tenant_id, presence: true
+  validates :name, :tenant_id, :product_id, presence: true
 
   def to_s
     name

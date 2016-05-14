@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :tenants
+  resources :courses do
+    #get :edit_clean
+    #put :update_clean
+    get 'edit_clean'
+    put 'update_clean'
+  end
   resources :payments
   resources :products
   resources :product_types
@@ -13,11 +20,6 @@ Rails.application.routes.draw do
   resources :courses
   resources :events
   resources :attendance_rates
-  resources :courses do
-    get 'editcourse'
-    put 'updatecourse'
-  end
-  resources :tenants
   resources :members
   get 'home/index'
   get 'dashboard', to: 'home#dashboard'
