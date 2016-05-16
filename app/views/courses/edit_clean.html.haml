@@ -1,9 +1,0 @@
-%h2 Edit (clean) Course
-= simple_form_for @course do |f|
-
-  = f.input :name
-  = f.submit "Save"
-/= f.button :submit, class: "btn btn-info add-button"
-
-
-/= simple_form_for @course, url: update_clean_course_path(@course) do |f|

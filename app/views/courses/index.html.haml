@@ -2,10 +2,11 @@
   %h1
     Courses
     /.pull-right
-    = link_to 'New', new_course_path, :class => 'btn btn-primary'
+    = link_to 'Create new', new_course_path, :class => 'btn btn-primary'
 %table.table.table-striped
   %thead
     %tr
+      %th ID
       %th Name
       %th Product
       %th Attr1
@@ -15,14 +16,15 @@
   %tbody
     - @courses.each do |course|
       %tr
-        %td= link_to course.name, course, class: 'btn btn-default btn-xs'
+        %td= link_to course.id, course, class: 'btn btn-default btn-xs'
+        %td= course.name
         %td= course.product
         %td= course.attr1
         %td= course.attr2
         %td= course.attr3
         %td
-          = link_to '1-Course', edit_clean_course_path(course), class: 'btn btn-default btn-xs'
-          = link_to '2-Enrollments', edit_course_path(course), class: 'btn btn-default btn-xs'
+          = link_to '1-Course', edit_course_course_path(course), class: 'btn btn-default btn-xs'
+          = link_to '2-Enrollments', edit_enrollments_course_path(course), class: 'btn btn-default btn-xs'
           = link_to '3-Events', edit_course_path(course), class: 'btn btn-default btn-xs'
           = link_to '4-Attendances', edit_course_path(course), class: 'btn btn-default btn-xs'
           = link_to 'Destroy', course_path(course), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger'

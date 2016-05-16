@@ -4,15 +4,12 @@ class Enrollment < ActiveRecord::Base
   belongs_to :course
   belongs_to :client
   belongs_to :member
-
-  has_many :events, through: :attendances
   has_many :attendances, through: :client
-
   has_many :payments, dependent: :destroy
-
   #belongs_to :coupon
-  #has_many :payments
-  validates :course_id, :client_id, :tenant_id, :member_id, presence: true
+  validates :course_id, :coupon_id, :client_id, :tenant_id, presence: true
+  validates_uniqueness_of :client_id, :scope => :course_id
+
   def to_s
   	id
   end

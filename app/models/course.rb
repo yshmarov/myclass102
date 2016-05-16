@@ -41,7 +41,7 @@ class Course < ActiveRecord::Base
   end
 
 
-
+  accepts_nested_attributes_for :enrollments, reject_if: proc { |attributes| attributes ['coupon_id'].blank? }, allow_destroy: true
   accepts_nested_attributes_for :events, reject_if: proc { |attributes| attributes ['room_id'].blank? }, allow_destroy: true
 
 end

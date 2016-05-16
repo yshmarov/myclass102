@@ -11,4 +11,7 @@ class Payment < ActiveRecord::Base
             :numericality => true,
             :format => { :with => /\A\d{1,4}(\.\d{0,2})?\z/ }
 
+  def created
+    created_at.strftime('%d/%m/%Y')
+  end
 end

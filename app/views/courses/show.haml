@@ -1,6 +1,6 @@
 </div>
 - set_var 'events', @events.map{|e| {title: e.room.office.name  + " " + e.room.name + " " + e.member.to_s, start: e.starts_at, end: e.ends_at, url: edit_event_path(e)}}
-.col-md-4
+.col-md-3
   #accordion.panel-group
     .panel.panel-default
       .panel-heading
@@ -47,7 +47,7 @@
                 /%th Clients registered:
                 %th Total paid for group
                 %th.bg-success Total price of attendances:
-                %th Expected to be paid
+                %th.bg-danger Expected to be paid
             %tbody
               %tr
                 /%td= @course.attendances.count
@@ -55,140 +55,151 @@
                 %td= @enrollmentpaymentz
                 %td.bg-success= @totalduepaymentguest
                 %td.bg-danger= @totalduepaymentguest - @enrollmentpaymentz
-.col-sm-8
+.col-sm-9
   #accordion.panel-group
     .panel.panel-default
       .panel-heading
         %h4.panel-title
-          %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapseTwo"}
-            %b Enrollments
-      #collapseTwo.panel-collapse.collapse.in
+          %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapsetwo"}
+            %b Details
+      #collapsetwo.panel-collapse.collapse.in
         .panel-body
-          %table.table
-            %thead
-              %tr
-                %th clients that belong to course
-                %th all attendances of client
-            %tbody
-              - @clients.each do |clients|
-                %tr
-                  %td= clients
-                  %td= clients.attendances.count
-          /= link_to 'New enrollment', new_admin_enrollment_path(event_group_id: @event_group.id), class: 'btn btn-xs btn-success'
-          %p
-          %table.table.table-hover.table-condensed.table-responsive.table-bordered
-            %thead
-              %tr
-                %th EnrollID
-                %th Paid
-                %th Used
-                %th ToPay
-                %th Client
-                /%th Coupon
-                %th Member
-            %tbody
-              - @enrollments.each do |enrollment|
-                %tr
-                  %td= enrollment.id
-                  %td= enrollment.enrpaid
-                  %td= enrollment.enrused
-                  %td= enrollment.enrbalance
-                  %td= link_to enrollment.client, client_path(enrollment.client), :style=>'color: blue;'
-                  %td= link_to enrollment.member, member_path(enrollment.member), :style=>'color: blue;'
-                  /%td= enrollment.coupon
-                  %thead
-                    %tr.bg-warning
-                      /%th
-                      %th PayID
-                      %th PayAmount
-                  %tbody
-                  - enrollment.payments.each do |payment|
-                    %tr.bg-warning
-                      %td= payment.id
+          %ul.nav.nav-tabs
+            %li.active
+              %a{"data-toggle" => "tab", :href => "#Calendar"} Calendar
+            %li
+              %a{"data-toggle" => "tab", :href => "#Eventspast"}
+                Past events:
+                = @past_events.count
+            %li
+              %a{"data-toggle" => "tab", :href => "#Eventsfuture"}
+                Future events:
+                = @future_events.count
+            %li
+              %a{"data-toggle" => "tab", :href => "#Enrollments"}
+                Enrollments:
+                = @totalenrollments
+            %li
+              %a{"data-toggle" => "tab", :href => "#Payments"} 
+                Payments:
+                = @totalpayments
+          .tab-content
+            #Calendar.tab-pane.fade.in.active
+              %br
+              %div#calendar
+            #Eventspast.tab-pane.fade
+              %table.table.table-hover.table-condensed.table-responsive.table-bordered
+                %thead
+                  %tr
+                    %th Starts at
+                    %th Duration
+                    %th Room
+                    %th Responsible
+                    %th Edit event
+                %tbody
+                  - @past_events.each do |event|
+                    %tr.bg-danger
+                      %td= event.starts_at
+                      %td= event.course.product.event_length
+                      %td= event.room
+                      %td= link_to event.member, member_path(event.member), class: 'btn btn-default btn-xs', :style=>'color: blue;'
+                      %td= link_to 'Edit', edit_event_path(event), class: 'btn btn-default btn-xs'
+                      %thead
+                        %tr.bg-warning
+                          %th Client
+                          %th Attendance
+                      %tbody
+                      - event.attendances.each do |attendance|
+                        %tr.bg-warning
+                          %td= link_to attendance.client, client_path(attendance.client), class: 'btn btn-default btn-xs', :style=>'color: blue;'
+                          %td= attendance.attendance_rate
+                          %td= attendance.duepayment
+            #Eventsfuture.tab-pane.fade
+              %table.table.table-hover.table-condensed.table-responsive.table-bordered
+                %thead
+                  %tr
+                    %th Starts at
+                    %th Duration
+                    %th Room
+                    %th Responsible
+                    %th Edit event
+                %tbody
+                  - @future_events.each do |event|
+                    %tr.bg-danger
+                      %td= event.starts_at
+                      %td= event.course.product.event_length
+                      %td= event.room
+                      %td= link_to event.member, member_path(event.member), :style=>'color: blue;', class: 'btn btn-default btn-xs'
+                      %td= link_to 'Edit', edit_event_path(event), class: 'btn btn-default btn-xs'
+                      %thead
+                        %tr.bg-warning
+                          %th Client
+                          %th Attendance
+                      %tbody
+                      - event.attendances.each do |attendance|
+                        %tr.bg-warning
+                          %td= link_to attendance.client, client_path(attendance.client), :style=>'color: blue;', class: 'btn btn-default btn-xs'
+                          %td= attendance.attendance_rate
+                          %td= attendance.duepayment
+            #Enrollments.tab-pane.fade
+              %br
+              %table.table.table-hover.table-condensed.table-responsive.table-bordered
+                %thead
+                  %tr
+                    %th EnrollID
+                    %th Paid
+                    %th Used
+                    %th ToPay
+                    %th Client
+                    /%th Coupon
+                    %th Member
+                %tbody
+                  - @enrollments.each do |enrollment|
+                    %tr
+                      %td= enrollment.id
+                      %td= enrollment.enrpaid
+                      %td= enrollment.enrused
+                      %td= enrollment.enrbalance
+                      %td= link_to enrollment.client, client_path(enrollment.client), :style=>'color: blue;'
+                      /%td= link_to enrollment.member, member_path(enrollment.member), :style=>'color: blue;'
+                      %td= enrollment.member
+                      %td= enrollment.attendances.count
+                      %thead
+                        %tr.bg-warning
+                          /%th
+                          %th PayID
+                          %th PayAmount
+                      %tbody
+                      - enrollment.payments.each do |payment|
+                        %tr.bg-warning
+                          %td= payment.id
+                          %td= payment.amount
+            #Payments.tab-pane.fade
+              %br
+              %table.table.table-hover.table-condensed.table-responsive.table-bordered
+                %thead
+                  %tr
+                    %th ID
+                    %th Amount
+                    %th Payment type
+                    %th Enrollment
+                    %th Office
+                    %th Client
+                    %th CreatedAt
+                    %th Member
+                    %th Actions
+              
+                %tbody
+                  - @payments.each do |payment|
+                    %tr
+                      %td= link_to payment.id, payment, class: 'btn btn-default btn-xs'
                       %td= payment.amount
-          /%tbody
-          /  - @guests.each do |guest|
-          /    %tr
-          /      %td= guest
-          /      %td= guest.total
-  #accordion.panel-group
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title
-          %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapseCal"}
-            %b Calendar
-      #collapseCal.panel-collapse.collapse.in
-        .panel-body
-          %div#calendar
-.row
-.col-sm-6
-  #accordion.panel-group
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title
-          %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapsePast"}
-            %b Past events
-      #collapsePast.panel-collapse.collapse.in
-        .panel-body
-          %table.table.table-hover.table-condensed.table-responsive.table-bordered
-            %thead
-              %tr
-                %th Starts at
-                %th Duration
-                %th Room
-                %th Responsible
-                %th Edit event
-            %tbody
-              - @past_events.each do |event|
-                %tr.bg-danger
-                  %td= event.starts_at
-                  %td= event.course.product.event_length
-                  %td= event.room
-                  %td= link_to event.member, member_path(event.member), class: 'btn btn-default btn-xs', :style=>'color: blue;'
-                  %td= link_to 'Edit', edit_event_path(event), class: 'btn btn-default btn-xs'
-                  %thead
-                    %tr.bg-warning
-                      %th Client
-                      %th Attendance
-                  %tbody
-                  - event.attendances.each do |attendance|
-                    %tr.bg-warning
-                      %td= link_to attendance.client, client_path(attendance.client), class: 'btn btn-default btn-xs', :style=>'color: blue;'
-                      %td= attendance.attendance_rate
-                      %td= attendance.duepayment
-.col-sm-6
-  #accordion.panel-group
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title
-          %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapseFuture"}
-            %b Future events
-      #collapseFuture.panel-collapse.collapse.in
-        .panel-body
-          %table.table.table-hover.table-condensed.table-responsive.table-bordered
-            %thead
-              %tr
-                %th Starts at
-                %th Duration
-                %th Room
-                %th Responsible
-                %th Edit event
-            %tbody
-              - @future_events.each do |event|
-                %tr.bg-danger
-                  %td= event.starts_at
-                  %td= event.course.product.event_length
-                  %td= event.room
-                  %td= link_to event.member, member_path(event.member), :style=>'color: blue;', class: 'btn btn-default btn-xs'
-                  %td= link_to 'Edit', edit_event_path(event), class: 'btn btn-default btn-xs'
-                  %thead
-                    %tr.bg-warning
-                      %th Client
-                      %th Attendance
-                  %tbody
-                  - event.attendances.each do |attendance|
-                    %tr.bg-warning
-                      %td= link_to attendance.client, client_path(attendance.client), :style=>'color: blue;', class: 'btn btn-default btn-xs'
-                      %td= attendance.attendance_rate
-                      %td= attendance.duepayment
-%br
+                      %td= payment.payment_type
+                      %td= link_to payment.enrollment, enrollment_path(payment.enrollment), class: 'btn btn-default btn-xs'
+                      %td= payment.office
+                      %td= payment.enrollment.client
+                      %td= payment.created
+                      %td= payment.member
+                      %td
+                        = link_to 'Edit', edit_payment_path(payment), class: 'btn btn-default btn-xs'
+                        = link_to 'Destroy', payment, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'

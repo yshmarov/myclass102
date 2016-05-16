@@ -25,7 +25,7 @@
         %td= link_to payment.enrollment, enrollment_path(payment.enrollment), class: 'btn btn-default btn-xs'
         %td= payment.office
         %td= payment.enrollment.client
-        %td= payment.created_at
+        %td= payment.created
         %td= payment.member
         %td
           = link_to 'Edit', edit_payment_path(payment), class: 'btn btn-default btn-xs'

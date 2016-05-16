@@ -19,14 +19,14 @@
   %tbody
     - @clients.each do |client|
       %tr
-        %td= link_to client.id, client_path(client), :class => 'btn btn-default btn-xs'
+        %td= link_to client.id, client_path(client), :class => 'btn btn-success btn-xs'
         %td= client.first_name
         %td= client.middle_name
         %td= client.last_name
         %td= client.email
         %td= client.tel1
         %td= client.tel2
-        %td= client.dob
+        %td= client.born
         %td= client.sex
         %td
           = link_to 'Edit', edit_client_path(client), :class => 'btn btn-default btn-xs'

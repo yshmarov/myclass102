@@ -12,7 +12,7 @@ class Client < ActiveRecord::Base
   has_many :products, through: :courses
   #has_many :comments
   has_many :products, through: :enrollments
-
+  has_many :payments, through: :enrollments
 
 
   validates :email, uniqueness: { case_sensitive: false }
@@ -28,7 +28,15 @@ class Client < ActiveRecord::Base
   def to_s
     last_name+" "+first_name
   end
+  def to_ss
+    last_name+" "+first_name+" "+middle_name
+  end
   def age
     Time.now.year - dob.year
   end
+
+  def born
+    dob.strftime('%d/%m/%Y')
+  end
+
 end

@@ -1,0 +1,23 @@
+.page-header
+  %h1
+    Edit clean course
+    = link_to 'Show course', course_path(@course), class: 'navbar-link btn btn-primary'
+    = link_to 'All courses', courses_path, class: 'navbar-link btn btn-primary'
+
+= simple_form_for @course do |f|
+  = f.error_notification
+  = f.button :submit, class: "btn btn-info add-button"
+  .row
+  .col-sm-6
+    = f.input :name
+  .col-sm-6
+    = f.association :product
+    /= f.association :service, collection: f.object.service_id ? Service.active_or_id(f.object.service_id) : Service.active, :include_blank => false
+  .row
+  .col-sm-4
+    = f.association :attr1, class: 'no-left-padding'
+  .col-sm-4
+    = f.association :attr2
+  .col-sm-4
+    = f.association :attr3
+  .row
