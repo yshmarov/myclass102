@@ -18,4 +18,24 @@ class Product < ActiveRecord::Base
   def to_s
     description
   end
+
+  def totalprice
+  	event_quantity * gprice
+  end
+
+  def self.active
+    where(is_active: true)
+  end
+
+  def self.inactive
+    where(is_active: false)
+  end
+
+  def self.active_or_id(record_id)
+    where('id = ? OR (is_active=true)', record_id)    
+  end
+
+
+
+
 end

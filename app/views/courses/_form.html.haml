@@ -5,8 +5,11 @@
   .col-sm-6
     = f.input :name
   .col-sm-6
-    = f.association :product
-    /= f.association :service, collection: f.object.service_id ? Service.active_or_id(f.object.service_id) : Service.active, :include_blank => false
+    /= f.association :product
+    /= f.association :product, collection: f.object.product_id ? Product.active_or_id(f.object.product_id) : Product.active, :include_blank => false
+    = f.association :product, collection: f.object.product_id ? Product.active_or_id(f.object.product_id) : Product.active, :include_blank => false
+    /= f.association :product, collection: f.object.product_id ? Product.where('id = ? OR (is_active=1)', f.object.product_id) : Product.where(is_active: true)
+    //= f.association :product, collection: f.object.product_id ? Product.where('id = ? OR (is_active=true)', f.object.product_id) : Product.where(is_active: true)
   .row
   .col-sm-4
     = f.association :attr1, class: 'no-left-padding'
