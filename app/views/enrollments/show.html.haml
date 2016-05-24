@@ -6,7 +6,8 @@
   %strong= model_class.human_attribute_name(:course_id) + ':'
   %br
   = @enrollment.course_id
-  = @enrollmenttotalduepaymentclient
+  /= @enrollment.enrollmenttotalduepaymentclient
+  /= @enrused
   /= @enrollmentenrollmenttotalduepaymentclientz
 %p
   %strong= model_class.human_attribute_name(:client_id) + ':'

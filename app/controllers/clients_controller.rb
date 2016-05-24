@@ -15,6 +15,9 @@ class ClientsController < ApplicationController
     #@past_attendances = @attendances.order('startz ASC') #.where('startz < ?', Time.now).order('startz ASC')
     #@future_attendances = @guest.attendances.where('event.starts_at > ?', Time.now) #.order('startz ASC')
 
+    @courses = @client.courses
+    @totalcourses = @client.courses.count
+
     @payments = @client.payments
     @totalpay = @client.payments.count
     @totalenrollments = @client.enrollments.count

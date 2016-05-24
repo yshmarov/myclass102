@@ -6,8 +6,8 @@ class EnrollmentsController < ApplicationController
   end
 
   def show
-    @attendances = @enrollment.attendances
-    @enrollmenttotalduepaymentclient = @attendances.map(&:duepayment).sum
+    #@attendances = @enrollment.attendances
+    #@enrollmenttotalduepaymentclient = @attendances.map(&:duepayment).sum
   end
 
   def new

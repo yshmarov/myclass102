@@ -7,14 +7,23 @@ class MembersController < ApplicationController
   end
   def show
     @events = @member.events
-    @total_member_event_price = @member.products.sum(:member_price)
+
+    #all past & future events
     @past_events = @member.events.where('starts_at < ?', Time.now).order('starts_at ASC')
     @future_events = @member.events.where('starts_at > ?', Time.now).order('starts_at ASC')
-    @past = @past_events.count(:id)
-    @future = @future_events.count(:id)
-    #@pastpay = @past_events.sum(:member_event_price)
-    #@past_member_event_price = @member.products.sum(:member_price)
-    #@income = @user.expences.sum(:amount)
+
+    #price of all events>
+    @total_member_event_price = @member.products.sum(:member_price)
+
+    #price of past & future events>
+    @total_member_event_price_past = @past_events.map(&:member_event_price).sum
+    @total_member_event_price_future = @future_events.map(&:member_event_price).sum
+
+    #count all past & future events
+    @past_events_count = @past_events.count(:id)
+    @future_events_count = @future_events.count(:id)
+
+    #@paid_to_member = @member.expences.sum(:amount)
   end
   
   def edit

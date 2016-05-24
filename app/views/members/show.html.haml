@@ -1,20 +1,21 @@
-</div>
 - set_var 'events', @events.map{|e| {title: e.course.name + " " + e.room.office.name  + " " + e.room.name, start: e.starts_at, end: e.ends_at, url: course_path(e.course)}}
 .page-header
-  %h1 Member
-.col-md-4
+  %h1 
+    Member:
+    = @member.to_s
+    .pull-right
+      = link_to 'All members', members_path, :class => 'btn btn-default'
+      = link_to 'Edit profile', edit_member_path(@member), :class => 'btn btn-warning'
+</div>
+.col-md-3
   #accordion.panel-group
     .panel.panel-default
       .panel-heading
         %h4.panel-title
           %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapseOne"}
-            %b My info
+            %b Profile
       #collapseOne.panel-collapse.collapse.in
         .panel-body
-          .text-center
-            = link_to 'Back', members_path, :class => 'btn btn-default'
-            = link_to 'Edit', edit_member_path(@member), :class => 'btn btn-default'
-            = link_to 'Destroy', member_path(@member), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger'
           %p
             %b First name
             = @member.first_name
@@ -35,69 +36,74 @@
                 %td= @total_member_event_price
                 %td
                 %td.bg-success
-.col-md-8
+.col-md-9
   #accordion.panel-group
     .panel.panel-default
       .panel-heading
         %h4.panel-title
           %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapseThree"}
-            %b My calendar
+            %b Details
       #collapseThree.panel-collapse.collapse.in
         .panel-body
-          %div#calendar
-.row
-.col-md-6
-  #accordion.panel-group
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title
-          %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapsepastEvent"}
-            %b My past events:
-            %b= @past
-            /= @pastpay
-      #collapsepastEvent.panel-collapse.collapse.in
-        .panel-body
-          %h1
-          %table.table.table-hover.table-condensed.table-responsive.table-bordered
-            %thead
-              %tr
-                %th Starts at
-                %th Duration
-                %th Course
-                %th Room
-                %th.bg-success Payment
-            %tbody
-              - @past_events.each do |event|
-                %tr
-                  %td= event.starts_at
-                  %td= event.course.product.event_length
-                  %td= event.course
-                  %td= event.room
-                  %td.bg-success= event.member_event_price
-.col-md-6
-  #accordion.panel-group
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title
-          %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapsefutureEvent"}
-            %b My future events:
-            %b= @future
-      #collapsefutureEvent.panel-collapse.collapse.in
-        .panel-body
-          %h1
-          %table.table.table-hover.table-condensed.table-responsive.table-bordered
-            %thead
-              %tr
-                %th Starts at
-                %th Duration
-                %th Course
-                %th Room
-                %th.bg-success Payment
-            %tbody
-              - @future_events.each do |event|
-                %tr
-                  %td= event.starts_at
-                  %td= event.course.product.event_length
-                  %td= event.course
-                  %td= event.room
-                  %td.bg-success= event.member_event_price
+          %ul.nav.nav-tabs
+            %li.active
+              %a{"data-toggle" => "tab", :href => "#Calendartab"} Calendar
+            %li
+              %a{"data-toggle" => "tab", :href => "#Pasteventstab"}
+                Past events:
+                = @past_events_count
+                |
+                = @total_member_event_price_past
+            %li
+              %a{"data-toggle" => "tab", :href => "#Futureeventstab"} 
+                Future events:
+                = @future_events_count
+                |
+                = @total_member_event_price_future
+            %li
+              %a{"data-toggle" => "tab", :href => "#Expencestab"}
+                Expences:
+                /= @paid_to_member
+          .tab-content
+            #Calendartab.tab-pane.fade.in.active
+              %br
+              %div#calendar
+            #Pasteventstab.tab-pane.fade
+              %p
+              %table.table.table-hover.table-condensed.table-responsive.table-bordered
+                %thead
+                  %tr
+                    %th Starts at
+                    %th Duration
+                    %th Course
+                    %th Room
+                    %th.bg-success Payment
+                %tbody
+                  - @past_events.each do |event|
+                    %tr
+                      %td= event.starts_at
+                      %td= event.course.product.event_length
+                      %td= event.course
+                      %td= event.room
+                      %td.bg-success= event.member_event_price
+            #Futureeventstab.tab-pane.fade
+              %p
+
+              %table.table.table-hover.table-condensed.table-responsive.table-bordered
+                %thead
+                  %tr
+                    %th Starts at
+                    %th Duration
+                    %th Course
+                    %th Room
+                    %th.bg-success Payment
+                %tbody
+                  - @future_events.each do |event|
+                    %tr
+                      %td= event.starts_at
+                      %td= event.course.product.event_length
+                      %td= event.course
+                      %td= event.room
+                      %td.bg-success= event.member_event_price
+            #Expencestab.tab-pane.fade
+              %p hi

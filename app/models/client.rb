@@ -6,13 +6,15 @@ class Client < ActiveRecord::Base
   has_many :attendances
   has_many :events, through: :attendances
   has_many :enrollments
-  #has_many :payments, through: :enrollments
-  ###???
+  has_many :payments, through: :enrollments
+
   has_many :courses, through: :enrollments
+  #has_many :courses, through: :events
+
   has_many :products, through: :courses
+  #has_many :products, through: :enrollments
   #has_many :comments
   has_many :products, through: :enrollments
-  has_many :payments, through: :enrollments
 
 
   validates :email, uniqueness: { case_sensitive: false }

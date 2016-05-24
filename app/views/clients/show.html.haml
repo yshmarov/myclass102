@@ -147,14 +147,15 @@
                     %tr
                       %td= enrollment.id
                       %td= enrollment.enrpaid
-                      %td= enrollment.enrused 
+                      %td= enrollment.enrused
                       %td= enrollment.enrbalance
                       %td= enrollment.course
                       %td= enrollment.course.product
                       %td= link_to enrollment.client, client_path(enrollment.client), :style=>'color: blue;'
                       /%td= link_to enrollment.member, member_path(enrollment.member), :style=>'color: blue;'
                       %td= enrollment.member
-                      %td= enrollment.attendances.count
+                      /currently show all clients attendances
+                      /%td= enrollment.attendances.count
                       %thead
                         %tr.bg-warning
                           /%th

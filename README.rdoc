@@ -50,7 +50,12 @@ rails g bootstrap:themed Products
 
 ###/
 /
-/rails g scaffold Expence tenant:belongs_to
-
-/rails g scaffold MemberProfile member:belongs_to tenant:belongs_to tel1 tel2 address dob.....
 /rails generate devise Client
+_________________
+/rails g scaffold Expence tenant:belongs_to member:belongs_to amount:decimal ### accepted:boolean
+
+MemberProfile: middle_name tel1 tel2 address dob sex deleted_at:datetime
+
+attendance rates acts_as_universal?
+
+client comments

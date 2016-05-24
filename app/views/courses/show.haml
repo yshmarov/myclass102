@@ -96,6 +96,7 @@
                     %th Room
                     %th Responsible
                     %th Edit event
+                    %th PriceOffAllEvetnAttendances
                 %tbody
                   - @past_events.each do |event|
                     %tr.bg-danger
@@ -104,6 +105,7 @@
                       %td= event.room
                       %td= link_to event.member, member_path(event.member), class: 'btn btn-default btn-xs', :style=>'color: blue;'
                       %td= link_to 'Edit', edit_event_path(event), class: 'btn btn-default btn-xs'
+                      %td= event.eventused
                       %thead
                         %tr.bg-warning
                           %th Client
@@ -147,33 +149,33 @@
                 %thead
                   %tr
                     %th EnrollID
+                    %th Client
                     %th Paid
                     %th Used
                     %th ToPay
-                    %th Client
                     /%th Coupon
                     %th Member
                 %tbody
                   - @enrollments.each do |enrollment|
                     %tr
                       %td= enrollment.id
+                      %td= link_to enrollment.client, client_path(enrollment.client), :style=>'color: blue;'
                       %td= enrollment.enrpaid
                       %td= enrollment.enrused
                       %td= enrollment.enrbalance
-                      %td= link_to enrollment.client, client_path(enrollment.client), :style=>'color: blue;'
                       /%td= link_to enrollment.member, member_path(enrollment.member), :style=>'color: blue;'
                       %td= enrollment.member
                       %td= enrollment.attendances.count
-                      %thead
-                        %tr.bg-warning
-                          /%th
-                          %th PayID
-                          %th PayAmount
-                      %tbody
-                      - enrollment.payments.each do |payment|
-                        %tr.bg-warning
-                          %td= payment.id
-                          %td= payment.amount
+                      /%thead
+                      /  %tr.bg-warning
+                      /    /%th
+                      /    %th PayID
+                      /    %th PayAmount
+                      /%tbody
+                      /- enrollment.payments.each do |payment|
+                      /  %tr.bg-warning
+                      /    %td= payment.id
+                      /    %td= payment.amount
             #Payments.tab-pane.fade
               %br
               %table.table.table-hover.table-condensed.table-responsive.table-bordered

@@ -2,12 +2,27 @@ class Tenant < ActiveRecord::Base
   
    acts_as_universal_and_determines_tenant
   has_many :members, dependent: :destroy
+  has_many :clients, dependent: :destroy
+
   has_many :courses, dependent: :destroy
+  has_many :enrollments, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :attendances, dependent: :destroy
+  has_many :attendance_rates, dependent: :destroy
+
   has_many :offices, dependent: :destroy
   has_many :rooms, dependent: :destroy
+
+  has_many :product_types, dependent: :destroy
+  has_many :products, dependent: :destroy
+  has_many :payments, dependent: :destroy
+
+  has_many :attr1s, dependent: :destroy
+  has_many :attr2s, dependent: :destroy
+  has_many :attr3s, dependent: :destroy
   
+  has_many :attendance_rates, dependent: :destroy
+
   def can_create_courses?
     (plan == 'free' && courses.count < 1) || (plan == 'premium')  
   end

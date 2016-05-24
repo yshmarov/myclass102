@@ -17,9 +17,15 @@ class Event < ActiveRecord::Base
   end
   def to_s
   	starts_at
-  end	
+  end
   def member_event_price
     course.product.member_price
   end
 
+  def duepayment
+  	#attendance_rate.rate*event.event_group.service.gprice
+  end
+  def eventused
+    attendances.map(&:duepayment).sum
+  end
 end

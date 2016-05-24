@@ -4,11 +4,13 @@ class Member < ActiveRecord::Base
   acts_as_tenant
   belongs_to :tenant
   has_many :events
+
+  #for product.member_price
   has_many :courses, through: :events
   has_many :products, through: :courses
+
   ####to see that he was responsible for obtaining money
   has_many :payments
-
 
   def to_s
     last_name+" "+first_name
@@ -29,9 +31,7 @@ class Member < ActiveRecord::Base
     unless new_member.errors.empty?
       raise ArgumentError, new_member.errors.full_messages.uniq.join(", ")
     end
-
     return new_member
-      
   end
 
 end
