@@ -4,9 +4,11 @@ class Enrollment < ActiveRecord::Base
   belongs_to :course
   belongs_to :client
   belongs_to :member
+
   has_many :attendances, ->(obj) { where("#{Attendance.quoted_table_name}.client_id = ?", obj.client_id)}, through: :course #, dependent: :destroy
   #has_many :attendances, through: :client
   #has_many :attendances, through: :course
+
   has_many :payments, dependent: :destroy
   #belongs_to :coupon
 
@@ -27,6 +29,10 @@ class Enrollment < ActiveRecord::Base
 
   def enrbalance
     enrused - enrpaid
+  end
+
+  def created
+    created_at.strftime('%d/%m/%Y')
   end
 
 end

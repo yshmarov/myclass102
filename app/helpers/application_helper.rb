@@ -33,6 +33,5 @@ module ApplicationHelper
     Tenant.find(tenant_id).name
   end
 
-
 end
 

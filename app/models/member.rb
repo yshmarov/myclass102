@@ -11,6 +11,8 @@ class Member < ActiveRecord::Base
 
   ####to see that he was responsible for obtaining money
   has_many :payments
+  #has_many :expences
+  #has_many :cash_collections
 
   def to_s
     last_name+" "+first_name

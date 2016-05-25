@@ -4,7 +4,8 @@ class CoursesController < ApplicationController
   #before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tenant = Tenant.current_tenant
+  #to see tenant info
+    #@tenant = Tenant.current_tenant
     @courses = Course.all
   end
 
@@ -17,33 +18,30 @@ class CoursesController < ApplicationController
   end
 
   def show
+  #for calendar, past, future events
     @events = @course.events
-    @attendances = @course.attendances
-    @totalduepaymentguest = @attendances.map(&:duepayment).sum
-
-
     @past_events = @course.events.where('starts_at < ?', Time.now).order('starts_at ASC')
     @future_events = @course.events.where('starts_at > ?', Time.now).order('starts_at ASC')
+  #price of attendances
+    @attendances = @course.attendances
+    @totalduepaymentguest = @attendances.map(&:duepayment).sum
+  #enrollment list
     @enrollments = @course.enrollments
-    @clients = @course.clients
-    #@guest.attendances = @course.guest.attendances
-    @payments = @course.payments
-    #@payments = @enrollment.payments
-    @enrollmentpaymentz = @payments.map(&:amount).sum
     @totalenrollments = @course.enrollments.count
+  #payments and their sum
+    @payments = @course.payments
+    @enrollmentpaymentz = @payments.map(&:amount).sum
     @totalpayments = @course.payments.count
   end
 
   def new
     @course = Course.new
-    #@tenant = Tenant.current_tenant
   end
 
   def edit
     #@offices = Office.all
     @course.events.build
     @course.attendances.build
-    #@tenant = Tenant.current_tenant
   end
 
   def create

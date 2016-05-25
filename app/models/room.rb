@@ -1,9 +1,13 @@
 class Room < ActiveRecord::Base
-  belongs_to :office
   belongs_to :tenant
-  has_many :events
   acts_as_tenant
+  belongs_to :office
+
+  has_many :events
+
   validates :name, :office_id, :tenant_id, presence: true
+  validates_uniqueness_of :name, :scope => :tenant_id
+
   def to_s
     name
   end
@@ -14,4 +18,7 @@ class Room < ActiveRecord::Base
     end
   end
   
+  validate :free_plan_can_only_have_one_room
+
+
 end

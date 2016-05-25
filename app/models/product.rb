@@ -2,10 +2,11 @@ class Product < ActiveRecord::Base
   belongs_to :tenant
   acts_as_tenant
   belongs_to :product_type
+
   has_many :courses, dependent: :destroy
 
-  validates :name, :product_type_id, :tenant_id, presence: true
-  validates :name, uniqueness: true
+  validates :product_type_id, :event_length, :event_quantity, :member_price, :client_price, :tenant_id, presence: true
+  #validates :name, uniqueness: true
 
   def productprice
     event_quantity * client_price
@@ -17,10 +18,6 @@ class Product < ActiveRecord::Base
 
   def to_s
     description
-  end
-
-  def totalprice
-  	event_quantity * gprice
   end
 
   def self.active
@@ -35,7 +32,10 @@ class Product < ActiveRecord::Base
     where('id = ? OR (is_active=true)', record_id)    
   end
 
+  def created
+    created_at.strftime('%d/%m/%Y')
+  end
 
-
+  #validates_uniqueness_of :description, :scope => :tenant_id
 
 end

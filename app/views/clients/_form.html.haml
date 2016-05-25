@@ -1,17 +1,17 @@
 = simple_form_for @client do |f|
-  .col-xs-4.no-left-padding
+  .col-xs-4.no-left-padding.bg-success
     = f.input :first_name
-  .col-xs-4
-    = f.input :middle_name
-  .col-xs-4.no-right-padding
+  .col-xs-4.bg-success
     = f.input :last_name
-  .row
-  .col-xs-4.no-left-padding
-    = f.input :email
-  .col-xs-4
-    = f.input :tel2
   .col-xs-4.no-right-padding
+    = f.input :middle_name
+  .row
+  .col-xs-4.no-left-padding.bg-success
+    = f.input :email
+  .col-xs-4.bg-success
     = f.input :tel1
+  .col-xs-4.no-right-padding
+    = f.input :tel2
   .row
   .col-xs-8.no-left-padding
     = f.input :dob, :start_year => Time.now.year - 80, :end_year => Time.now.year - 4
@@ -28,4 +28,3 @@
 
   .form-actions
     = f.button :submit, class: 'btn btn-primary btn-block'
-
