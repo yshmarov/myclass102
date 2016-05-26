@@ -23,8 +23,9 @@
         %td= course.attr2
         %td= course.attr3
         %td
-          = link_to '1-Course', edit_course_course_path(course), class: 'btn btn-default btn-xs'
-          = link_to '2-Enrollments', edit_enrollments_course_path(course), class: 'btn btn-default btn-xs'
-          = link_to '3-Events', edit_course_path(course), class: 'btn btn-default btn-xs'
-          = link_to '4-Attendances', edit_course_path(course), class: 'btn btn-default btn-xs'
+          /= link_to '1-Course', edit_course_course_path(course), class: 'btn btn-default btn-xs'
+          /= link_to '2-Enrollments', edit_enrollments_course_path(course), class: 'btn btn-default btn-xs'
+          = link_to 'Edit course', edit_course_path(course), class: 'btn btn-default btn-xs'
+          = link_to 'Edit events', edit_events_course_path(course), class: 'btn btn-default btn-xs'
+          = link_to 'Edit attendances', edit_attendances_course_path(course), class: 'btn btn-default btn-xs'
           = link_to 'Destroy', course_path(course), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger'

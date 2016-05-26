@@ -1,3 +1,4 @@
+/editing only course
 = simple_form_for @course do |f|
   = f.error_notification
   = f.button :submit, class: "btn btn-info add-button"
@@ -17,10 +18,3 @@
     = f.association :attr2
   .col-sm-4
     = f.association :attr3
-  .row
-    %h3 Events
-    #tasks
-      = f.simple_fields_for :events do |event|
-        = render 'event_fields', f: event
-      .links.container
-        = link_to_add_association '+ Add event', f, :events, class: "btn btn-info add-button"

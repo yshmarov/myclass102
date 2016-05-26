@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     member do
       #get :edit_clean
       #put :update_clean
-      get 'edit_course'
-      get 'edit_enrollments'
+      get 'edit_events'
+      get 'edit_attendances'
       #put 'update_course'
     end
   end

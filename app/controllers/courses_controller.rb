@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   #before_action :set_course, only: [:show, :edit, :update, :destroy, :editclean]
-  before_action :set_course, only: [:show, :edit, :edit_course, :edit_enrollments, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :edit_events, :edit_attendances, :update, :destroy]
   #before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -9,12 +9,14 @@ class CoursesController < ApplicationController
     @courses = Course.all
   end
 
-  def edit_clean
+  def edit_events
+    @course.events.build
+    @course.attendances.build
   end
 
-  def edit_enrollments
-    @course.enrollments.build
-    #@course.member_id = current_user.id
+  def edit_attendances
+    @course.events.build
+    @course.attendances.build
   end
 
   def show
@@ -32,6 +34,12 @@ class CoursesController < ApplicationController
     @payments = @course.payments
     @enrollmentpaymentz = @payments.map(&:amount).sum
     @totalpayments = @course.payments.count
+  #new payment
+    @payment = Payment.new
+    @payment.member_id = current_user.id
+  #new enrollment
+    @enrollment = Enrollment.new
+    @enrollment.member_id = current_user.id
   end
 
   def new
@@ -40,8 +48,8 @@ class CoursesController < ApplicationController
 
   def edit
     #@offices = Office.all
-    @course.events.build
-    @course.attendances.build
+    #@course.events.build
+    #@course.attendances.build
   end
 
   def create
@@ -81,14 +89,14 @@ class CoursesController < ApplicationController
     end
 
     #without enrollment
-    #def course_params
-    #  params.require(:course).permit(:name, :product_id, :attr1_id, :attr2_id, :attr3_id, :tenant_id, events_attributes: [:id, :starts_at, :room_id, :member_id, :tenant_id, :_destroy, attendances_attributes: [ :id, :attendance_rate_id, :client_id, :tenant_id, :_destroy ]])
-    #end
+    def course_params
+      params.require(:course).permit(:name, :product_id, :attr1_id, :attr2_id, :attr3_id, :tenant_id, events_attributes: [:id, :starts_at, :room_id, :member_id, :tenant_id, :_destroy, attendances_attributes: [ :id, :attendance_rate_id, :client_id, :tenant_id, :_destroy ]])
+    end
 
     #all
-    def course_params
-      params.require(:course).permit(:name, :product_id, :attr1_id, :attr2_id, :attr3_id, :tenant_id, events_attributes: [:id, :starts_at, :room_id, :member_id, :tenant_id, :_destroy, attendances_attributes: [ :id, :attendance_rate_id, :client_id, :tenant_id, :_destroy ]], enrollments_attributes: [:id, :client_id, :coupon_id, :member_id, :tenant_id, :_destroy])
-    end
+    #def course_params
+    #  params.require(:course).permit(:name, :product_id, :attr1_id, :attr2_id, :attr3_id, :tenant_id, events_attributes: [:id, :starts_at, :room_id, :member_id, :tenant_id, :_destroy, attendances_attributes: [ :id, :attendance_rate_id, :client_id, :tenant_id, :_destroy ]], enrollments_attributes: [:id, :client_id, :coupon_id, :member_id, :tenant_id, :_destroy])
+    #end
 
     #only enrollment    
     #def enroll_params

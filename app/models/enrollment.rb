@@ -16,7 +16,7 @@ class Enrollment < ActiveRecord::Base
   validates_uniqueness_of :client_id, :scope => :course_id
 
   def to_s
-  	id
+  	id.to_s + " " +client.to_s.to_s
   end
 
   def enrpaid

@@ -15,7 +15,7 @@ bundle install –without production
 heroku create
 heroku rename myclass102
 git push heroku master
-heroku pg:reset DATABASE --confirm myclass110
+heroku pg:reset DATABASE --confirm myclass102
 heroku run rake db:migrate
 
 heroku addons:create sendgrid:starter

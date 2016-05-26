@@ -51,9 +51,15 @@ body {
   .btn-primary:hover, .btn-primary:focus {
     background-color: darken(#428bca,20%) !important;
   }
+  .btn-success:hover, .btn-success:focus {
+    background-color: darken(#428bca,20%) !important;
+  }
 }
 
 .btn-primary:visited, .btn-danger:visited {
+  color: #fff;
+}
+.btn-success:visited, .btn-danger:visited {
   color: #fff;
 }
 

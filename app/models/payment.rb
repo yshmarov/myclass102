@@ -7,9 +7,7 @@ class Payment < ActiveRecord::Base
   #belongs_to :client, through: :enrollment
 
   validates :enrollment_id, :office_id, :payment_type, :amount, presence: true
-  validates :amount, :presence => true,
-            :numericality => true,
-            :format => { :with => /\A\d{1,4}(\.\d{0,2})?\z/ }
+  validates :amount, :presence => true, :numericality => true
 
   def created
     created_at.strftime('%d/%m/%Y')
