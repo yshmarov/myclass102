@@ -1,11 +1,11 @@
 </div>
-- set_var 'events', @events.map{|e| {title: e.room.office.name  + " " + e.room.name + " " + e.member.to_s, start: e.starts_at, end: e.ends_at, url: edit_event_path(e)}}
+- set_var 'events', @events.map{|e| {title: e.room.office.name  + " " + e.room.name + " " + e.member.to_s, start: e.starts_at, end: e.ends_at, url: edit_event_path(e), color: e.room.name}}
 .container.text-center
   = link_to "<i class='fa fa-edit'></i> Edit course".html_safe, edit_course_path(@course), class: 'btn btn-success'
 
   = link_to "<i class='fa fa-calendar-plus-o'></i> Add events".html_safe, edit_events_course_path(@course), class: 'btn btn-primary'
 
-  %button.btn.btn-success{"data-target" => ".bs-example-modal-sm-2", "data-toggle" => "modal", :type => "button"} <i class='fa fa-cart-plus'></i> New enrollment
+  %button.btn.btn-success{"data-target" => ".bs-example-modal-sm-2", "data-toggle" => "modal", :type => "button"} <i class='fa fa-user-plus'></i> New enrollment
   .modal.fade.bs-example-modal-sm-2{"aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-dialog.modal-sm
       .modal-content
@@ -29,7 +29,7 @@
             /= f.button :submit, class: 'btn btn-primary btn-block'
             = f.input :course_id, input_html: {value: @course.id}, as: :hidden
 
-  = link_to "<i class='fa fa-user-plus'></i> Mark attendances".html_safe, edit_attendances_course_path(@course), class: 'btn btn-primary'
+  = link_to "<i class='fa fa-calendar-check-o'></i> Mark attendances".html_safe, edit_attendances_course_path(@course), class: 'btn btn-primary'
 
   %button.btn.btn-success{"data-target" => ".bs-example-modal-sm", "data-toggle" => "modal", :type => "button"} <i class='fa fa-credit-card'></i> Add payment
   .modal.fade.bs-example-modal-sm{"aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -117,6 +117,10 @@
             %li.active
               %a{"data-toggle" => "tab", :href => "#Calendar"} Calendar
             %li
+              %a{"data-toggle" => "tab", :href => "#Eventsall"}
+                All events:
+                = @past_events.count
+            %li
               %a{"data-toggle" => "tab", :href => "#Eventspast"}
                 Past events:
                 = @past_events.count
@@ -136,7 +140,24 @@
             #Calendar.tab-pane.fade.in.active
               %br
               %div#calendar
+            #Eventsall.tab-pane.fade
+              %p
+              %table.table.table-hover.table-condensed.table-responsive.table-bordered
+                - @events.collect{|p| [p.startnice, p.duration, p.room, p.member, p.eventused]}.transpose.each do |line|
+                  %tr
+                    - line.each do |cell|
+                      %td= cell
+
+
+                      /- event.attendances.each do |attendance|
+                      /  %tr.bg-warning
+                      /    %td= link_to attendance.client, client_path(attendance.client), class: 'btn btn-default btn-xs', :style=>'color: blue;'
+                      /    %td= attendance.attendance_rate
+                      /    %td= attendance.duepayment
+
+
             #Eventspast.tab-pane.fade
+              %p
               %table.table.table-hover.table-condensed.table-responsive.table-bordered
                 %thead
                   %tr
@@ -166,6 +187,7 @@
                           %td= attendance.attendance_rate
                           %td= attendance.duepayment
             #Eventsfuture.tab-pane.fade
+              %p
               %table.table.table-hover.table-condensed.table-responsive.table-bordered
                 %thead
                   %tr
@@ -193,7 +215,7 @@
                           %td= attendance.attendance_rate
                           %td= attendance.duepayment
             #Enrollments.tab-pane.fade
-              %br
+              %p
               %table.table.table-hover.table-condensed.table-responsive.table-bordered
                 %thead
                   %tr
@@ -226,7 +248,7 @@
                       /    %td= payment.id
                       /    %td= payment.amount
             #Payments.tab-pane.fade
-              %br
+              %p
               %table.table.table-hover.table-condensed.table-responsive.table-bordered
                 %thead
                   %tr

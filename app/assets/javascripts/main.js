@@ -19,7 +19,7 @@ $(document).ready(function(){
         lang: 'en',
         minTime: "09:00:00",
         maxTime: "20:00:00",
-        defaultView: 'agendaWeek',
+        defaultView: 'month',
         firstDay: 1,
         allDaySlot: false,
         height: 510,

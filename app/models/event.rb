@@ -31,4 +31,12 @@ class Event < ActiveRecord::Base
     attendances.map(&:duepayment).sum
   end
 
+  def duration
+    course.product.event_length
+  end
+
+  def startnice
+    starts_at.strftime('%d/%m/%Y')
+  end
+  
 end

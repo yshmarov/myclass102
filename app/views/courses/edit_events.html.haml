@@ -3,6 +3,8 @@
     Editing events
     = link_to 'Show course', course_path(@course), class: 'navbar-link btn btn-primary'
     = link_to 'All courses', courses_path, class: 'navbar-link btn btn-primary'
+    %p
+    = @course.name
 
 = simple_form_for @course do |f|
   = f.error_notification

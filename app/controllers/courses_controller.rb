@@ -21,7 +21,7 @@ class CoursesController < ApplicationController
 
   def show
   #for calendar, past, future events
-    @events = @course.events
+    @events = @course.events.order('starts_at ASC')
     @past_events = @course.events.where('starts_at < ?', Time.now).order('starts_at ASC')
     @future_events = @course.events.where('starts_at > ?', Time.now).order('starts_at ASC')
   #price of attendances
