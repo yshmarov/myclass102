@@ -6,7 +6,7 @@ class Payment < ActiveRecord::Base
   belongs_to :member
   #belongs_to :client, through: :enrollment
 
-  validates :enrollment_id, :office_id, :payment_type, :amount, presence: true
+  validates :enrollment_id, :office_id, :amount, presence: true
   validates :amount, :presence => true, :numericality => true
 
   def created

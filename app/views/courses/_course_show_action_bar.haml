@@ -1,0 +1,52 @@
+.container.text-center
+  = link_to "<i class='fa fa-edit'></i> Edit course".html_safe, edit_course_path(@course), class: 'btn btn-success'
+  = link_to "<i class='fa fa-calendar-plus-o'></i> Add events".html_safe, edit_events_course_path(@course), class: 'btn btn-primary'
+
+  %button.btn.btn-success{"data-target" => ".bs-example-modal-sm-2", "data-toggle" => "modal", :type => "button"} <i class='fa fa-user-plus'></i> New enrollment
+  .modal.fade.bs-example-modal-sm-2{"aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog.modal-sm
+      .modal-content
+        .well
+          %h1 New enrollment
+          = simple_form_for @enrollment do |f|
+            /= f.input :coupon_id, collection: ["1"], label: 'Enrollment type'
+            /= f.label :Enrollment_type
+            .row
+            %br
+            = f.label :Client
+            = f.select :client_id, Client.all.map{|c| [c, c.id]}, {},class: 'selectize'
+            = f.input :member_id, :as => :hidden
+            = f.input :course_id, input_html: {value: @course.id}, as: :hidden
+            .row
+            %br
+            = f.radio_button :coupon_id, "1"
+            = f.label :coupon_one, "Confirm client"
+            /= f.radio_button :coupon_id, "2"
+            /= f.label :coupon_two, "Toto"
+            .row
+            %br
+            = f.submit
+
+  = link_to "<i class='fa fa-calendar-check-o'></i> Mark attendances".html_safe, edit_attendances_course_path(@course), class: 'btn btn-primary'
+
+  %button.btn.btn-success{"data-target" => ".bs-example-modal-sm", "data-toggle" => "modal", :type => "button"} <i class='fa fa-credit-card'></i> Add payment
+  .modal.fade.bs-example-modal-sm{"aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog.modal-sm
+      .modal-content
+        .well
+          %h1 New payment
+          = simple_form_for @payment do |f|
+            %br
+            = f.label :Client
+            = f.select :enrollment_id, @course.enrollments.map{|c| [c, c.id]}, {},class: 'selectize'
+            = f.input :member_id, :as => :hidden
+            /= f.input :payment_type, collection: [ "cash", "card"], selected: "cash", :as => :hidden
+            %br
+            = f.association :office
+            %br
+            = f.input :amount
+            %br
+            = f.submit
+            /= f.button :submit, class: 'btn btn-primary btn-block'
+
+  = link_to 'All courses', courses_path, class: "btn btn-default"
