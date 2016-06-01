@@ -1,18 +1,19 @@
-.page-header
-  %h1 New member
-= form_for @member do |f|
-  = fields_for( :user ) do |w|
-    .control-group
-      = w.label :email, :class => "control-label"
-      .controls
-        = w.text_field :email, :class => 'form-control'
-  .control-group
-    = f.label :first_name, :class => "control-label"
-    = f.text_field :first_name, :class => "form-control"
-  .control-group
-    = f.label :last_name, :class => "control-label"
-    = f.text_field :last_name, :class => "form-control"
-  %br/
-  .control-group
-    %button.btn.btn-primary{:type => "submit"}
-      Create user and invite
+.col-md-3
+.col-md-6
+  .pull-right
+    = link_to 'All members', members_path, class: "btn btn-default"
+  .row
+  %br
+  .well.text-center
+    %h1
+      New member
+
+    = simple_form_for @member do |f|
+      = simple_fields_for( :user ) do |w|
+        = w.input :email
+      = f.input :first_name
+      = f.input :last_name
+      = f.button :submit, 'Create & send invitation', class: 'btn btn-primary btn-block'
+.col-md-3
+
+

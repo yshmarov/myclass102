@@ -15,7 +15,7 @@
   %tbody
     - @members.each do |member|
       %tr
-        %td= link_to member.id, member_path(member), :class => 'btn btn-default btn-xs'
+        %td= link_to member.id, member_path(member), :class => 'btn btn-success btn-xs'
         %td= member.user.email
         %td= member.first_name
         %td= member.last_name

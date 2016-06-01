@@ -33,5 +33,7 @@
           )
         %td= client.total_balance
         %td
+          = link_to 'NewEnroll', client_path(client), :class => 'btn btn-warning btn-xs'
+          = link_to 'NewPay', client_path(client), :class => 'btn btn-warning btn-xs'
           = link_to 'Edit', edit_client_path(client), :class => 'btn btn-default btn-xs'
           = link_to 'Destroy', client_path(client), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger'

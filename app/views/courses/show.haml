@@ -37,13 +37,13 @@
           %table.table.table-hover.table-condensed.table-responsive.table-bordered
             %thead
               %tr
-                %th Paid
                 %th Used
-                %th.bg-success ToPay
+                %th Paid
+                %th.bg-success Balance
             %tbody
               %tr
-                %td= @course.total_paid_course
                 %td= @course.total_used_course
+                %td= @course.total_paid_course
                 %td.bg-success= @course.total_balance_course
 .col-sm-9
   #accordion.panel-group

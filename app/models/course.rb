@@ -37,7 +37,7 @@ class Course < ActiveRecord::Base
   end
   
   def total_balance_course
-    total_used_course - total_paid_course
+    total_paid_course - total_used_course
   end
 
 
