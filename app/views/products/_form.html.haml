@@ -4,8 +4,11 @@
   = f.input :event_length
   = f.input :member_price
   = f.input :client_price
-  = f.input :gtype
-  = f.input :ctype
+  /= f.input :gtype
+  = f.input :gtype, collection: [ "gr", "ind", "man"]
+  /, selected: "cash"
+  = f.input :ctype, collection: [ "ad", "ch", "ind"]
+  /= f.input :ctype
   = f.input :is_active
   = f.association :product_type
   = f.button :submit, :class => 'btn-primary'

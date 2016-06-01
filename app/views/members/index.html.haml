@@ -3,13 +3,14 @@
     Members
     /.pull-right
     = link_to "<i class='fa fa-users'></i> Invite new member".html_safe, new_member_path, class: 'navbar-link btn btn-primary'
-%table.table.table-striped
+%table.table.table-hover.table-condensed.table-responsive.table-bordered.table-striped
   %thead
     %tr
       %th ID
       %th Email
       %th First name
       %th Last name
+      %th Balance
       %th Actions
   %tbody
     - @members.each do |member|
@@ -18,6 +19,8 @@
         %td= member.user.email
         %td= member.first_name
         %td= member.last_name
+        %td TO BE
+        /%td= member.balance
         %td
           = link_to 'Edit', edit_member_path(member), :class => 'btn btn-default btn-xs'
           = link_to 'Destroy', member_path(member), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger'

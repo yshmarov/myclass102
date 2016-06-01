@@ -24,7 +24,7 @@ class Attendance < ActiveRecord::Base
   end
 
   def startz
-    event.starts_at
+    event.starts_at.to_s
   end
   def endz
     event.ends_at

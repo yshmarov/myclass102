@@ -18,6 +18,10 @@ class Member < ActiveRecord::Base
     last_name+" "+first_name
   end
 
+  def to_ss
+    last_name+" "+first_name+" "+middle_name
+  end
+
   DEFAULT_ADMIN = {
     first_name: "Admin",
     last_name:  "Please edit me"

@@ -28,6 +28,19 @@ class Course < ActiveRecord::Base
     name
   end  
 
+  def total_used_course
+    attendances.map(&:duepayment).sum
+  end
+  
+  def total_paid_course
+    payments.map(&:amount).sum
+  end
+  
+  def total_balance_course
+    total_used_course - total_paid_course
+  end
+
+
 #tenant plan options
   def free_plan_can_only_have_one_course
     if self.new_record? && (tenant.courses.count > 1) && (tenant.plan == 'free')

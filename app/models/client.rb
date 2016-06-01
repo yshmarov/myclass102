@@ -35,16 +35,40 @@ class Client < ActiveRecord::Base
     last_name+" "+first_name+" "+middle_name
   end
 
-  def age
-    Time.now.year - dob.year
-  end
-
   def born
     dob.strftime('%d/%m/%Y')
   end
 
+  def age
+    Time.now.year - dob.year
+  end
+
   def created
     created_at.strftime('%d/%m/%Y')
+  end
+  
+  def total_paid
+    payments.map(&:amount).sum
+  end
+  
+  def total_used
+    attendances.map(&:duepayment).sum
+  end
+
+  def total_balance
+    total_paid - total_used
+  end
+  
+  def count_enrollments
+    enrollments.count
+  end
+
+  def count_attendances
+    attendances.count
+  end
+  
+  def count_payments
+    payments.count
   end
 
 end

@@ -26,14 +26,12 @@ class CoursesController < ApplicationController
     @future_events = @course.events.where('starts_at > ?', Time.now).order('starts_at ASC')
   #price of attendances
     @attendances = @course.attendances
-    @totalduepaymentguest = @attendances.map(&:duepayment).sum
+    #@totalduepaymentguest = @attendances.map(&:duepayment).sum
   #enrollment list
     @enrollments = @course.enrollments
-    @totalenrollments = @course.enrollments.count
   #payments and their sum
-    @payments = @course.payments
-    @enrollmentpaymentz = @payments.map(&:amount).sum
-    @totalpayments = @course.payments.count
+    @payments = @course.payments.order('created_at ASC')
+    #@enrollmentpaymentz = @payments.map(&:amount).sum
   #new payment
     @payment = Payment.new
     @payment.member_id = current_user.id

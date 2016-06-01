@@ -8,17 +8,17 @@ class ClientsController < ApplicationController
   def show
   #enrollment list
     @enrollments = @client.enrollments
-    @totalenrollments = @client.enrollments.count
+    #@totalenrollments = @client.enrollments.count
   #attendance list and calendar
     @attendances = @client.attendances
-    @totalatt = @client.attendances.count
+    #@totalatt = @client.attendances.count
   #price of attendances used and expected to use
-    @totalduepaymentclient = @attendances.map(&:duepayment).sum
+    #@totalduepaymentclient = @attendances.map(&:duepayment).sum
   #payment list
-    @payments = @client.payments
-    @totalpay = @client.payments.count
+    @payments = @client.payments.order('created_at ASC')
+    #@totalpay = @client.payments.count
   #sum of payments
-    @totalpaidbyclient = @payments.map(&:amount).sum
+    #@totalpaidbyclient = @payments.map(&:amount).sum
 
   #past and future attendances
     #@past_attendances = @attendances.order('startz ASC') #.where('startz < ?', Time.now).order('startz ASC')

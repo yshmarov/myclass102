@@ -1,55 +1,62 @@
 </div>
 /- set_var 'events', @events.map{|e| {title: e.course.name + " " + e.room.office.name  + " " + e.room.name + " " + e.member.to_s, start: e.starts_at, end: e.ends_at, url: course_path(e.course)}}
 - set_var 'events', @attendances.map{|e| {title: e.event.course.name + " " + e.event.room.office.name  + " " + e.event.room.name + " " + e.event.member.to_s, start: e.startz, end: e.endz, url: course_path(e.event.course)}}
+.container.text-center
+  = link_to 'Edit profile', edit_client_path(@client), class: 'btn btn-success'
+  = link_to 'Add opportunity', client_path(@client), class: 'btn btn-danger'
+  = link_to 'Add enrollment', client_path(@client), class: 'btn btn-danger'
+  = link_to 'Add comment', client_path(@client), class: 'btn btn-danger'
+  = link_to "<i class='fa fa-credit-card'></i> Add payment".html_safe, client_path(@client), class: 'btn btn-danger'
+  = link_to 'All clients', clients_path, class: 'btn btn-default'
 
+%br
+.row
 .col-md-3
   #accordion.panel-group
     .panel.panel-default
       .panel-heading
         %h4.panel-title
           %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapseOne"}
-            %b Client info
+            %b Client profile
       #collapseOne.panel-collapse.collapse.in
         .panel-body
           .text-center
-          %p
-          %h4
-            %b Name:
-            = @client.to_ss
-          %p
-            %b Email:
-            = @client.email
-          %p
-            %b Bday:
-            = @client.dob
-          %p
-            %b Tel1:
-            = @client.tel1
-          %p
-            %b Tel2:
-            = @client.tel2
-          %p
-            %b Sex:
-            = @client.sex
-          %p
-            %b Address:
-            = @client.address
-          %p
-            %b Lead source:
-            = @client.lead_source_id
+            .fa.fa-user.fa-4x
+          %br
+          %table.table.table-hover.table-condensed.table-responsive.table-bordered
+            %tbody
+              %tr
+                %td Name:
+                %td= @client.to_ss
+              %tr
+                %td Email:
+                %td= @client.email
+              %tr
+                %td dob:
+                %td= @client.dob
+              %tr
+                %td Tel1:
+                %td= @client.tel1
+              %tr
+                %td Tel2:
+                %td= @client.tel2
+              %tr
+                %td Address:
+                %td= @client.address
+              %tr
+                %td Lead source:
+                %td= @client.lead_source_id
           %table.table.table-hover.table-condensed.table-responsive.table-bordered
             %thead
               %tr
-                %th Total used
-                %th Total paid
-                %th.bg-success Total to pay
+                %th Used
+                %th Paid
+                %th.bg-success Balance
             %tbody
               %tr
-                %td= @totalduepaymentclient
-                %td= @totalpaidbyclient
-                %td.bg-success= @totalduepaymentclient - @totalpaidbyclient
-          = link_to 'All clients', clients_path, :class => 'btn btn-default'
-          = link_to 'Edit', edit_client_path(@client), :class => 'btn btn-warning'
+                %td= @client.total_used
+                %td= @client.total_paid
+                %td.bg-success= @client.total_balance
 .col-md-9
   #accordion.panel-group
     .panel.panel-default
@@ -63,99 +70,46 @@
             %li.active
               %a{"data-toggle" => "tab", :href => "#Calendar"} Calendar
             %li
+              %a{"data-toggle" => "tab", :href => "#Enrollments"}
+                Enrollments:
+                = @client.count_enrollments
+            %li
               %a{"data-toggle" => "tab", :href => "#Attendances"}
                 Attendances:
-                = @totalatt
+                = @client.count_attendances
             %li
               %a{"data-toggle" => "tab", :href => "#Payments"} 
                 Payments:
-                = @totalpay
-            %li
-              %a{"data-toggle" => "tab", :href => "#Enrollments"}
-                Enrollments:
-                = @totalenrollments
+                = @client.count_payments
           .tab-content
             #Calendar.tab-pane.fade.in.active
               %br
-              %div#calendar
-            #Attendances.tab-pane.fade
-              %p
-              %h4.pull-right
-                Total used:
-                = @totalduepaymentclient
-              %p
-              %table.table.table-hover.table-condensed.table-responsive.table-bordered
-                %thead
-                  %tr
-                    %th Starts at
-                    %th Duration
-                    %th Room
-                    %th Teacher
-                    %th Event group
-                    %th Lesson price
-                    %th Attended?
-                    %th.bg-success To pay
-                %tbody
-                  - @attendances.each do |attendance|
-                    %tr
-                      %td= attendance.startz
-                      %td= attendance.event.course.product.event_length
-                      %td= attendance.event.room
-                      %td= attendance.event.member
-                      %td= attendance.event.course
-                      %td= attendance.gpricer
-                      %td= attendance.attendance_rate.name
-                      %td.bg-success= attendance.duepayment
-            #Payments.tab-pane.fade
-              %p
-              %h4.pull-right
-                Total paid:
-                = @totalpaidbyclient
-              %p
-              %table.table.table-hover.table-condensed.table-responsive.table-bordered
-                %thead
-                  %tr
-                    %th ID
-                    %th Date
-                    %th Office
-                    %th Course
-                    %th amount
-                %tbody
-                  - @payments.each do |payment|
-                    %tr
-                      %td= payment.id
-                      %td= payment.created_at
-                      %td= payment.office
-                      %td= payment.enrollment.course
-                      %td= payment.amount
+              %div#calendar_course_client
             #Enrollments.tab-pane.fade
+              /%p
+              /%h4.pull-right
+              /  Total balance:
+              /  = @client.total_balance
               %p
               %table.table.table-hover.table-condensed.table-responsive.table-bordered
                 %thead
                   %tr
-                    %th EnrollID
-                    %th Paid
-                    %th Used
-                    %th ToPay
                     %th Course
                     %th Product
-                    %th Client
+                    /%th Lessons attended
+                    %th Used
+                    %th Paid
+                    %th.bg-success Balance
                     /%th Coupon
-                    %th Member
                 %tbody
                   - @enrollments.each do |enrollment|
                     %tr
-                      %td= enrollment.id
-                      %td= enrollment.enrpaid
-                      %td= enrollment.enrused
-                      %td= enrollment.enrbalance
-                      %td= enrollment.course
+                      %td= link_to enrollment.course, course_path(enrollment.course), class: 'btn btn-default btn-xs'
                       %td= enrollment.course.product
-                      %td= link_to enrollment.client, client_path(enrollment.client), :style=>'color: blue;'
-                      /%td= link_to enrollment.member, member_path(enrollment.member), :style=>'color: blue;'
-                      %td= enrollment.member
-                      /currently show all clients attendances
                       /%td= enrollment.attendances.count
+                      %td= enrollment.enrused
+                      %td= enrollment.enrpaid
+                      %td.bg-success= enrollment.enrbalance
                       %thead
                         %tr.bg-warning
                           /%th
@@ -166,3 +120,47 @@
                         %tr.bg-warning
                           %td= payment.id
                           %td= payment.amount
+            #Attendances.tab-pane.fade
+              %p
+              %table.table.table-hover.table-condensed.table-responsive.table-bordered
+                %thead
+                  %tr
+                    %th Starts at
+                    %th Course
+                    %th Product
+                    %th Office
+                    %th Room
+                    %th Teacher
+                    %th Lesson price
+                    %th Attendance
+                    %th.bg-success Used
+                %tbody
+                  - @attendances.each do |attendance|
+                    %tr
+                      %td= attendance.startz
+                      %td= attendance.event.course
+                      %td= attendance.event.course.product
+                      %td= attendance.event.room.office
+                      %td= attendance.event.room
+                      %td= attendance.event.member
+                      %td= attendance.gpricer
+                      %td= attendance.attendance_rate.name
+                      %td.bg-success= attendance.duepayment
+            #Payments.tab-pane.fade
+              %p
+              %table.table.table-hover.table-condensed.table-responsive.table-bordered
+                %thead
+                  %tr
+                    %th PayID
+                    %th Date
+                    %th Office
+                    %th Course
+                    %th.bg-success Paid
+                %tbody
+                  - @payments.each do |payment|
+                    %tr
+                      %td= payment.id
+                      %td= payment.created_at
+                      %td= payment.office
+                      %td= payment.enrollment.course
+                      %td.bg-success= payment.amount

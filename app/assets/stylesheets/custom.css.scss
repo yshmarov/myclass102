@@ -1,9 +1,8 @@
-
 body {
   background: linear-gradient(to left, #E0EAFC , #CFDEF3);
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 750px) {
 	table {
 		overflow-x: auto;
 		display: block;
@@ -138,7 +137,5 @@ body {
     background: none;
   }
 }
-
-
 
 

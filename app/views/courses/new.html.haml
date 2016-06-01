@@ -1,6 +1,14 @@
-.page-header
-  %h1
-    New course
-    /.pull-right
-    = link_to 'All courses', courses_path, class: 'navbar-link btn btn-primary'
-= render 'form'
+/.container
+.col-md-3
+.col-md-6
+  .pull-right
+    = link_to 'All courses', courses_path, class: "btn btn-default"
+  .row
+  %br
+  .well
+    %h1
+      .text-center
+        New course
+    = render 'form'
+    %p
+.col-md-3

@@ -3,31 +3,35 @@
     Clients
     /.pull-right
     = link_to "<i class='fa fa-users'></i> Add new client".html_safe, new_client_path, class: 'navbar-link btn btn-primary'
-%table.table.table-hover.table-condensed.table-responsive.table-bordered
+%table.table.table-hover.table-condensed.table-responsive.table-bordered.table-striped
   %thead
     %tr
       %th ID
+      %th LastName
       %th FirstName
       %th MiddleName
-      %th LastName
       %th Email
       %th Tel1
       %th Tel2
-      %th dob
-      %th sex
+      %th dob/age
+      %th Balance
       %th Actions
   %tbody
     - @clients.each do |client|
       %tr
         %td= link_to client.id, client_path(client), :class => 'btn btn-success btn-xs'
+        %td= client.last_name
         %td= client.first_name
         %td= client.middle_name
-        %td= client.last_name
         %td= client.email
         %td= client.tel1
         %td= client.tel2
-        %td= client.born
-        %td= client.sex
+        %td
+          = client.born
+          (
+          = client.age
+          )
+        %td= client.total_balance
         %td
           = link_to 'Edit', edit_client_path(client), :class => 'btn btn-default btn-xs'
           = link_to 'Destroy', client_path(client), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger'

@@ -1,39 +1,44 @@
-- set_var 'events', @events.map{|e| {title: e.course.name + " " + e.room.office.name  + " " + e.room.name, start: e.starts_at, end: e.ends_at, url: course_path(e.course)}}
-.page-header
-  %h1 
-    Member:
-    = @member.to_s
-    .pull-right
-      = link_to 'All members', members_path, :class => 'btn btn-default'
-      = link_to 'Edit profile', edit_member_path(@member), :class => 'btn btn-warning'
 </div>
+- set_var 'events', @events.map{|e| {title: e.course.name + " " + e.room.office.name  + " " + e.room.name, start: e.starts_at, end: e.ends_at, url: course_path(e.course)}}
+.container.text-center
+  = link_to 'Edit profile', edit_member_path(@member), class: 'btn btn-success'
+  = link_to 'Pay salary', member_path(@member), class: 'btn btn-danger'
+  = link_to 'Soft delete', member_path(@member), class: 'btn btn-danger'
+  = link_to 'All members', members_path, class: 'btn btn-default'
+%br
 .col-md-3
   #accordion.panel-group
     .panel.panel-default
       .panel-heading
         %h4.panel-title
           %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapseOne"}
-            %b Profile
+            %b User profile
       #collapseOne.panel-collapse.collapse.in
         .panel-body
-          %p
-            %b First name
-            = @member.first_name
-          %p
-            %b Last name
-            = @member.last_name
-          %p
-            %b Email
-            = @member.user.email
+          .text-center
+            .fa.fa-user.fa-4x
+          %br
+          %table.table.table-hover.table-condensed.table-responsive.table-bordered
+            %tbody
+              %tr
+                %td Name:
+                %td= @member.to_s
+              %tr
+                %td Email:
+                %td= @member.user.email
           %table.table.table-hover.table-condensed.table-responsive.table-bordered
             %thead
               %tr
-                %th Total services rendered (past & expected), UAH:
-                %th Total income, UAH:
-                %th.bg-success Expected income, UAH:
+                %th All services
+                %th Past services
+                %th Future services
+                %th Total salary
+                %th.bg-success Expected income
             %tbody
               %tr
                 %td= @total_member_event_price
+                %td= @total_member_event_price_past
+                %td= @total_member_event_price_future
                 %td
                 %td.bg-success
 .col-md-9
@@ -51,23 +56,23 @@
             %li
               %a{"data-toggle" => "tab", :href => "#Pasteventstab"}
                 Past events:
-                = @past_events_count
+                = @past_events.count
                 |
                 = @total_member_event_price_past
             %li
               %a{"data-toggle" => "tab", :href => "#Futureeventstab"} 
                 Future events:
-                = @future_events_count
+                = @future_events.count
                 |
                 = @total_member_event_price_future
             %li
               %a{"data-toggle" => "tab", :href => "#Expencestab"}
-                Expences:
+                Salaries:
                 /= @paid_to_member
           .tab-content
             #Calendartab.tab-pane.fade.in.active
               %br
-              %div#calendar
+              %div#calendar_user
             #Pasteventstab.tab-pane.fade
               %p
               %table.table.table-hover.table-condensed.table-responsive.table-bordered

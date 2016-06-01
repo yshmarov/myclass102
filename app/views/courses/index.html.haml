@@ -3,7 +3,7 @@
     Courses
     /.pull-right
     = link_to 'Create new', new_course_path, :class => 'btn btn-primary'
-%table.table.table-striped
+%table.table.table-hover.table-condensed.table-responsive.table-bordered.table-striped
   %thead
     %tr
       %th ID
@@ -12,20 +12,21 @@
       %th Attr1
       %th Attr2
       %th Attr3
+      %th Balance
       %th.text-center Actions
   %tbody
     - @courses.each do |course|
       %tr
-        %td= link_to course.id, course, class: 'btn btn-default btn-xs'
+        %td= link_to course.id, course, class: 'btn btn-success btn-xs'
         %td= course.name
         %td= course.product
         %td= course.attr1
         %td= course.attr2
         %td= course.attr3
+        %td= course.total_balance_course
         %td
-          /= link_to '1-Course', edit_course_course_path(course), class: 'btn btn-default btn-xs'
-          /= link_to '2-Enrollments', edit_enrollments_course_path(course), class: 'btn btn-default btn-xs'
-          = link_to 'Edit course', edit_course_path(course), class: 'btn btn-default btn-xs'
-          = link_to 'Edit events', edit_events_course_path(course), class: 'btn btn-default btn-xs'
-          = link_to 'Edit attendances', edit_attendances_course_path(course), class: 'btn btn-default btn-xs'
+          = link_to 'Edit course', edit_course_path(course), class: 'btn btn-warning btn-xs'
+          = link_to 'New enrollment', edit_course_path(course), class: 'btn btn-warning btn-xs'
+          = link_to 'Edit events', edit_events_course_path(course), class: 'btn btn-warning btn-xs'
+          = link_to 'Edit attendances', edit_attendances_course_path(course), class: 'btn btn-warning btn-xs'
           = link_to 'Destroy', course_path(course), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger'

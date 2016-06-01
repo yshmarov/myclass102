@@ -19,11 +19,7 @@ class MembersController < ApplicationController
     @total_member_event_price_past = @past_events.map(&:member_event_price).sum
     @total_member_event_price_future = @future_events.map(&:member_event_price).sum
 
-    #count all past & future events
-    @past_events_count = @past_events.count(:id)
-    @future_events_count = @future_events.count(:id)
-
-    #@paid_to_member = @member.expences.sum(:amount)
+    #@paid_to_member = @member.salaries.sum(:amount)
   end
   
   def edit

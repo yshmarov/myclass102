@@ -1,20 +1,20 @@
 /editing only course
+%br
 = simple_form_for @course do |f|
   = f.error_notification
-  = f.button :submit, class: "btn btn-info add-button"
   .row
-  .col-sm-6
+  .col-sm-6.no-left-padding
     = f.input :name
-  .col-sm-6
-    /= f.association :product
-    /= f.association :product, collection: f.object.product_id ? Product.active_or_id(f.object.product_id) : Product.active, :include_blank => false
+  .col-sm-6.no-right-padding
+    /must show to_s but not name
     = f.association :product, collection: f.object.product_id ? Product.active_or_id(f.object.product_id) : Product.active, :include_blank => false
     /= f.association :product, collection: f.object.product_id ? Product.where('id = ? OR (is_active=1)', f.object.product_id) : Product.where(is_active: true)
     //= f.association :product, collection: f.object.product_id ? Product.where('id = ? OR (is_active=true)', f.object.product_id) : Product.where(is_active: true)
   .row
-  .col-sm-4
+  .col-sm-4.no-left-padding
     = f.association :attr1, class: 'no-left-padding'
   .col-sm-4
     = f.association :attr2
-  .col-sm-4
+  .col-sm-4.no-right-padding
     = f.association :attr3
+  = f.button :submit, class: 'btn btn-primary btn-block'
