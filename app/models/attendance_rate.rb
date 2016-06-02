@@ -1,7 +1,5 @@
 class AttendanceRate < ActiveRecord::Base
-  belongs_to :tenant
   acts_as_tenant
-
   has_many :attendances
 
   validates :name, uniqueness: true

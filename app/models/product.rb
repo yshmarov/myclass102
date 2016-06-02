@@ -1,5 +1,4 @@
 class Product < ActiveRecord::Base
-  belongs_to :tenant
   acts_as_tenant
   belongs_to :product_type
 

@@ -1,5 +1,4 @@
 class Payment < ActiveRecord::Base
-  belongs_to :tenant
   acts_as_tenant
   belongs_to :enrollment
   belongs_to :office

@@ -1,8 +1,6 @@
 class Member < ActiveRecord::Base
-
   belongs_to :user
   acts_as_tenant
-  belongs_to :tenant
   has_many :events
 
   #for product.member_price

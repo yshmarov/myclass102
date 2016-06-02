@@ -21,8 +21,6 @@ class Tenant < ActiveRecord::Base
   has_many :attr2s, dependent: :destroy
   has_many :attr3s, dependent: :destroy
   
-  has_many :attendance_rates, dependent: :destroy
-
   def can_create_courses?
     (plan == 'free' && courses.count < 1) || (plan == 'premium')  
   end

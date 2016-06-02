@@ -1,5 +1,4 @@
 class Course < ActiveRecord::Base
-  belongs_to :tenant
   acts_as_tenant
   belongs_to :attr1
   belongs_to :attr2

@@ -1,6 +1,7 @@
 - if current_user
   %h3.pull-right
     Organization: #{@tenant.name}
+    = @tenant.name
   /= render 'courses/list'
 - else
   .text-center
