@@ -3,30 +3,41 @@
     Courses
     /.pull-right
     = link_to 'Create new', new_course_path, :class => 'btn btn-primary'
-%table.table.table-hover.table-condensed.table-responsive.table-bordered.table-striped
-  %thead
-    %tr
-      %th ID
-      %th Name
-      %th Product
-      %th Attr1
-      %th Attr2
-      %th Attr3
-      %th Balance
-      %th.text-center Actions
-  %tbody
-    - @courses.each do |course|
+- if @courses.size > 0
+  %table.table.table-hover.table-condensed.table-responsive.table-bordered.table-striped
+    %thead
       %tr
-        %td= link_to course.id, course, class: 'btn btn-success btn-xs'
-        %td= course.name
-        %td= course.product
-        %td= course.attr1
-        %td= course.attr2
-        %td= course.attr3
-        %td= course.total_balance_course
-        %td
-          = link_to 'Edit course', edit_course_path(course), class: 'btn btn-warning btn-xs'
-          = link_to 'New enrollment', edit_course_path(course), class: 'btn btn-warning btn-xs'
-          = link_to 'Edit events', edit_events_course_path(course), class: 'btn btn-warning btn-xs'
-          = link_to 'Edit attendances', edit_attendances_course_path(course), class: 'btn btn-warning btn-xs'
-          = link_to 'Destroy', course_path(course), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger'
+        %th ID
+        %th Name
+        %th Product
+        %th Attr1
+        %th Attr2
+        %th Attr3
+        %th Events
+        %th Attendances
+        %th Balance
+        %th.text-center Actions
+    %tbody
+      - @courses.each do |course|
+        %tr
+          %td= link_to course.id, course, class: 'btn btn-success btn-xs'
+          %td= course.name
+          %td= course.product
+          %td= course.attr1
+          %td= course.attr2
+          %td= course.attr3
+          %td= course.events.count
+          %td= course.attendances.count
+          %td= course.total_balance_course
+          %td
+            = link_to 'Edit course', edit_course_path(course), class: 'btn btn-warning btn-xs'
+            = link_to 'New enrollment', edit_course_path(course), class: 'btn btn-warning btn-xs'
+            = link_to 'Edit events', edit_events_course_path(course), class: 'btn btn-warning btn-xs'
+            = link_to 'Edit attendances', edit_attendances_course_path(course), class: 'btn btn-warning btn-xs'
+            = link_to 'Destroy', course_path(course), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger'
+- else
+  %h1 you don't have any courses. create one!
+            
+            
+            
+            

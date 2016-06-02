@@ -21,9 +21,9 @@ class Tenant < ActiveRecord::Base
   has_many :attr2s, dependent: :destroy
   has_many :attr3s, dependent: :destroy
   
-  def can_create_courses?
-    (plan == 'free' && courses.count < 1) || (plan == 'premium')  
-  end
+  #def can_create_courses?
+  #  (plan == 'free' && courses.count < 1) || (plan == 'premium')  
+  #end
   
   validates_uniqueness_of :name
   validates_presence_of :name
