@@ -1,8 +1,10 @@
 .page-header
   %h1
     Members
+    /= @tenant.name
     /.pull-right
-    = link_to "<i class='fa fa-users'></i> Invite new member".html_safe, new_member_path, class: 'navbar-link btn btn-primary'
+    - if current_user && current_user.is_admin?
+      = link_to "<i class='fa fa-users'></i> Invite new member".html_safe, new_member_path, class: 'navbar-link btn btn-primary'
 %table.table.table-hover.table-condensed.table-responsive.table-bordered.table-striped
   %thead
     %tr
@@ -11,16 +13,29 @@
       %th First name
       %th Last name
       %th Balance
+      %th Admin?
       %th Actions
   %tbody
     - @members.each do |member|
       %tr
-        %td= link_to member.id, member_path(member), :class => 'btn btn-success btn-xs'
+        %td
+          - if member.user == current_user
+            = link_to member.id, member_path(member), :class => 'btn btn-success btn-xs'
+          - elsif current_user.is_admin?
+            = link_to member.id, member_path(member), :class => 'btn btn-success btn-xs'
         %td= member.user.email
         %td= member.first_name
         %td= member.last_name
         %td TO BE
         /%td= member.balance
+        %td= member.user.is_admin?
         %td
-          = link_to 'Edit', edit_member_path(member), :class => 'btn btn-default btn-xs'
-          = link_to 'Destroy', member_path(member), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger'
+          /- if member.user == current_user || member.user.is_admin == true
+          - if member.user == current_user && 
+            = link_to 'Edit', edit_member_path(member), :class => 'btn btn-default btn-xs'
+            = link_to 'Destroy', member_path(member), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger'
+          - elsif current_user.is_admin?
+            = link_to 'Edit', edit_member_path(member), :class => 'btn btn-default btn-xs'
+            = link_to 'Destroy', member_path(member), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger'
+            
+            

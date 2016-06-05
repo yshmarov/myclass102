@@ -36,9 +36,12 @@
                 %th.bg-success Expected income
             %tbody
               %tr
-                %td= @total_member_event_price
-                %td= @total_member_event_price_past
-                %td= @total_member_event_price_future
+                /%td= @total_member_event_price
+                /%td= @total_member_event_price_past
+                /%td= @total_member_event_price_future
+                %td= @member.total_member_event_price
+                %td= @member.total_member_event_price_past
+                %td= @member.total_member_event_price_future
                 %td
                 %td.bg-success
 .col-md-9

@@ -18,3 +18,4 @@
     .links.container
       %p
       = link_to_add_association '+ Add attendance', f, :attendances, class: "btn btn-info add-button"
+      /= link_to_add_association('add something', f, :attendances, force_non_association_create: true)

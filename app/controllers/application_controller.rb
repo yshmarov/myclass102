@@ -8,4 +8,7 @@ class ApplicationController < ActionController::Base
   rescue_from ::Milia::Control::MaxTenantExceeded, :with => :max_tenants
   rescue_from ::Milia::Control::InvalidTenantAccess, :with => :invalid_tenant
 
+  #helper_method :current_tenant
+  #@tenant = Tenant.current_tenant
+
 end

@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
+
+  #what can not be accessed through mass assignment
+  #attr_protected :is_admin
+  #attr_accessible :name, :is_admin
+
   acts_as_universal_and_determines_account
   has_one :member, :dependent => :destroy
 
@@ -15,4 +20,8 @@ class User < ActiveRecord::Base
     username
   end
 
+  def is_admin?
+    is_admin
+  end
+    
 end

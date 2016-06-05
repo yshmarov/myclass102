@@ -6,23 +6,19 @@ class MembersController < ApplicationController
     @members = Member.all
   end
   def show
+    if current_user.is_admin == false
+      @member =  current_user.member
+    end
     @events = @member.events
-
-    #all past & future events
+    #past & future events
     @past_events = @member.events.where('starts_at < ?', Time.now).order('starts_at ASC')
     @future_events = @member.events.where('starts_at > ?', Time.now).order('starts_at ASC')
-
-    #price of all events>
-    @total_member_event_price = @member.products.sum(:member_price)
-
-    #price of past & future events>
-    @total_member_event_price_past = @past_events.map(&:member_event_price).sum
-    @total_member_event_price_future = @future_events.map(&:member_event_price).sum
-
-    #@paid_to_member = @member.salaries.sum(:amount)
   end
   
   def edit
+    if current_user.is_admin == false
+      @member =  current_user.member
+    end
   end
   
   def new()
@@ -54,10 +50,14 @@ class MembersController < ApplicationController
   end
 
   def destroy
-    @member.destroy
-    respond_to do |format|
-      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.is_admin == true
+      @member.destroy
+      respond_to do |format|
+        format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to members_path, notice: 'Suicide successfully prevented ;)'
     end
   end
 

@@ -39,21 +39,10 @@ class Course < ActiveRecord::Base
     total_paid_course - total_used_course
   end
 
-
 #tenant plan options
   def free_plan_can_only_have_one_course
     if self.new_record? && (tenant.courses.count > 1) && (tenant.plan == 'free')
       errors.add(:base, "Free plans cannot have more than 2 courses")
-    end
-  end
-
-#tenant plan views
-  def self.by_plan_and_tenant(tenant_id)
-    tenant = Tenant.find(tenant_id)
-    if tenant.plan == 'premium'
-      tenant.courses
-    else
-      tenant.courses.order(:id).limit(10)
     end
   end
 

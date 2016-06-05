@@ -39,3 +39,4 @@ gem 'rjv'
 gem "selectize-rails"
 gem 'ransack'
 gem 'validates_timeliness', '~> 4.0'
+gem 'stripe'

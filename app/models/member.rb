@@ -20,6 +20,18 @@ class Member < ActiveRecord::Base
     last_name+" "+first_name+" "+middle_name
   end
 
+  def total_member_event_price
+    products.sum(:member_price)
+  end
+
+  def total_member_event_price_past
+    events.where('starts_at < ?', Time.now).order('starts_at ASC').map(&:member_event_price).sum  
+  end
+
+  def total_member_event_price_future
+    events.where('starts_at > ?', Time.now).order('starts_at ASC').map(&:member_event_price).sum  
+  end
+
   DEFAULT_ADMIN = {
     first_name: "Admin",
     last_name:  "Please edit me"

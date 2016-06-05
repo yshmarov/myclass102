@@ -2,7 +2,10 @@ class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   def index
+    
     @clients = Client.all
+    #@clients = Client.where(users == current_user.id)
+
   end
 
   def show
@@ -34,6 +37,7 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(client_params)
+    #@client.users << current_user
     respond_to do |format|
       if @client.save
         format.html { redirect_to @client, notice: 'Client was successfully created.' }

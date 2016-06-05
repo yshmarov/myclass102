@@ -5,19 +5,17 @@
       %span.icon-bar
       %span.icon-bar
     %a.navbar-brand{:href => "/"}
-    /MyClass102:
-    /= @tenant.name
+      MyClass102:
+      = @current_user.member.tenant.name
     .navbar-collapse.collapse.navbar-responsive-collapse
       %ul.nav.navbar-nav
-        = link_to "<i class='fa fa-home'></i> ".html_safe, root_path, class: 'btn btn-primary sign-up'
         = link_to "<i class='fa fa-dashboard'></i> ".html_safe, dashboard_path, class: 'btn btn-primary sign-up'
         = link_to "<i class='fa fa-users'></i> Clients".html_safe, clients_path, class: 'btn btn-primary sign-up'
         = link_to "<i class='fa fa-gavel'></i> Courses".html_safe, courses_path, class: 'btn btn-primary sign-up'
         = link_to "<i class='fa fa-users'></i> Members".html_safe, members_path, class: 'btn btn-primary sign-up'
-        = link_to "<i class='fa fa-download'></i> Payments".html_safe, payments_path, class: 'btn btn-info sign-up'
-        = link_to "<i class='fa fa-upload'></i> Expence".html_safe, root_path, class: 'btn btn-warning sign-up'
+        = link_to "<i class='fa fa-download'></i> Payments".html_safe, payments_path, class: 'btn btn-primary sign-up'
         = link_to "<i class='fa fa-flash'></i> Tasks".html_safe, root_path, class: 'btn btn-warning sign-up'
-        = link_to "<i class='fa fa-exclamation-triangle'></i> Errors".html_safe, root_path, class: 'btn btn-warning sign-up'
-        = link_to "<i class='fa fa-gears'></i> Settings".html_safe, settings_path, class: 'btn btn-info sign-up'
+        = link_to "<i class='fa fa-gears'></i> Settings".html_safe, settings_path, class: 'btn btn-primary sign-up'
         = link_to current_user.username, edit_user_registration_path, class: 'btn btn-danger sign-up'
+        = link_to "<i class='fa fa-user'></i> ".html_safe, member_path(member_id = @current_user.id), class: 'btn btn-primary sign-up'
         = link_to "<i class='fa fa-sign-out'></i> ".html_safe, destroy_user_session_path, :method => :delete, class: 'btn btn-danger sign-up'
