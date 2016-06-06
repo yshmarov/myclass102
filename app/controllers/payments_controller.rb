@@ -2,7 +2,9 @@ class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
 
   def index
-    @payments = Payment.all
+    #@payments = Payment.all
+    @payments = Payment.paginate(:page => params[:page], :per_page => 2)
+    #@payments = Payment.paginate(:page => params[:page], :per_page => 20)
   end
 
   def show
