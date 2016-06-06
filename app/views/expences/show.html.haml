@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Member:
+  = @expence.member
+%p
+  %b Amount:
+  = @expence.amount
+%p
+  %b Tenant:
+  = @expence.tenant
+
+= link_to 'Edit', edit_expence_path(@expence)
+\|
+= link_to 'Back', expences_path

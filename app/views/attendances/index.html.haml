@@ -8,6 +8,8 @@
       %th Client
       %th Rate
       %th Starts at
+      %th Ends at
+      /%th pastprice
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
     - @attendances.each do |attendance|
@@ -17,6 +19,7 @@
         %td= attendance.attendance_rate_id
         %td= attendance.startz
         %td= attendance.endz
+        /%td= attendance.duepayment_past
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_attendance_path(attendance), :class => 'btn btn-default btn-xs'
           = link_to t('.destroy', :default => t("helpers.links.destroy")), attendance_path(attendance), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'

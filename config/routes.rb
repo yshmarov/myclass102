@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :tenants
   resources :courses do
     member do
@@ -9,21 +10,28 @@ Rails.application.routes.draw do
       #put 'update_course'
     end
   end
+  resources :enrollments
+  resources :events
+  resources :attendances
+
+  resources :expences
   resources :payments
-  resources :products
-  resources :product_types
+
   resources :attr3s
   resources :attr2s
   resources :attr1s
-  resources :enrollments
-  resources :attendances
+
+  resources :members
   resources :clients
+
+  resources :attendance_rates
+
+  resources :product_types
+  resources :products
+
   resources :offices
   resources :rooms
-  resources :courses
-  resources :events
-  resources :attendance_rates
-  resources :members
+
   get 'home/index'
   get 'dashboard', to: 'home#dashboard'
   get 'settings', to: 'home#settings'

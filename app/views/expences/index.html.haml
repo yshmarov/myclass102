@@ -1,0 +1,20 @@
+.page-header
+  %h1
+    Expences
+    = link_to "<i class='fa fa-upload'></i> New expence".html_safe, new_expence_path, class: 'btn btn-primary'
+%table.table.table-hover.table-condensed.table-responsive.table-bordered.table-striped
+  %thead
+    %tr
+      %th ID
+      %th Member
+      %th Amount
+      %th Actions
+  %tbody
+    - @expences.each do |expence|
+      %tr
+        %td= link_to expence.id, expence, class: 'btn btn-success btn-xs'
+        %td= expence.member
+        %td= expence.amount
+        %td
+          = link_to 'Edit', edit_expence_path(expence), class: 'btn btn-warning btn-xs'
+          = link_to 'Destroy', expence, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger   btn-xs'

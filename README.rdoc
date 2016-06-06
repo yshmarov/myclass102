@@ -61,11 +61,12 @@ rails g bootstrap:themed Products
 
 ++rails g scaffold Payment amount:decimal payment_type enrollment:belongs_to office:belongs_to member:belongs_to tenant:belongs_to
 
-###/
-/
+++rails g scaffold Expence member:belongs_to amount:decimal tenant:belongs_to ### given:boolean accepted:boolean
+
 /rails generate devise Client
 _________________
-/rails g scaffold Expence tenant:belongs_to member:belongs_to amount:decimal ### accepted:boolean
+
+//rails g scaffold CashCollection office:belongs_to amount:float tenant:belongs_to
 
 MemberProfile: middle_name tel1 tel2 address dob sex deleted_at:datetime
 

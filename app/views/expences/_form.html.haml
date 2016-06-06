@@ -1,0 +1,11 @@
+%br
+= simple_form_for(@expence) do |f|
+  = f.error_notification
+
+  .form-inputs
+    /= f.association :member
+    = f.select :member_id, Member.all.map{|c| [c, c.id]}, {},class: 'selectize'
+    = f.input :amount
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary btn-block'
+    = link_to 'Cancel', expences_path, class: "btn btn-danger btn-block"

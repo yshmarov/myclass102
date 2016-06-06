@@ -1,6 +1,41 @@
 /- set_var 'events', @events.map{|e| {title: e.course.name + " " + e.room.office.name  + " " + e.room.name, start: e.starts_at, end: e.ends_at, url: course_path(e.course)}}
 /- set_var 'events', @events.map{|e| {title: e.event.starts_at, start: e.starts_at, end: e.ends_at}}
 - set_var 'events', @events.map{|e| {title: e.room.name, start: e.starts_at, end: e.ends_at}}
+.container
+  .col-md-6
+    %h4 Income/Assets
+    Cash
+    %b payments-expences-in_office
+    /Accounts receivable
+    /%b 
+    /%br
+    /Total cash received: (all client payments)
+    %p
+    Accounts receivable
+    %b clients.total_balance.where event<Time.now
+    %br
+    
+  .col-md-6
+    %h4 Outcome/Liabilites
+    Accounts payable:
+    %b (-1)*(Expence.sum(:amount)-@totaldueexpence)
+    %p
+    Unearned revenue
+    %b EA1 of future events
+
+    Totall expences (price of users+rooms):
+    %b @totaldueexpence
+    %br
+    Totally cash paid:
+    %b Expence.sum(:amount)
+    %br
+  .col-md-3
+    %h4 Incasations?
+    Total cash incasated: - is it profit or not yet?
+    %b CashCollection.sum(:amount)
+    %br
+    Total Cash not incasated:
+    %b All Payments?
 
 .well
   %div#calendar

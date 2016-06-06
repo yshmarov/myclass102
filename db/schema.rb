@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602161418) do
+ActiveRecord::Schema.define(version: 20160606220856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,17 @@ ActiveRecord::Schema.define(version: 20160602161418) do
   add_index "events", ["course_id"], name: "index_events_on_course_id", using: :btree
   add_index "events", ["member_id"], name: "index_events_on_member_id", using: :btree
   add_index "events", ["tenant_id"], name: "index_events_on_tenant_id", using: :btree
+
+  create_table "expences", force: :cascade do |t|
+    t.integer  "member_id"
+    t.decimal  "amount"
+    t.integer  "tenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "expences", ["member_id"], name: "index_expences_on_member_id", using: :btree
+  add_index "expences", ["tenant_id"], name: "index_expences_on_tenant_id", using: :btree
 
   create_table "members", force: :cascade do |t|
     t.integer  "tenant_id"
@@ -276,6 +287,8 @@ ActiveRecord::Schema.define(version: 20160602161418) do
   add_foreign_key "events", "courses"
   add_foreign_key "events", "members"
   add_foreign_key "events", "tenants"
+  add_foreign_key "expences", "members"
+  add_foreign_key "expences", "tenants"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
   add_foreign_key "offices", "tenants"

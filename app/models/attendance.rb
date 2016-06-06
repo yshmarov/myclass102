@@ -22,6 +22,19 @@ class Attendance < ActiveRecord::Base
     rater*gpricer
   end
 
+  def duepayment_past
+    if event.starts_at < Time.now
+      rater*gpricer
+    end
+  end
+
+  def duepayment_future
+    if event.starts_at > Time.now
+      rater*gpricer
+    end
+  end
+
+
   def startz
     event.starts_at.to_s
   end
