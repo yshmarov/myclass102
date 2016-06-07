@@ -1,0 +1,12 @@
+%br
+= simple_form_for(@cash_collection) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :office
+    = f.input :amount
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary btn-block'
+    = link_to 'Cancel', cash_collections_path, class: "btn btn-danger btn-block"
+

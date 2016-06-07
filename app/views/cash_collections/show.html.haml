@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Office:
+  = @cash_collection.office
+%p
+  %b Amount:
+  = @cash_collection.amount
+%p
+  %b Tenant:
+  = @cash_collection.tenant
+
+= link_to 'Edit', edit_cash_collection_path(@cash_collection)
+\|
+= link_to 'Back', cash_collections_path

@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   resources :events
   resources :attendances
 
-  resources :expences
   resources :payments
+  resources :cash_collections
+  resources :expences
 
   resources :attr3s
   resources :attr2s

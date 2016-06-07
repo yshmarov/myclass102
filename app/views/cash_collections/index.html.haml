@@ -1,0 +1,21 @@
+.page-header
+  %h1
+    Cash collections
+    = link_to "<i class='fa fa-upload'></i> New collection".html_safe, new_cash_collection_path, class: 'btn btn-primary'
+%table.table.table-hover.table-condensed.table-responsive.table-bordered.table-striped
+  %thead
+    %tr
+      %th ID
+      %th Office
+      %th Amount
+      %th Actions
+
+  %tbody
+    - @cash_collections.each do |cash_collection|
+      %tr
+        %td= link_to cash_collection.id, cash_collection, class: 'btn btn-success btn-xs'
+        %td= cash_collection.office
+        %td= cash_collection.amount
+        %td
+          = link_to 'Edit', edit_cash_collection_path(cash_collection), class: 'btn btn-warning btn-xs'
+          = link_to 'Destroy', cash_collection, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'

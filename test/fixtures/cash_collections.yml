@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  office_id: 
+  amount: 1.5
+  tenant_id: 
+
+two:
+  office_id: 
+  amount: 1.5
+  tenant_id: 

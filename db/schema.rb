@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606220856) do
+ActiveRecord::Schema.define(version: 20160607045216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,17 @@ ActiveRecord::Schema.define(version: 20160606220856) do
   end
 
   add_index "attr3s", ["tenant_id"], name: "index_attr3s_on_tenant_id", using: :btree
+
+  create_table "cash_collections", force: :cascade do |t|
+    t.integer  "office_id"
+    t.float    "amount"
+    t.integer  "tenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cash_collections", ["office_id"], name: "index_cash_collections_on_office_id", using: :btree
+  add_index "cash_collections", ["tenant_id"], name: "index_cash_collections_on_tenant_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
     t.string   "first_name"
@@ -278,6 +289,8 @@ ActiveRecord::Schema.define(version: 20160606220856) do
   add_foreign_key "attr1s", "tenants"
   add_foreign_key "attr2s", "tenants"
   add_foreign_key "attr3s", "tenants"
+  add_foreign_key "cash_collections", "offices"
+  add_foreign_key "cash_collections", "tenants"
   add_foreign_key "clients", "tenants"
   add_foreign_key "courses", "tenants"
   add_foreign_key "enrollments", "clients"
