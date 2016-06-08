@@ -1,14 +1,19 @@
 .navbar.navbar-default.navbar-static-top
   .container
-    %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+    %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
       %span.icon-bar
       %span.icon-bar
       %span.icon-bar
-    %a.navbar-brand{:href => "/"}
+    %a.navbar-brand(href="/")
       MyClass102:
-      = @current_user.member.tenant.name
+      - if current_user.member
+        = @current_user.member.tenant.name
+      - if current_user.is_admin?
+        = @current_user.member.tenant.plan
     .navbar-collapse.collapse.navbar-responsive-collapse
       %ul.nav.navbar-nav
+        /%li= link_to "Link 3", "/path3"
+        /%li= link_to "<i class='fa fa-dashboard'></i> DASHBOARD ".html_safe, dashboard_path
         = link_to "<i class='fa fa-dashboard'></i> ".html_safe, dashboard_path, class: 'btn btn-primary sign-up'
         = link_to "<i class='fa fa-users'></i> Clients".html_safe, clients_path, class: 'btn btn-primary sign-up'
         = link_to "<i class='fa fa-gavel'></i> Courses".html_safe, courses_path, class: 'btn btn-primary sign-up'
@@ -18,6 +23,6 @@
         = link_to 'expence', expences_path, class: 'btn btn-primary sign-up'
         = link_to 'collect', cash_collections_path, class: 'btn btn-primary sign-up'
         = link_to "<i class='fa fa-gears'></i> Settings".html_safe, settings_path, class: 'btn btn-primary sign-up'
-        = link_to current_user.username, edit_user_registration_path, class: 'btn btn-danger sign-up'
-        = link_to "<i class='fa fa-user'></i> ".html_safe, member_path(member_id = @current_user.id), class: 'btn btn-primary sign-up'
+        - if current_user.member
+          = link_to "<i class='fa fa-user'></i> ".html_safe, member_path(member_id = @current_user.id), class: 'btn btn-primary sign-up'
         = link_to "<i class='fa fa-sign-out'></i> ".html_safe, destroy_user_session_path, :method => :delete, class: 'btn btn-danger sign-up'

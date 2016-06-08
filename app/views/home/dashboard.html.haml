@@ -3,22 +3,17 @@
 - set_var 'events', @events.map{|e| {title: e.room.name, start: e.starts_at, end: e.ends_at}}
 .container
   .col-md-6
-    %h4 Income/Assets
+    %h4 Assets
     Cash
-    %b payments-expences-in_office
-    /Accounts receivable
-    /%b 
-    /%br
-    /Total cash received: (all client payments)
+    %b= @cash
     %p
     Accounts receivable
-    %b clients.total_balance.where event<Time.now
-    %br
-    
+    %b= @accounts_receivable
+    %p
   .col-md-6
-    %h4 Outcome/Liabilites
+    %h4 Liabilites
     Accounts payable:
-    %b (-1)*(Expence.sum(:amount)-@totaldueexpence)
+    %b= @accounts_payable
     %p
     Unearned revenue
     %b EA1 of future events

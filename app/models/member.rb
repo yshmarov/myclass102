@@ -7,9 +7,9 @@ class Member < ActiveRecord::Base
   has_many :courses, through: :events
   has_many :products, through: :courses
 
-  ####to see that he was responsible for obtaining money
+  #to see that he was responsible for obtaining money
   has_many :payments
-  #has_many :expences
+  has_many :expences
   #has_many :cash_collections
 
   def to_s
@@ -30,6 +30,18 @@ class Member < ActiveRecord::Base
 
   def total_member_event_price_future
     events.where('starts_at > ?', Time.now).order('starts_at ASC').map(&:member_event_price).sum  
+  end
+
+  def paid
+    expences.sum(:amount)
+  end
+  
+  def balance
+    paid - total_member_event_price_past
+  end
+  
+  def to_pay
+    total_member_event_price - paid
   end
 
   DEFAULT_ADMIN = {

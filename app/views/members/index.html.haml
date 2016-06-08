@@ -26,8 +26,7 @@
         %td= member.user.email
         %td= member.first_name
         %td= member.last_name
-        %td TO BE
-        /%td= member.balance
+        %td= member.balance
         %td= member.user.is_admin?
         %td
           /- if member.user == current_user || member.user.is_admin == true

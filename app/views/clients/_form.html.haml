@@ -32,6 +32,8 @@
   .row
   .col-xs-6.no-left-padding
     /= f.input :address
+    /= f.input :country
+    /= f.input :city
   .col-xs-6.no-right-padding
     /= f.input :lead_source_id, class: 'inactive'
   = f.button :submit, class: 'btn btn-primary btn-block'

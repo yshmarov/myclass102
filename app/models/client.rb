@@ -70,4 +70,14 @@ class Client < ActiveRecord::Base
     payments.count
   end
 
+  #def country
+  #end
+  
+  #def city
+  #end
+
+  #def address
+  #  country + " " + city
+  #end
+
 end

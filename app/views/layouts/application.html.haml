@@ -1,18 +1,27 @@
-!!!
-%html{:lang => "en"}
+!!! 5
+%html(lang="en")
   %head
-    %meta{:charset => "utf-8"}
-      %meta{:content => "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
-        %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-          %title Myclass103
-          = csrf_meta_tags
-          = stylesheet_link_tag "application", :media => "all"
-          = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
-          = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
-          = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
-          = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
-          = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
-          = javascript_include_tag "application"
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    /%title= content_for?(:title) ? yield(:title) : "MyClass systems"
+    %title
+      MyClass
+      - if current_user
+        -if current_user.member
+          |
+          = @current_user.member.tenant.name
+      - else
+        systems
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", :media => "all"
+    = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
+    = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
+    = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
+    = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
+    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    = javascript_include_tag "application"
+    = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"
   %body
     -if current_user
       = render 'layouts/header'
@@ -20,6 +29,3 @@
       = bootstrap_flash
       = yield
       = rjv_tags
-      /- if current_user
-      /%footer.navbar-fixed-bottom.row-fluid.container.navbar-inner
-      /= render 'layouts/footer'

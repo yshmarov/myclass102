@@ -4,7 +4,10 @@
   = link_to 'Edit profile', edit_member_path(@member), class: 'btn btn-success'
   = link_to 'Pay salary', member_path(@member), class: 'btn btn-danger'
   = link_to 'Soft delete', member_path(@member), class: 'btn btn-danger'
+  = link_to 'BROKEN: Change password', edit_user_registration_path, class: 'btn btn-danger'
   = link_to 'All members', members_path, class: 'btn btn-default'
+
+
 %br
 .col-md-3
   #accordion.panel-group
@@ -32,7 +35,7 @@
                 %th All services
                 %th Past services
                 %th Future services
-                %th Total salary
+                %th Paid
                 %th.bg-success Expected income
             %tbody
               %tr
@@ -42,8 +45,8 @@
                 %td= @member.total_member_event_price
                 %td= @member.total_member_event_price_past
                 %td= @member.total_member_event_price_future
-                %td
-                %td.bg-success
+                %td= @member.paid
+                %td.bg-success= @member.to_pay
 .col-md-9
   #accordion.panel-group
     .panel.panel-default
