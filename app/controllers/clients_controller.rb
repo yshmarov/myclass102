@@ -37,6 +37,7 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(client_params)
+    #@client.address = params[:city] + " " + params[:country]
     #@client.users << current_user
     respond_to do |format|
       if @client.save
@@ -75,6 +76,6 @@ class ClientsController < ApplicationController
     end
 
     def client_params
-      params.require(:client).permit(:first_name, :middle_name, :last_name, :email, :tel1, :tel2, :dob, :sex, :address, :lead_source_id, :tenant_id)
+      params.require(:client).permit(:first_name, :middle_name, :last_name, :email, :tel1, :tel2, :dob, :sex, :address, :lead_source_id, :tenant_id, :city, :country)
     end
 end

@@ -1,0 +1,29 @@
+%br
+.col-md-3
+.col-md-6
+  .pull-right
+    = link_to 'Home', root_path, class: "btn btn-default"
+  .row
+  %br
+  .well
+    .text-center
+      .panel-heading
+        /%h1 aer
+        %h2= t('.sign_in', :default => "Sign in")
+      .panel-body
+        = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
+          .form-group
+            /= f.label :email
+            = f.email_field :email, autofocus: true, placeholder: 'Email address', class: "form-control"
+          .form-group
+            /= f.label :password
+            = f.password_field :password, autocomplete: "off", placeholder: 'Password', class: "form-control"
+          - if devise_mapping.rememberable?
+            .checkbox
+              = f.label :remember_me do
+                = f.check_box :remember_me
+                remember me
+          = f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-primary btn-block"
+      = render "devise/shared/links"
+.col-md-3
+

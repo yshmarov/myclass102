@@ -1,76 +1,122 @@
-/</div>
-.header
-  .pull-right
-    = link_to 'Sign in', new_user_session_path, class: 'btn btn-primary btn-lg '
-  /.text-center
-  %h1 Myclass102
-%br
 .row
+%br
+</div>
 .col-md-6
-  .jumbotron
-    %h1.b Myclass102
+  .jumbotron.container
+    %h1
+      .b= 'Jobspot'
     /%h3 Event sales & management system
-    %h3 Event scheduling & sales system
+    /%h3 Event scheduling & sales system
+    %h3 Event scheduling & sales. Organised.
     /%h3 Attendance sales & management system
     %p
       = link_to 'Try now for free!', new_user_registration_path(plan: 'free'), class: 'btn btn-success btn-lg active'
       or
       = link_to 'See our demo', new_user_registration_path(plan: 'free'), class: 'btn btn-primary btn-lg active'
-
 .col-md-6
   .embed-responsive.embed-responsive-16by9
     %iframe{:allowfullscreen => "", :frameborder => "0", :height => "458", :src => "https://www.youtube.com/embed/r6hxqg3PgRQ", :width => "815"}
 .row
-  .plans.clearfix
-    .col-lg-3.col-lg-offset-3.plan
-      %h1 Free Plan
-      .price.pull-right
-        Price: Free
-      .features
-        %ul
-          %li Unlimited event sales
-          %li Unlimited clients & CRM
-          %li 1 user
-          %li Finances
-          %li Reports & statistics
-      %p
-        = link_to 'Try now!', new_user_registration_path(plan: 'free'), class: 'btn btn-primary sign-up'
-    .col-lg-3.plan
-      %h1 Premium Plan
-      .price.pull-right
-        Price: $300
-      .features
-        %ul
-          %li Unlimited event sales
-          %li Unlimited clients & CRM
-          %li.extra Unlimited users
-          %li Finances
-          %li Reports & statistics
-      %p
-        = link_to 'Sign Up', new_user_registration_path(plan: 'premium'), class: 'btn btn-primary sign-up'
-.row
-.text-center
+.text-center.container
   %h1 Features
-
+  .col-md-3
+    %table.table.table-bordered
+      %tr
+        %td
+          .h4
+            .glyphicon.glyphicon-user
+            Manage clients
+          %p CRM
+          %p Sales
+          %p Analytics
+      %tr
+        %td sd
+  .col-md-3
+    %table.table.table-bordered
+      %tr
+        %td
+          .h4
+            .glyphicon.glyphicon-calendar
+            Schedule jobs
+          %p Office & room schedule
+          %p Staff schedule
+          %p Client schedule
+      %tr
+        %td sd
+  .col-md-3
+    %table.table.table-bordered
+      %tr
+        %td
+          .h4
+            .glyphicon.glyphicon-credit-card
+            Sales & invoicing
+          %p (recurring) jobs sales
+          %p Product sales
+          %p Group event sales
+      %tr
+        %td sd
+  .col-md-3
+    %table.table.table-bordered
+      %tr
+        %td
+          .h4
+            .glyphicon.glyphicon-stats
+            Management & Reports
+          %p Staff & salary
+          %p Balance sheet
+          %p Custom reports
+      %tr
+        %td sd
 .row
-.text-center
-  %h1 Designed for
+.text-center.container
+  %h1 Pricing
+  .col-md-6
+    .jumbotron#price1
+      %h2 Free forever
+      %ul
+        %li Unlimited event sales
+        %li Unlimited clients & CRM
+        %li 3 users
+        %li Finances
+        %li Reports & statistics
+      %p
+        = link_to 'Try now!', new_user_registration_path(plan: 'free'), class: 'btn btn-success sign-up'
+  .col-md-6
+    .jumbotron#price2
+      %h2 Premium: 300$
+      %ul
+        %li Unlimited event sales
+        %li Unlimited clients & CRM
+        %li.extra Unlimited users
+        %li Finances
+        %li Reports & statistics
+      %p
+        = link_to 'Sign Up', new_user_registration_path(plan: 'premium'), class: 'btn btn-success sign-up'
+.row
+.text-center.container
+  %h1 Solutions for
+  .col-md-4
+    .jumbotron#s1
+      Barber, Dentist, Massage, SPA saloons
+  .col-md-4
+    .jumbotron#s2
+      Language, dance, sport classes
+  .col-md-4
+    .jumbotron#s3
+      Tutorship, Construction Jobs
 
 .row
 .text-center
   %h1 Our partners
+  %a.btn.btn-info{:href => "http://www.london.cn.ua/", :role => "button"} FLC LN-Button
+  %a{:href => "http://www.london.cn.ua/"} Ferrer Spa & Wellness
 
 .row
 .text-center
   %h1 Contact us
-
 .row
 .text-center
-  %p
-  Contacts
-  %p
-  Support
-  %p
-  Tutorials
-  %p
-  Q&A forum
+  %h1 Support
+  %p Q&A
+  %p Tutorials
+

@@ -21,7 +21,6 @@
           = w.text_field :name, required: true, class: "form-control"
         .form-group.col-md-6.no-right-padding
           = w.label :plan
-          = w.select :plan, options_for_select(Plan.options, params[:plan]), {}, required: true, |
-            class: "form-control"                                                                |
+          = w.select :plan, options_for_select(Plan.options, params[:plan]), {}, required: true, class: "form-control"
       = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary"
 = render "devise/shared/links"
