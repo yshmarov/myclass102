@@ -17,7 +17,10 @@
   = @payment.member
 %p
   %b Tenant:
-  = @payment.tenant
+  = @payment.created
+%p
+  %b enrollment created_at:
+  = @payment.enrollment.created_at
 
 = link_to 'Edit', edit_payment_path(@payment)
 \|

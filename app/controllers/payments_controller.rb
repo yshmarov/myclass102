@@ -8,6 +8,11 @@ class PaymentsController < ApplicationController
   end
 
   def show
+    #render :json => @payment, :include => :enrollment => {:only => [:id]}
+    render :json => @payment,
+      include: { enrollment: { only: :id} }
+    
+    
   end
 
   def new
