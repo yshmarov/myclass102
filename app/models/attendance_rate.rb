@@ -1,5 +1,5 @@
 class AttendanceRate < ActiveRecord::Base
-  acts_as_tenant
+  acts_as_universal
   has_many :attendances
 
   validates :name, uniqueness: true

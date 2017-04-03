@@ -1,6 +1,5 @@
 class AttendanceRatesController < ApplicationController
   before_action :set_attendance_rate, only: [:show, :edit, :update, :destroy]
-
   # GET /attendance_rates
   # GET /attendance_rates.json
   def index

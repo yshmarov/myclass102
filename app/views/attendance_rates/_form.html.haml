@@ -2,6 +2,7 @@
   = f.input :name
   = f.error_span :name
   = f.input :rate
+  = f.input :tenant_id
   = f.error_span :rate
   = f.button :submit, :class => 'btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), attendance_rates_path, :class => 'btn btn-default'

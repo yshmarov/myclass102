@@ -8,7 +8,6 @@ class Tenant < ActiveRecord::Base
   has_many :enrollments, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :attendances, dependent: :destroy
-  has_many :attendance_rates, dependent: :destroy
 
   has_many :offices, dependent: :destroy
   has_many :rooms, dependent: :destroy
